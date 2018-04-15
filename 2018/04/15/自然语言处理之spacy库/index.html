@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yuzhen-li.github.io">
-  <title>恩泽の博客</title>
+  <title>自然语言处理之spacy库 | 恩泽の博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="礼物 - 3.8 	 	 	 	   	 	 		3.8节礼物，来了… 		 		 			 				 					首先，你要输入我的生日 					 					接着，摇一摇… 					 					最后，这就是见证奇迹的时刻… 				 				 					3.8节快乐！ 					祝身体健康,平安长乐 					请打开音量收听…">
-<meta name="keywords" content="自然语言处理(NLP),人工智能(AI),数据分析(DA),金融科技(FinTech),随笔，开发者，算法，代码，产品经理，项目管理">
-<meta property="og:type" content="website">
-<meta property="og:title" content="恩泽の博客">
-<meta property="og:url" content="https://yuzhen-li.github.io/assets/demo/gift/index.html">
+  <meta name="description" content="使用 Python+spaCy 进行简易自然语言处理spaCy 简介及安装方法安装和编译 spaCy 比较方便，在ubuntu环境下，直接用pip安装即可： sudo apt-get install build-essential python-dev git sudo pip install -U spacy 不过安装完毕之后，需要下载相关的模型数据，以英文模型数据为例，可以用”all”参数下载">
+<meta name="keywords" content="自然语言处理(NLP),spacy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自然语言处理之spacy库">
+<meta property="og:url" content="https://yuzhen-li.github.io/2018/04/15/自然语言处理之spacy库/index.html">
 <meta property="og:site_name" content="恩泽の博客">
-<meta property="og:description" content="礼物 - 3.8 	 	 	 	   	 	 		3.8节礼物，来了… 		 		 			 				 					首先，你要输入我的生日 					 					接着，摇一摇… 					 					最后，这就是见证奇迹的时刻… 				 				 					3.8节快乐！ 					祝身体健康,平安长乐 					请打开音量收听…">
+<meta property="og:description" content="使用 Python+spaCy 进行简易自然语言处理spaCy 简介及安装方法安装和编译 spaCy 比较方便，在ubuntu环境下，直接用pip安装即可： sudo apt-get install build-essential python-dev git sudo pip install -U spacy 不过安装完毕之后，需要下载相关的模型数据，以英文模型数据为例，可以用”all”参数下载">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://yuzhen-li.github.io/assets/demo/gift/img/shake.png">
-<meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
+<meta property="og:updated_time" content="2018-04-15T16:07:36.741Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="恩泽の博客">
-<meta name="twitter:description" content="礼物 - 3.8 	 	 	 	   	 	 		3.8节礼物，来了… 		 		 			 				 					首先，你要输入我的生日 					 					接着，摇一摇… 					 					最后，这就是见证奇迹的时刻… 				 				 					3.8节快乐！ 					祝身体健康,平安长乐 					请打开音量收听…">
-<meta name="twitter:image" content="https://yuzhen-li.github.io/assets/demo/gift/img/shake.png">
+<meta name="twitter:title" content="自然语言处理之spacy库">
+<meta name="twitter:description" content="使用 Python+spaCy 进行简易自然语言处理spaCy 简介及安装方法安装和编译 spaCy 比较方便，在ubuntu环境下，直接用pip安装即可： sudo apt-get install build-essential python-dev git sudo pip install -U spacy 不过安装完毕之后，需要下载相关的模型数据，以英文模型数据为例，可以用”all”参数下载">
   
     <link rel="alternative" href="/atom.xml" title="恩泽の博客" type="application/atom+xml">
   
@@ -167,93 +165,265 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-自然语言处理之spacy库" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自然语言处理之spacy库
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/自然语言处理之spacy库/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no">
-	<title>礼物 - 3.8</title>
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/index.css">
-	<script src="js/zepto.min.js"></script>
-	<script src="js/shake.js"></script>
-</head>
-<body>
-	<!-- <div id="my_player"></div> -->
-	<header>
-		<p>3.8节礼物，来了…</p>
-		<div class="paper-t"></div>
-		<div class="main">
-			<div class="main-top top2">
-				<section id="se1">
-					<p>首先，你要输入我的生日</p>
-					<input id="myBir" type="text" placeholder="4位数，格式为:mmdd">
-					<p>接着，摇一摇…</p>
-					<img src="img/shake.png">
-					<p>最后，这就是见证奇迹的时刻…</p>
-				</section>
-				<section id="se2" class="hide">
-					<p>3.8节快乐！</p>
-					<p>祝身体健康,平安长乐</p>
-					<p>请打开音量收听…</p>
-				</section>
-			</div>
-		</div>
-		<div class="paper-b"></div>
-	</header>
-</body>
-	<script>
-		var Main = (function() {
-			function playAudio(src) {
-			    if (typeof Audio != "undefined") { 
-			        new Audio(src).play() ;
-			    } else if (typeof device != "undefined") {
-			        if (device.platform == 'Android') {
-			            console.log(src);
-			        }
-			        var mediaRes = new Media(src,
-			            function onSuccess() {
-			                mediaRes.release();
-			            },
-			            function onError(e){
-			                console.log("error playing sound: " + JSON.stringify(e));
-			            });
-			        mediaRes.play();
+        <h1 id="使用-Python-spaCy-进行简易自然语言处理"><a href="#使用-Python-spaCy-进行简易自然语言处理" class="headerlink" title="使用 Python+spaCy 进行简易自然语言处理"></a>使用 Python+spaCy 进行简易自然语言处理</h1><h2 id="spaCy-简介及安装方法"><a href="#spaCy-简介及安装方法" class="headerlink" title="spaCy 简介及安装方法"></a>spaCy 简介及安装方法</h2><p>安装和编译 spaCy 比较方便，在ubuntu环境下，直接用pip安装即可：</p>
+<pre><code>sudo apt-get install build-essential python-dev git
+sudo pip install -U spacy
+</code></pre><p>不过安装完毕之后，需要下载相关的模型数据，以英文模型数据为例，可以用”all”参数下载所有的数据:</p>
+<pre><code>sudo python -m spacy.en.download all
+</code></pre><p>可能提示 no module named spacy.en</p>
+<p>则执行：python -m spacy download en 即可</p>
+<p>现在可以快速测试一下spaCy的相关功能，我们以英文数据为例，spaCy目前主要支持英文和德文，对其他语言的支持正在陆续加入：</p>
+<pre><code># 加载英文模型数据，稍许等待
+In [2]: nlp = spacy.load(&apos;en&apos;)
+</code></pre><h2 id="分词："><a href="#分词：" class="headerlink" title="分词："></a>分词：</h2><pre><code>In [3]: test_doc = nlp(u&quot;it&apos;s word tokenize test for spacy&quot;)
 
-			    } else {
-			        alert("no sound API to play: " + src);
-			    }
-			}
-			window.addEventListener('shake', autoRun, false);
-			function autoRun(){
-				if($("#myBir").val() == "0425"){
-					$("#se1").hide();
-					$("#se2").show();
-					playAudio("media/gift.ogg");
-				}else{
-					alert("生日错误");
-				}
-				
-			}
-			var init = function() {
-				
-			}
-			return {
-				init: init
-			}
-		})();
+In [4]: print(test_doc)
+it&apos;s word tokenize test for spacy
 
-		$(Main.init());
-	</script>
-</html>
+In [5]: for token in test_doc:
+print(token)
+...:
+it
+&apos;s
+word
+tokenize
+test
+for
+spacy
+
+英文断句:
+
+
+In [6]: test_doc = nlp(u&apos;Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.&apos;)
+
+In [7]: for sent in test_doc.sents:
+print(sent)
+...:
+Natural language processing (NLP) deals with the application of computational models to text or speech data.
+Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways.
+NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form.
+From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.
+</code></pre><h2 id="词性标注-POS-Tagging"><a href="#词性标注-POS-Tagging" class="headerlink" title="词性标注(POS Tagging):"></a>词性标注(POS Tagging):</h2><pre><code>In [10]: for token in test_doc:
+print(token, token.pos_, token.pos)
+....:
+(you, u&apos;PRON&apos;, 92)
+(are, u&apos;VERB&apos;, 97)
+(best, u&apos;ADJ&apos;, 82)
+(., u&apos;PUNCT&apos;, 94)
+(it, u&apos;PRON&apos;, 92)
+(is, u&apos;VERB&apos;, 97)
+(lemmatize, u&apos;ADJ&apos;, 82)
+(test, u&apos;NOUN&apos;, 89)
+(for, u&apos;ADP&apos;, 83)
+(spacy, u&apos;NOUN&apos;, 89)
+(., u&apos;PUNCT&apos;, 94)
+(I, u&apos;PRON&apos;, 92)
+(love, u&apos;VERB&apos;, 97)
+(these, u&apos;DET&apos;, 87)
+(books, u&apos;NOUN&apos;, 89)
+</code></pre><h2 id="命名实体识别（NER）："><a href="#命名实体识别（NER）：" class="headerlink" title="命名实体识别（NER）："></a>命名实体识别（NER）：</h2><pre><code>In [11]: test_doc = nlp(u&quot;Rami Eid is studying at Stony Brook University in New York&quot;)
+
+In [12]: for ent in test_doc.ents:
+print(ent, ent.label_, ent.label)
+....:
+(Rami Eid, u&apos;PERSON&apos;, 346)
+(Stony Brook University, u&apos;ORG&apos;, 349)
+(New York, u&apos;GPE&apos;, 350)
+</code></pre><p>代码统一整理：</p>
+<pre><code>import spacy
+nlp = spacy.load(&apos;en&apos;)
+test_doc = nlp(u&quot;it&apos;s word tokenize test for spacy&quot;)
+
+# 分词
+print(&quot;\n1、分词&quot;)
+print(test_doc)
+for token in test_doc:
+    print(token)
+
+# 分句
+print(&quot;\n2、分句&quot;)
+test_doc = nlp(u&apos;Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.&apos;)
+print(test_doc)
+for sent in test_doc.sents:
+    print(sent)
+
+# 词干化
+print(&quot;\n3、词干化&quot;)
+test_doc = nlp(u&quot;you are best. it is lemmatize test for spacy. I love these books&quot;)
+print(test_doc)
+for token in test_doc:
+    print(token, token.lemma_, token.lemma)
+
+# 词性标注
+print(&quot;\n4、词性标注&quot;)
+print(test_doc)
+for token in test_doc:
+    print(token, token.pos_, token.pos)
+
+
+# 命名实体识别
+print(&quot;\n5、命名实体识别&quot;)
+test_doc = nlp(u&quot;Rami Eid is studying at Stony Brook University in New York&quot;)
+print(test_doc)
+for ent in test_doc.ents:
+    print(ent, ent.label_, ent.label)
+
+# 名词短语提取
+print(&quot;\n6、名词短语提取&quot;)
+test_doc = nlp(u&apos;Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.&apos;)
+print(test_doc)
+for np in test_doc.noun_chunks:
+    print(np)
+
+# 基于词向量计算两个单词的相似度
+print(&quot;\n7、基于词向量计算两个单词的相似度&quot;)
+test_doc = nlp(u&quot;Apples and oranges are the same . Boots and hippos aren&apos;t.&quot;)
+print(test_doc)
+apples = test_doc[0]
+print(apples)
+oranges = test_doc[2]
+print(oranges)
+boots = test_doc[7]
+print(boots)
+hippos = test_doc[9]
+print(hippos)
+
+print(apples.similarity(oranges))
+print(boots.similarity(hippos))
+</code></pre><p>结果</p>
+<pre><code>/usr/bin/python3.5 /home/wmmm/PycharmProjects/untitled/zstp.py
+
+1、分词
+it&apos;s word tokenize test for spacy
+it
+&apos;s
+word
+tokenize
+test
+for
+spacy
+
+2、分句
+Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.
+Natural language processing (NLP) deals with the application of computational models to text or speech data.
+Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways.
+NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form.
+From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.
+
+3、词干化
+you are best. it is lemmatize test for spacy. I love these books
+you -PRON- 561228191312463089
+are be 10382539506755952630
+best good 5711639017775284443
+. . 12646065887601541794
+it -PRON- 561228191312463089
+is be 10382539506755952630
+lemmatize lemmatize 4507259281035238268
+test test 1618900948208871284
+for for 16037325823156266367
+spacy spacy 10639093010105930009
+. . 12646065887601541794
+I -PRON- 561228191312463089
+love love 3702023516439754181
+these these 6459564349623679250
+books book 13814433107111459297
+
+4、词性标注
+you are best. it is lemmatize test for spacy. I love these books
+you PRON 94
+are VERB 99
+best ADJ 83
+. PUNCT 96
+it PRON 94
+is VERB 99
+lemmatize ADJ 83
+test NOUN 91
+for ADP 84
+spacy NOUN 91
+. PUNCT 96
+I PRON 94
+love VERB 99
+these DET 89
+books NOUN 91
+
+5、命名实体识别
+Rami Eid is studying at Stony Brook University in New York
+Rami Eid PERSON 378
+Stony Brook University ORG 381
+New York GPE 382
+
+6、名词短语提取
+Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.
+Natural language processing
+the application
+computational models
+Application areas
+NLP
+automatic (machine) translation
+languages
+dialogue systems
+a human
+a machine
+natural language
+information extraction
+the goal
+unstructured text
+structured (database) representations
+flexible ways
+NLP technologies
+a dramatic impact
+the way
+people
+computers
+the way
+people
+the use
+language
+the way
+people
+the vast amount
+linguistic data
+electronic form
+a scientific viewpoint
+NLP
+fundamental questions
+formal models
+example
+natural language phenomena
+algorithms
+these models
+
+7、基于词向量计算两个单词的相似度
+Apples and oranges are the same . Boots and hippos aren&apos;t.
+Apples
+oranges
+Boots
+hippos
+0.518096
+0.158362
+
+进程已结束,退出代码0
+</code></pre>
       
 
       
@@ -292,6 +462,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spacy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 	  
 		<span class="archive-article-date">
 			阅读量 <span id="busuanzi_value_page_pv"></span>
@@ -299,6 +484,17 @@
       
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -348,7 +544,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yuzhen-li.github.io/assets/demo/gift/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yuzhen-li.github.io/2018/04/15/自然语言处理之spacy库/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -360,6 +556,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          自然语言（分词、分词、实体识别等）集成投票算法实例
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/15/诗和远方1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">诗和远方1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -424,7 +639,7 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

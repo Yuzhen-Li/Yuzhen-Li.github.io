@@ -4,6 +4,96 @@
 
     
   <url>
+    <loc>https://yuzhen-li.github.io/2018/04/15/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86textblog%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2018-04-15T16:09:52.777Z</lastmod>
+    <data>
+        <display>
+        <title>自然语言处理textblog安装使用</title>
+        <pubTime>2018-04-15T15:23:12.000Z</pubTime>
+        
+        <tag>自然语言处理(NLP)</tag>
+         
+        <tag>textblog</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术博客" url="https://yuzhen-li.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuzhen-li.github.io/2018/04/15/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%B9%8Bspacy%E5%BA%93/</loc>
+    <lastmod>2018-04-15T16:07:36.741Z</lastmod>
+    <data>
+        <display>
+        <title>自然语言处理之spacy库</title>
+        <pubTime>2018-04-15T15:23:12.000Z</pubTime>
+        
+        <tag>自然语言处理(NLP)</tag>
+         
+        <tag>spacy</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术博客" url="https://yuzhen-li.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuzhen-li.github.io/2018/04/15/NLP%E5%A4%84%E7%90%86%E4%B9%8Bpolyglot/</loc>
+    <lastmod>2018-04-15T16:06:53.585Z</lastmod>
+    <data>
+        <display>
+        <title>NLP处理之polyglot</title>
+        <pubTime>2018-04-15T15:23:12.000Z</pubTime>
+        
+        <tag>自然语言处理(NLP)</tag>
+         
+        <tag>polyglot</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术博客" url="https://yuzhen-li.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://yuzhen-li.github.io/2018/04/15/NLP%E7%9A%84JSON%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA/</loc>
+    <lastmod>2018-04-15T16:06:41.373Z</lastmod>
+    <data>
+        <display>
+        <title>NLP的JSON格式输出</title>
+        <pubTime>2018-04-15T15:23:12.000Z</pubTime>
+        
+        <tag>自然语言处理(NLP)</tag>
+         
+        <tag>分词</tag>
+         
+        <tag>JSON</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术博客" url="https://yuzhen-li.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuzhen-li.github.io/2018/04/15/Stanford-CoreNLP%E5%9C%A8Ubuntu%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2018-04-15T15:54:27.105Z</lastmod>
     <data>

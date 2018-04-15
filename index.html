@@ -166,6 +166,347 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。</span></span><br><span class="line"><span class="string">最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span> </span><br><span class="line">result=json.dumps(&#123;<span class="string">'status'</span><span class="symbol">:<span class="string">'0'</span></span>,<span class="string">'inputStr'</span><span class="symbol">:inputStr</span>,<span class="string">'mode'</span><span class="symbol">:methodNum</span>,<span class="string">'outputStr'</span><span class="symbol">:finalResult</span>&#125;,ensure_ascii=False,indent=<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">$ pip install polyglot</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">安装依赖库</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">$ sudo apt-get install python-numpy libicu-dev</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">在Python中<span class="keyword">import</span> _icu（这个语句其实在polyglot安装成功后<span class="keyword">import</span> polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)</span><br><span class="line"></span><br><span class="line">所以我们这个动态链接库是没有build成功的。 </span><br><span class="line">可能是pip install的时候没有生成一个好的_icu.so</span><br><span class="line"></span><br><span class="line">所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。</span><br><span class="line"></span><br><span class="line">编译安装成功</span><br><span class="line"></span><br><span class="line">我就不用pip安装了，直接下源码</span><br><span class="line">``` </span><br><span class="line">wget https:<span class="comment">//pypi.python.org/packages/bf/1f/cea237f542e3bb592980008a734850e8cbbc25c19c72c98767c71c1bd9c2/PyICU-2.0.3.tar.gz</span></span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span><span class="number">.3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">``` </span><br><span class="line">此时如果你是linux系统要修改一下setup.py文件</span><br><span class="line"></span><br><span class="line">[图<span class="number">1</span>]:https:<span class="comment">//img-blog.csdn.net/20161101103524206</span></span><br><span class="line">[图<span class="number">2</span>]:https:<span class="comment">//img-blog.csdn.net/20161101103535800</span></span><br><span class="line"></span><br><span class="line">具体如下图所示</span><br><span class="line"></span><br><span class="line">![图<span class="number">1</span>]</span><br><span class="line">![图<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">然后</span><br></pre></td></tr></table></figure>
+<p>python setup.py build<br>sudo python setup.py install</p>
+<pre><code>
+
+# 分词
+</code></pre><p>from polyglot.text import Text</p>
+<p>blob = u”””The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide”””</p>
+<p>text = Text(blob)</p>
+<p>text.words</p>
+<pre><code># 词性标注
+首先需要下载通用词性标签集
+</code></pre><p>polyglot download embeddings2.en pos2.en</p>
+<pre><code>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。
+
+词性标注具体代码如下：
+</code></pre><p>from polyglot.text import Text</p>
+<p>blob = “””We will meet at eight o’clock on Thursday morning.”””<br>text = Text(blob)</p>
+<p>text.pos_tags</p>
+<pre><code>
+# 实体识别
+
+首先也要安装相关依赖包
+</code></pre><p>polyglot download embeddings2.en ner2.en</p>
+<pre><code>相关代码如下：
+</code></pre><p>from polyglot.text import Text<br>blob = “””The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a “threat to the entire world”.”””<br>text = Text(blob)</p>
+<p>text.entities</p>
+<pre><code>
+但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理
+
+</code></pre><p>nerL = [ ]<br>nerR = { }<br>for sent int text.sentences:<br>    for entity in sent.entities:<br>        nerL.append(entity)</p>
+<p>for iter in nerL:<br>    for i in iter:<br>        nerR[i] = iter.tag</p>
+<p>print(R)</p>
+<p><code>`</code> </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-自然语言处理textblog安装使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/自然语言处理textblog安装使用/">自然语言处理textblog安装使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/自然语言处理textblog安装使用/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="自然语言处理-textblog-安装使用"><a href="#自然语言处理-textblog-安装使用" class="headerlink" title="自然语言处理 textblog 安装使用"></a>自然语言处理 textblog 安装使用</h1><h2 id="TextBlob是什么？"><a href="#TextBlob是什么？" class="headerlink" title="TextBlob是什么？"></a>TextBlob是什么？</h2><p>TextBlob是一个用Python编写的开源的文本处理库。它可以用来执行很多自然语言处理的任务，比如，词性标注，名词性成分提取，情感分析，文本翻译，等等。你可以在官方文档阅读TextBlog的所有特性。</p>
+<p>github 地址：<a href="https://github.com/sloria/TextBlob/" target="_blank" rel="noopener">https://github.com/sloria/TextBlob/</a></p>
+<p>文档地址：<a href="https://textblob.readthedocs.io/en/dev/" target="_blank" rel="noopener">https://textblob.readthedocs.io/en/dev/</a><br>TextBlob是在NLTK和pattern基础上构建的，并且与这两者完美契合。</p>
+<h2 id="安装-TextBlob"><a href="#安装-TextBlob" class="headerlink" title="安装 TextBlob"></a>安装 TextBlob</h2><pre><code>$ pip install -U textblob
+$ python -m textblob.download_corpora # 下载nltk数据包，如果已经在nltk 安装的时候下载好了nltk数据包，不需要此步骤
+</code></pre><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>Create a TextBlob（创建一个textblob对象）</p>
+<pre><code>from textblob import TextBlob
+wiki = TextBlob(&quot;Python is a high-level, general-purpose programming language.&quot;)
+</code></pre><p>Part-of-speech Tagging（词性标注）</p>
+<pre><code>wiki.tags
+
+[(&apos;Python&apos;, &apos;NNP&apos;), (&apos;is&apos;, &apos;VBZ&apos;), (&apos;a&apos;, &apos;DT&apos;), (&apos;high-level&apos;, &apos;JJ&apos;), (&apos;general-purpose&apos;, &apos;JJ&apos;), (&apos;programming&apos;, &apos;NN&apos;), (&apos;language&apos;, &apos;NN&apos;)]
+</code></pre><p>Sentiment Analysis（情感分析）</p>
+<pre><code>testimonial = TextBlob(&quot;Textblob is amazingly simple to use. What great fun!&quot;)
+testimonial.sentiment
+
+Sentiment(polarity=0.39166666666666666, subjectivity=0.4357142857142857)
+
+testimonial.sentiment.polarity
+
+0.39166666666666666
+</code></pre><p>Tokenization（分词和分句）</p>
+<pre><code>zen = TextBlob(&quot;Beautiful is better than ugly. &quot;
+...                &quot;Explicit is better than implicit. &quot;
+...                &quot;Simple is better than complex.&quot;)
+zen.words
+
+WordList([&apos;Beautiful&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;ugly&apos;, &apos;Explicit&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;implicit&apos;, &apos;Simple&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;complex&apos;])
+
+zen.sentences
+
+[Sentence(&quot;Beautiful is better than ugly.&quot;), Sentence(&quot;Explicit is better than implicit.&quot;), Sentence(&quot;Simple is better than complex.&quot;)]
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">textblog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/自然语言处理textblog安装使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-自然语言（分词、词性标注、实体识别等）集成投票算法实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -231,6 +572,334 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-自然语言处理之spacy库" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/自然语言处理之spacy库/">自然语言处理之spacy库</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/自然语言处理之spacy库/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用-Python-spaCy-进行简易自然语言处理"><a href="#使用-Python-spaCy-进行简易自然语言处理" class="headerlink" title="使用 Python+spaCy 进行简易自然语言处理"></a>使用 Python+spaCy 进行简易自然语言处理</h1><h2 id="spaCy-简介及安装方法"><a href="#spaCy-简介及安装方法" class="headerlink" title="spaCy 简介及安装方法"></a>spaCy 简介及安装方法</h2><p>安装和编译 spaCy 比较方便，在ubuntu环境下，直接用pip安装即可：</p>
+<pre><code>sudo apt-get install build-essential python-dev git
+sudo pip install -U spacy
+</code></pre><p>不过安装完毕之后，需要下载相关的模型数据，以英文模型数据为例，可以用”all”参数下载所有的数据:</p>
+<pre><code>sudo python -m spacy.en.download all
+</code></pre><p>可能提示 no module named spacy.en</p>
+<p>则执行：python -m spacy download en 即可</p>
+<p>现在可以快速测试一下spaCy的相关功能，我们以英文数据为例，spaCy目前主要支持英文和德文，对其他语言的支持正在陆续加入：</p>
+<pre><code># 加载英文模型数据，稍许等待
+In [2]: nlp = spacy.load(&apos;en&apos;)
+</code></pre><h2 id="分词："><a href="#分词：" class="headerlink" title="分词："></a>分词：</h2><pre><code>In [3]: test_doc = nlp(u&quot;it&apos;s word tokenize test for spacy&quot;)
+
+In [4]: print(test_doc)
+it&apos;s word tokenize test for spacy
+
+In [5]: for token in test_doc:
+print(token)
+...:
+it
+&apos;s
+word
+tokenize
+test
+for
+spacy
+
+英文断句:
+
+
+In [6]: test_doc = nlp(u&apos;Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.&apos;)
+
+In [7]: for sent in test_doc.sents:
+print(sent)
+...:
+Natural language processing (NLP) deals with the application of computational models to text or speech data.
+Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways.
+NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form.
+From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.
+</code></pre><h2 id="词性标注-POS-Tagging"><a href="#词性标注-POS-Tagging" class="headerlink" title="词性标注(POS Tagging):"></a>词性标注(POS Tagging):</h2><pre><code>In [10]: for token in test_doc:
+print(token, token.pos_, token.pos)
+....:
+(you, u&apos;PRON&apos;, 92)
+(are, u&apos;VERB&apos;, 97)
+(best, u&apos;ADJ&apos;, 82)
+(., u&apos;PUNCT&apos;, 94)
+(it, u&apos;PRON&apos;, 92)
+(is, u&apos;VERB&apos;, 97)
+(lemmatize, u&apos;ADJ&apos;, 82)
+(test, u&apos;NOUN&apos;, 89)
+(for, u&apos;ADP&apos;, 83)
+(spacy, u&apos;NOUN&apos;, 89)
+(., u&apos;PUNCT&apos;, 94)
+(I, u&apos;PRON&apos;, 92)
+(love, u&apos;VERB&apos;, 97)
+(these, u&apos;DET&apos;, 87)
+(books, u&apos;NOUN&apos;, 89)
+</code></pre><h2 id="命名实体识别（NER）："><a href="#命名实体识别（NER）：" class="headerlink" title="命名实体识别（NER）："></a>命名实体识别（NER）：</h2><pre><code>In [11]: test_doc = nlp(u&quot;Rami Eid is studying at Stony Brook University in New York&quot;)
+
+In [12]: for ent in test_doc.ents:
+print(ent, ent.label_, ent.label)
+....:
+(Rami Eid, u&apos;PERSON&apos;, 346)
+(Stony Brook University, u&apos;ORG&apos;, 349)
+(New York, u&apos;GPE&apos;, 350)
+</code></pre><p>代码统一整理：</p>
+<pre><code>import spacy
+nlp = spacy.load(&apos;en&apos;)
+test_doc = nlp(u&quot;it&apos;s word tokenize test for spacy&quot;)
+
+# 分词
+print(&quot;\n1、分词&quot;)
+print(test_doc)
+for token in test_doc:
+    print(token)
+
+# 分句
+print(&quot;\n2、分句&quot;)
+test_doc = nlp(u&apos;Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.&apos;)
+print(test_doc)
+for sent in test_doc.sents:
+    print(sent)
+
+# 词干化
+print(&quot;\n3、词干化&quot;)
+test_doc = nlp(u&quot;you are best. it is lemmatize test for spacy. I love these books&quot;)
+print(test_doc)
+for token in test_doc:
+    print(token, token.lemma_, token.lemma)
+
+# 词性标注
+print(&quot;\n4、词性标注&quot;)
+print(test_doc)
+for token in test_doc:
+    print(token, token.pos_, token.pos)
+
+
+# 命名实体识别
+print(&quot;\n5、命名实体识别&quot;)
+test_doc = nlp(u&quot;Rami Eid is studying at Stony Brook University in New York&quot;)
+print(test_doc)
+for ent in test_doc.ents:
+    print(ent, ent.label_, ent.label)
+
+# 名词短语提取
+print(&quot;\n6、名词短语提取&quot;)
+test_doc = nlp(u&apos;Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.&apos;)
+print(test_doc)
+for np in test_doc.noun_chunks:
+    print(np)
+
+# 基于词向量计算两个单词的相似度
+print(&quot;\n7、基于词向量计算两个单词的相似度&quot;)
+test_doc = nlp(u&quot;Apples and oranges are the same . Boots and hippos aren&apos;t.&quot;)
+print(test_doc)
+apples = test_doc[0]
+print(apples)
+oranges = test_doc[2]
+print(oranges)
+boots = test_doc[7]
+print(boots)
+hippos = test_doc[9]
+print(hippos)
+
+print(apples.similarity(oranges))
+print(boots.similarity(hippos))
+</code></pre><p>结果</p>
+<pre><code>/usr/bin/python3.5 /home/wmmm/PycharmProjects/untitled/zstp.py
+
+1、分词
+it&apos;s word tokenize test for spacy
+it
+&apos;s
+word
+tokenize
+test
+for
+spacy
+
+2、分句
+Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.
+Natural language processing (NLP) deals with the application of computational models to text or speech data.
+Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways.
+NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form.
+From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.
+
+3、词干化
+you are best. it is lemmatize test for spacy. I love these books
+you -PRON- 561228191312463089
+are be 10382539506755952630
+best good 5711639017775284443
+. . 12646065887601541794
+it -PRON- 561228191312463089
+is be 10382539506755952630
+lemmatize lemmatize 4507259281035238268
+test test 1618900948208871284
+for for 16037325823156266367
+spacy spacy 10639093010105930009
+. . 12646065887601541794
+I -PRON- 561228191312463089
+love love 3702023516439754181
+these these 6459564349623679250
+books book 13814433107111459297
+
+4、词性标注
+you are best. it is lemmatize test for spacy. I love these books
+you PRON 94
+are VERB 99
+best ADJ 83
+. PUNCT 96
+it PRON 94
+is VERB 99
+lemmatize ADJ 83
+test NOUN 91
+for ADP 84
+spacy NOUN 91
+. PUNCT 96
+I PRON 94
+love VERB 99
+these DET 89
+books NOUN 91
+
+5、命名实体识别
+Rami Eid is studying at Stony Brook University in New York
+Rami Eid PERSON 378
+Stony Brook University ORG 381
+New York GPE 382
+
+6、名词短语提取
+Natural language processing (NLP) deals with the application of computational models to text or speech data. Application areas within NLP include automatic (machine) translation between languages; dialogue systems, which allow a human to interact with a machine using natural language; and information extraction, where the goal is to transform unstructured text into structured (database) representations that can be searched and browsed in flexible ways. NLP technologies are having a dramatic impact on the way people interact with computers, on the way people interact with each other through the use of language, and on the way people access the vast amount of linguistic data now in electronic form. From a scientific viewpoint, NLP involves fundamental questions of how to structure formal models (for example statistical models) of natural language phenomena, and of how to design algorithms that implement these models.
+Natural language processing
+the application
+computational models
+Application areas
+NLP
+automatic (machine) translation
+languages
+dialogue systems
+a human
+a machine
+natural language
+information extraction
+the goal
+unstructured text
+structured (database) representations
+flexible ways
+NLP technologies
+a dramatic impact
+the way
+people
+computers
+the way
+people
+the use
+language
+the way
+people
+the vast amount
+linguistic data
+electronic form
+a scientific viewpoint
+NLP
+fundamental questions
+formal models
+example
+natural language phenomena
+algorithms
+these models
+
+7、基于词向量计算两个单词的相似度
+Apples and oranges are the same . Boots and hippos aren&apos;t.
+Apples
+oranges
+Boots
+hippos
+0.518096
+0.158362
+
+进程已结束,退出代码0
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">spacy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/自然语言处理之spacy库/">展开全文 >></a>
         </p>
       
 
@@ -644,6 +1313,26 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">自然语言处理(NLP)</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">分词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -656,15 +1345,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">自然语言处理(NLP)</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">投票集成算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">spacy</a>
               </li>
             
             <div class="clearfix"></div>
