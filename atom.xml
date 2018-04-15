@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuzhen-li.github.io/"/>
-  <updated>2018-04-15T13:33:25.964Z</updated>
+  <updated>2018-04-15T13:46:52.161Z</updated>
   <id>https://yuzhen-li.github.io/</id>
   
   <author>
@@ -15,6 +15,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>决策融合分词</title>
+    <link href="https://yuzhen-li.github.io/2018/04/15/%E5%86%B3%E7%AD%96%E8%9E%8D%E5%90%88%E5%88%86%E8%AF%8D/"/>
+    <id>https://yuzhen-li.github.io/2018/04/15/决策融合分词/</id>
+    <published>2018-04-15T13:46:01.000Z</published>
+    <updated>2018-04-15T13:46:52.161Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="技术博客" scheme="https://yuzhen-li.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>jieba分词</title>
