@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuzhen-li.github.io/"/>
-  <updated>2018-04-15T13:14:35.312Z</updated>
+  <updated>2018-04-15T13:18:11.006Z</updated>
   <id>https://yuzhen-li.github.io/</id>
   
   <author>
@@ -17,17 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Stanford_CoreNLP在Ubuntu下的安装与使用</title>
-    <link href="https://yuzhen-li.github.io/2018/04/15/Stanford-CoreNLP%E5%9C%A8Ubuntu%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>https://yuzhen-li.github.io/2018/04/15/Stanford-CoreNLP在Ubuntu下的安装与使用/</id>
-    <published>2018-04-15T12:22:48.000Z</published>
-    <updated>2018-04-15T13:14:35.312Z</updated>
+    <title>诗和远方</title>
+    <link href="https://yuzhen-li.github.io/2018/04/15/%E8%AF%97%E5%92%8C%E8%BF%9C%E6%96%B9/"/>
+    <id>https://yuzhen-li.github.io/2018/04/15/诗和远方/</id>
+    <published>2018-04-15T13:17:33.000Z</published>
+    <updated>2018-04-15T13:18:11.006Z</updated>
     
     <summary type="html">
     
     </summary>
     
-      <category term="techBlog" scheme="https://yuzhen-li.github.io/categories/techBlog/"/>
+      <category term="散文随笔" scheme="https://yuzhen-li.github.io/categories/%E6%95%A3%E6%96%87%E9%9A%8F%E7%AC%94/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Stanford_CoreNLP在Ubuntu下的安装与使用</title>
+    <link href="https://yuzhen-li.github.io/2018/04/15/Stanford-CoreNLP%E5%9C%A8Ubuntu%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>https://yuzhen-li.github.io/2018/04/15/Stanford-CoreNLP在Ubuntu下的安装与使用/</id>
+    <published>2018-04-15T12:22:48.000Z</published>
+    <updated>2018-04-15T13:17:01.597Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="技术博客" scheme="https://yuzhen-li.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
     
     
       <category term="NLP" scheme="https://yuzhen-li.github.io/tags/NLP/"/>

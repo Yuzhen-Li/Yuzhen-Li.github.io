@@ -4,8 +4,26 @@
 
     
   <url>
+    <loc>https://yuzhen-li.github.io/2018/04/15/%E8%AF%97%E5%92%8C%E8%BF%9C%E6%96%B9/</loc>
+    <lastmod>2018-04-15T13:18:11.006Z</lastmod>
+    <data>
+        <display>
+        <title>诗和远方</title>
+        <pubTime>2018-04-15T13:17:33.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="散文随笔" url="https://yuzhen-li.github.io/categories/%E6%95%A3%E6%96%87%E9%9A%8F%E7%AC%94/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://yuzhen-li.github.io/2018/04/15/Stanford-CoreNLP%E5%9C%A8Ubuntu%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-04-15T13:14:35.312Z</lastmod>
+    <lastmod>2018-04-15T13:17:01.597Z</lastmod>
     <data>
         <display>
         <title>Stanford_CoreNLP在Ubuntu下的安装与使用</title>
@@ -20,7 +38,7 @@
          
            
              
-              <breadCrumb title="techBlog" url="https://yuzhen-li.github.io/categories/techBlog/"/>
+              <breadCrumb title="技术博客" url="https://yuzhen-li.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
           
         </display>
     </data>
