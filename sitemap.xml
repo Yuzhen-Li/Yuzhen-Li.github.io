@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yuzhen-li.github.io/2018/04/15/liyuzhen/</loc>
+    
+    <lastmod>2018-04-15T07:28:07.453Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yuzhen-li.github.io/2015/09/19/hello-world/</loc>
     
     <lastmod>2018-04-12T11:43:06.876Z</lastmod>
@@ -9,14 +16,21 @@
   </url>
   
   <url>
-    <loc>https://yuzhen-li.github.io/assets/demo/pre_css3_demo/demo.html</loc>
+    <loc>https://yuzhen-li.github.io/photos/index.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yuzhen-li.github.io/photos/index.html</loc>
+    <loc>https://yuzhen-li.github.io/photos/ins.json</loc>
+    
+    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yuzhen-li.github.io/assets/demo/hack_demo.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -30,7 +44,7 @@
   </url>
   
   <url>
-    <loc>https://yuzhen-li.github.io/assets/demo/jiugongge_demo.html</loc>
+    <loc>https://yuzhen-li.github.io/assets/demo/my_news_reader/index.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -38,13 +52,6 @@
   
   <url>
     <loc>https://yuzhen-li.github.io/assets/demo/jiugongge_demo2.html</loc>
-    
-    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yuzhen-li.github.io/photos/ins.json</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -72,14 +79,14 @@
   </url>
   
   <url>
-    <loc>https://yuzhen-li.github.io/assets/demo/my_news_reader/index.html</loc>
+    <loc>https://yuzhen-li.github.io/assets/demo/pre_css3_demo/demo.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yuzhen-li.github.io/assets/demo/hack_demo.html</loc>
+    <loc>https://yuzhen-li.github.io/assets/demo/jiugongge_demo.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
