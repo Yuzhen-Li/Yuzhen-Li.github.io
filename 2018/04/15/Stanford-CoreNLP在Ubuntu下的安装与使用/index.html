@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yuzhen-li.github.io">
   <title>Stanford_CoreNLP在Ubuntu下的安装与使用 | 恩泽の博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="东北大学硕士，就职于招商银行战略规划与执行部。主要从事金融科技的研究以及金融科技项目管理。">
+  <meta name="description" content="stanford CoreNLP安装以及使用stanford CoreNLP快搞死我了，查了不少资料花费了接近3个小时，才安装完成，并且学会使用。 简介Stanford CoreNLP提供了一系列自然语言分析工具。它能够给出基本的词形，词性，不管是公司名还是人名等，格式化的日期，时间，量词，并且能够标记句子的结构，语法形式和字词依赖，指明那些名字指向同样的实体，指明情绪，提取发言中的开放关系等。如">
 <meta name="keywords" content="NLP,stanford,CoreNLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stanford_CoreNLP在Ubuntu下的安装与使用">
 <meta property="og:url" content="https://yuzhen-li.github.io/2018/04/15/Stanford-CoreNLP在Ubuntu下的安装与使用/index.html">
 <meta property="og:site_name" content="恩泽の博客">
-<meta property="og:description" content="东北大学硕士，就职于招商银行战略规划与执行部。主要从事金融科技的研究以及金融科技项目管理。">
+<meta property="og:description" content="stanford CoreNLP安装以及使用stanford CoreNLP快搞死我了，查了不少资料花费了接近3个小时，才安装完成，并且学会使用。 简介Stanford CoreNLP提供了一系列自然语言分析工具。它能够给出基本的词形，词性，不管是公司名还是人名等，格式化的日期，时间，量词，并且能够标记句子的结构，语法形式和字词依赖，指明那些名字指向同样的实体，指明情绪，提取发言中的开放关系等。如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-15T13:17:01.597Z">
+<meta property="og:updated_time" content="2018-04-15T15:54:27.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stanford_CoreNLP在Ubuntu下的安装与使用">
-<meta name="twitter:description" content="东北大学硕士，就职于招商银行战略规划与执行部。主要从事金融科技的研究以及金融科技项目管理。">
+<meta name="twitter:description" content="stanford CoreNLP安装以及使用stanford CoreNLP快搞死我了，查了不少资料花费了接近3个小时，才安装完成，并且学会使用。 简介Stanford CoreNLP提供了一系列自然语言分析工具。它能够给出基本的词形，词性，不管是公司名还是人名等，格式化的日期，时间，量词，并且能够标记句子的结构，语法形式和字词依赖，指明那些名字指向同样的实体，指明情绪，提取发言中的开放关系等。如">
   
     <link rel="alternative" href="/atom.xml" title="恩泽の博客" type="application/atom+xml">
   
@@ -185,7 +185,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="stanford-CoreNLP安装以及使用"><a href="#stanford-CoreNLP安装以及使用" class="headerlink" title="stanford CoreNLP安装以及使用"></a>stanford CoreNLP安装以及使用</h1><p>stanford CoreNLP快搞死我了，查了不少资料花费了接近3个小时，才安装完成，并且学会使用。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Stanford CoreNLP提供了一系列自然语言分析工具。它能够给出基本的词形，词性，不管是公司名还是人名等，格式化的日期，时间，量词，并且能够标记句子的结构，语法形式和字词依赖，指明那些名字指向同样的实体，指明情绪，提取发言中的开放关系等。如果需要进行如下任务，Standfrod CoreNLP正合适：</p>
+<pre><code>1一个集成的语言分析工具集；
+2进行快速，可靠的任意文本分析；
+3.整体的高质量的文本分析;
+4.支持多种主流语言;
+5.多种编程语言的易用接口;
+6.方便的简单的部署web服务。
+</code></pre><p>Stanford CoreNLP是一个集成的框架。框架的目标是使得应用一大堆语言分析工具分析大量的文本变得简单。COreNLP工具可以仅仅通过两行命令执行大量的文本分析工作。框架设计的初衷就是高度灵活的可扩展性的。通过一个单独的名利ing就可以选择某个工具的开启和关闭。Stanford CoreNLP集成了许多斯坦福的NLP工具，包括：词性标记（POS），命名实体识别（NER），语法，参数分析系统，情绪分析，自举模式学习，和开放信息提取工具。这个框架的分析为高等级和指定领域的文本理解应用程序提供了基本的构件。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先需要安装Java运行环境，以Ubuntu 12.04为例，安装Java运行环境仅需要两步：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get <span class="keyword">install</span> <span class="keyword">default</span>-jre</span><br><span class="line">sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> <span class="keyword">default</span>-jdk</span><br></pre></td></tr></table></figure></p>
+<p>然后下载Stanford coreNLP 包：<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://nlp.stanford.edu/software/stanford-corenlp-full<span class="string">-2018</span><span class="string">-02</span><span class="string">-27</span>.zip</span><br><span class="line"></span><br><span class="line">unzip stanford-corenlp-full<span class="string">-2018</span><span class="string">-02</span><span class="string">-27</span>.zip</span><br><span class="line"></span><br><span class="line">cd stanford-corenlp-full<span class="string">-2018</span><span class="string">-02</span><span class="string">-27</span>/</span><br></pre></td></tr></table></figure></p>
+<p>配置环境变量：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> `<span class="builtin-name">find</span> . -name <span class="string">"*.jar"</span>`; <span class="keyword">do</span> <span class="builtin-name">export</span> <span class="attribute">CLASSPATH</span>=<span class="string">"<span class="variable">$CLASSPATH</span>:`realpath <span class="variable">$file</span>`"</span>; done</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> `<span class="builtin-name">find</span> /path/<span class="keyword">to</span>/corenlp/ -name <span class="string">"*.jar"</span>`; <span class="keyword">do</span> <span class="builtin-name">export</span> <span class="attribute">CLASSPATH</span>=<span class="string">"<span class="variable">$CLASSPATH</span>:`realpath <span class="variable">$file</span>`"</span>; done</span><br></pre></td></tr></table></figure>
+<p>安装：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 <span class="keyword">install</span> stanfordcorenlp</span><br></pre></td></tr></table></figure></p>
+<p>处理中文还需要下载中文的模型jar文件，然后放到stanford-corenlp-full-2018-02-27根目录下即可<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nlp.stanford.edu/software/stanford-chinese-corenlp<span class="string">-2018</span><span class="string">-02</span><span class="string">-27</span>-models.jar</span><br></pre></td></tr></table></figure></p>
+<h2 id="中文使用方法"><a href="#中文使用方法" class="headerlink" title="中文使用方法"></a>中文使用方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> stanfordcorenlp <span class="keyword">import</span> StanfordCoreNLP</span><br><span class="line"></span><br><span class="line">nlp = StanfordCoreNLP(<span class="string">r'/mnt/f/CMBNLP/stanford-corenlp-full-2018-02-27/'</span>, lang=<span class="string">'zh'</span>) <span class="comment">## 这里是coreNLP的路径</span></span><br><span class="line"></span><br><span class="line">sentence = <span class="string">'清华大学位于北京。'</span></span><br><span class="line"><span class="keyword">print</span> nlp.word_tokenize(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.pos_tag(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.ner(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.parse(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.dependency_parse(sentence)</span><br></pre></td></tr></table></figure>
+<h2 id="英文使用方法"><a href="#英文使用方法" class="headerlink" title="英文使用方法"></a>英文使用方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> stanfordcorenlp <span class="keyword">import</span> StanfordCoreNLP</span><br><span class="line"></span><br><span class="line">nlp = StanfordCoreNLP(<span class="string">r'/mnt/f/CMBNLP/stanford-corenlp-full-2018-02-27/'</span>) <span class="comment">## 这里是coreNLP的路径,与中文相比，省略了, lang='zh'</span></span><br><span class="line"></span><br><span class="line">sentence = <span class="string">'You are a beautiful girl1'</span></span><br><span class="line"><span class="keyword">print</span> nlp.word_tokenize(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.pos_tag(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.ner(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.parse(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.dependency_parse(sentence)</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -501,6 +518,18 @@ MathJax.Hub.Queue(function() {
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CoreNLP</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">自然语言处理(NLP)</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">分词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">投票集成算法</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -562,7 +591,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">东北大学硕士,&lt;br&gt;&lt;br&gt;&lt;br&gt;就职于招商银行战略规划与执行部。&lt;br&gt;&lt;br&gt;&lt;br&gt;主要从事金融科技的研究以及金融科技项目管理。&lt;br&gt;&lt;br&gt;&lt;br&gt;谢谢大家！</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">一枚散发着淡淡文艺气息的工科男硕士，爱好技术，爱好文字，目前供职于招商银行总行，从事FinTech相关的项目开发和项目管理，谢谢大家！</div>
   	  	
     	</section>
     
