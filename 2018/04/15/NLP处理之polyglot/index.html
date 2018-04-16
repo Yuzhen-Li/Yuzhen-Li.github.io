@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yuzhen-li.github.io">
   <title>NLP处理之polyglot | 恩泽の博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装 1234$ pip install polyglot ``` 安装依赖库 $ sudo apt-get install python-numpy libicu-dev 1234567891011121314151617181920212223242526在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候">
+  <meta name="description" content="安装1$ pip install polyglot 安装依赖库  12345678910111213141516171819202122232425262728$ sudo apt-get install python-numpy libicu-dev ``` 在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时">
 <meta name="keywords" content="自然语言处理(NLP),polyglot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NLP处理之polyglot">
 <meta property="og:url" content="https://yuzhen-li.github.io/2018/04/15/NLP处理之polyglot/index.html">
 <meta property="og:site_name" content="恩泽の博客">
-<meta property="og:description" content="安装 1234$ pip install polyglot ``` 安装依赖库 $ sudo apt-get install python-numpy libicu-dev 1234567891011121314151617181920212223242526在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候">
+<meta property="og:description" content="安装1$ pip install polyglot 安装依赖库  12345678910111213141516171819202122232425262728$ sudo apt-get install python-numpy libicu-dev ``` 在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-16T08:05:20.097Z">
+<meta property="og:updated_time" content="2018-04-16T08:30:37.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP处理之polyglot">
-<meta name="twitter:description" content="安装 1234$ pip install polyglot ``` 安装依赖库 $ sudo apt-get install python-numpy libicu-dev 1234567891011121314151617181920212223242526在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候">
+<meta name="twitter:description" content="安装1$ pip install polyglot 安装依赖库  12345678910111213141516171819202122232425262728$ sudo apt-get install python-numpy libicu-dev ``` 在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时">
   
     <link rel="alternative" href="/atom.xml" title="恩泽の博客" type="application/atom+xml">
   
@@ -185,12 +185,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ pip install polyglot</span><br><span class="line"> ``` </span><br><span class="line"></span><br><span class="line">安装依赖库</span><br></pre></td></tr></table></figure>
-<p>$ sudo apt-get install python-numpy libicu-dev<br> <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在Python中<span class="keyword">import</span> _icu（这个语句其实在polyglot安装成功后<span class="keyword">import</span> polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)</span><br><span class="line">所以我们这个动态链接库是没有build成功的。 </span><br><span class="line">可能是pip install的时候没有生成一个好的_icu.so</span><br><span class="line">所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。</span><br><span class="line">编译安装成功</span><br><span class="line">我就不用pip安装了，直接下源码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> ``` </span><br><span class="line">wget https:<span class="comment">//pypi.python.org/packages/bf/1f/cea237f542e3bb592980008a734850e8cbbc25c19c72c98767c71c1bd9c2/PyICU-2.0.3.tar.gz</span></span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span><span class="number">.3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line"> ``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">此时如果你是linux系统要修改一下setup.py文件</span><br><span class="line">具体如下图所示</span><br><span class="line"></span><br><span class="line">![图<span class="number">1</span>](/assets/blogImg/test1.jpg)</span><br><span class="line">![图<span class="number">2</span>](/assets/blogImg/test2.jpg)</span><br><span class="line"></span><br><span class="line">然后</span><br></pre></td></tr></table></figure></p>
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install polyglot</span></span><br></pre></td></tr></table></figure>
+<p>安装依赖库</p>
+ <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install python-numpy libicu-dev</span><br><span class="line"> ``` </span><br><span class="line"></span><br><span class="line">在Python中<span class="keyword">import</span> _icu（这个语句其实在polyglot安装成功后<span class="keyword">import</span> polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)</span><br><span class="line">所以我们这个动态链接库是没有build成功的。 </span><br><span class="line">可能是pip install的时候没有生成一个好的_icu.so</span><br><span class="line">所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。</span><br><span class="line">编译安装成功</span><br><span class="line">我就不用pip安装了，直接下源码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">wget https:<span class="comment">//pypi.python.org/packages/bf/1f/cea237f542e3bb592980008a734850e8cbbc25c19c72c98767c71c1bd9c2/PyICU-2.0.3.tar.gz</span></span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span><span class="number">.3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">此时如果你是linux系统要修改一下setup.py文件</span><br><span class="line">具体如下图所示</span><br><span class="line"></span><br><span class="line">![图<span class="number">1</span>](/assets/blogImg/test1.jpg)</span><br><span class="line">![图<span class="number">2</span>](/assets/blogImg/test2.jpg)</span><br><span class="line"></span><br><span class="line">然后</span><br></pre></td></tr></table></figure>
 <p>python setup.py build<br>sudo python setup.py install</p>
-<pre><code>
-# 分词
-
+<pre><code># 分词
 </code></pre><p>from polyglot.text import Text</p>
 <p>blob = u”””The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide”””</p>
 <p>text = Text(blob)</p>
@@ -223,7 +222,7 @@
 
 </code></pre><p>nerL = [ ]<br>nerR = { }<br>for sent int text.sentences:<br>    for entity in sent.entities:<br>        nerL.append(entity)</p>
 <p>for iter in nerL:<br>    for i in iter:<br>        nerR[i] = iter.tag</p>
-<p>print(R)<br> <code>`</code> </p>
+<p>print(R)<br><code>`</code> </p>
 
       
 
@@ -358,15 +357,6 @@
 
   
 <nav id="article-nav">
-  
-    <a href="/2018/04/15/NLP的JSON格式输出/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          NLP的JSON格式输出
-        
-      </div>
-    </a>
   
   
     <a href="/2018/04/15/自然语言处理textblog安装使用/" id="article-nav-older" class="article-nav-link-wrap">
@@ -535,15 +525,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,7 +545,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
+                <a href="javascript:void(0)" class="js-tag color3">分词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
               <li class="article-tag-list-item">
