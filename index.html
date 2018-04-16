@@ -166,19 +166,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-自然语言处理textblog安装使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/自然语言处理textblog安装使用/">自然语言处理textblog安装使用</a>
+      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
     </h1>
   
 
         
-        <a href="/2018/04/15/自然语言处理textblog安装使用/" class="archive-article-date">
+        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
   	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
 </a>
         
@@ -186,39 +186,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="自然语言处理-textblog-安装使用"><a href="#自然语言处理-textblog-安装使用" class="headerlink" title="自然语言处理 textblog 安装使用"></a>自然语言处理 textblog 安装使用</h1><h2 id="TextBlob是什么？"><a href="#TextBlob是什么？" class="headerlink" title="TextBlob是什么？"></a>TextBlob是什么？</h2><p>TextBlob是一个用Python编写的开源的文本处理库。它可以用来执行很多自然语言处理的任务，比如，词性标注，名词性成分提取，情感分析，文本翻译，等等。你可以在官方文档阅读TextBlog的所有特性。</p>
-<p>github 地址：<a href="https://github.com/sloria/TextBlob/" target="_blank" rel="noopener">https://github.com/sloria/TextBlob/</a></p>
-<p>文档地址：<a href="https://textblob.readthedocs.io/en/dev/" target="_blank" rel="noopener">https://textblob.readthedocs.io/en/dev/</a><br>TextBlob是在NLTK和pattern基础上构建的，并且与这两者完美契合。</p>
-<h2 id="安装-TextBlob"><a href="#安装-TextBlob" class="headerlink" title="安装 TextBlob"></a>安装 TextBlob</h2><pre><code>$ pip install -U textblob
-$ python -m textblob.download_corpora # 下载nltk数据包，如果已经在nltk 安装的时候下载好了nltk数据包，不需要此步骤
-</code></pre><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>Create a TextBlob（创建一个textblob对象）</p>
-<pre><code>from textblob import TextBlob
-wiki = TextBlob(&quot;Python is a high-level, general-purpose programming language.&quot;)
-</code></pre><p>Part-of-speech Tagging（词性标注）</p>
-<pre><code>wiki.tags
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">$ pip install polyglot</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">安装依赖库</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">$ sudo apt-get install python-numpy libicu-dev</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">在Python中<span class="keyword">import</span> _icu（这个语句其实在polyglot安装成功后<span class="keyword">import</span> polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)</span><br><span class="line"></span><br><span class="line">所以我们这个动态链接库是没有build成功的。 </span><br><span class="line">可能是pip install的时候没有生成一个好的_icu.so</span><br><span class="line"></span><br><span class="line">所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。</span><br><span class="line"></span><br><span class="line">编译安装成功</span><br><span class="line"></span><br><span class="line">我就不用pip安装了，直接下源码</span><br><span class="line">``` </span><br><span class="line">wget https:<span class="comment">//pypi.python.org/packages/bf/1f/cea237f542e3bb592980008a734850e8cbbc25c19c72c98767c71c1bd9c2/PyICU-2.0.3.tar.gz</span></span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span><span class="number">.3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">``` </span><br><span class="line">此时如果你是linux系统要修改一下setup.py文件</span><br><span class="line"></span><br><span class="line">[图<span class="number">1</span>]:https:<span class="comment">//img-blog.csdn.net/20161101103524206</span></span><br><span class="line">[图<span class="number">2</span>]:https:<span class="comment">//img-blog.csdn.net/20161101103535800</span></span><br><span class="line"></span><br><span class="line">具体如下图所示</span><br><span class="line"></span><br><span class="line">![图<span class="number">1</span>]</span><br><span class="line">![图<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">然后</span><br></pre></td></tr></table></figure>
+<p>python setup.py build<br>sudo python setup.py install</p>
+<pre><code>
 
-[(&apos;Python&apos;, &apos;NNP&apos;), (&apos;is&apos;, &apos;VBZ&apos;), (&apos;a&apos;, &apos;DT&apos;), (&apos;high-level&apos;, &apos;JJ&apos;), (&apos;general-purpose&apos;, &apos;JJ&apos;), (&apos;programming&apos;, &apos;NN&apos;), (&apos;language&apos;, &apos;NN&apos;)]
-</code></pre><p>Sentiment Analysis（情感分析）</p>
-<pre><code>testimonial = TextBlob(&quot;Textblob is amazingly simple to use. What great fun!&quot;)
-testimonial.sentiment
+# 分词
+</code></pre><p>from polyglot.text import Text</p>
+<p>blob = u”””The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide”””</p>
+<p>text = Text(blob)</p>
+<p>text.words</p>
+<pre><code># 词性标注
+首先需要下载通用词性标签集
+</code></pre><p>polyglot download embeddings2.en pos2.en</p>
+<pre><code>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。
 
-Sentiment(polarity=0.39166666666666666, subjectivity=0.4357142857142857)
+词性标注具体代码如下：
+</code></pre><p>from polyglot.text import Text</p>
+<p>blob = “””We will meet at eight o’clock on Thursday morning.”””<br>text = Text(blob)</p>
+<p>text.pos_tags</p>
+<pre><code>
+# 实体识别
 
-testimonial.sentiment.polarity
+首先也要安装相关依赖包
+</code></pre><p>polyglot download embeddings2.en ner2.en</p>
+<pre><code>相关代码如下：
+</code></pre><p>from polyglot.text import Text<br>blob = “””The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a “threat to the entire world”.”””<br>text = Text(blob)</p>
+<p>text.entities</p>
+<pre><code>
+但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理
 
-0.39166666666666666
-</code></pre><p>Tokenization（分词和分句）</p>
-<pre><code>zen = TextBlob(&quot;Beautiful is better than ugly. &quot;
-...                &quot;Explicit is better than implicit. &quot;
-...                &quot;Simple is better than complex.&quot;)
-zen.words
+</code></pre><p>nerL = [ ]<br>nerR = { }<br>for sent int text.sentences:<br>    for entity in sent.entities:<br>        nerL.append(entity)</p>
+<p>for iter in nerL:<br>    for i in iter:<br>        nerR[i] = iter.tag</p>
+<p>print(R)</p>
+<p><code>`</code> </p>
 
-WordList([&apos;Beautiful&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;ugly&apos;, &apos;Explicit&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;implicit&apos;, &apos;Simple&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;complex&apos;])
-
-zen.sentences
-
-[Sentence(&quot;Beautiful is better than ugly.&quot;), Sentence(&quot;Explicit is better than implicit.&quot;), Sentence(&quot;Simple is better than complex.&quot;)]
-</code></pre>
       
 
       
@@ -235,7 +236,7 @@ zen.sentences
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">textblog</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
         		</li>
       		
 		</ul>
@@ -258,7 +259,7 @@ zen.sentences
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/自然语言处理textblog安装使用/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
         </p>
       
 
@@ -355,129 +356,6 @@ zen.sentences
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">$ pip install polyglot</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">安装依赖库</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">$ sudo apt-get install python-numpy libicu-dev</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">在Python中<span class="keyword">import</span> _icu（这个语句其实在polyglot安装成功后<span class="keyword">import</span> polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)</span><br><span class="line"></span><br><span class="line">所以我们这个动态链接库是没有build成功的。 </span><br><span class="line">可能是pip install的时候没有生成一个好的_icu.so</span><br><span class="line"></span><br><span class="line">所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。</span><br><span class="line"></span><br><span class="line">编译安装成功</span><br><span class="line"></span><br><span class="line">我就不用pip安装了，直接下源码</span><br><span class="line">``` </span><br><span class="line">wget https:<span class="comment">//pypi.python.org/packages/bf/1f/cea237f542e3bb592980008a734850e8cbbc25c19c72c98767c71c1bd9c2/PyICU-2.0.3.tar.gz</span></span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span><span class="number">.3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">``` </span><br><span class="line">此时如果你是linux系统要修改一下setup.py文件</span><br><span class="line"></span><br><span class="line">[图<span class="number">1</span>]:https:<span class="comment">//img-blog.csdn.net/20161101103524206</span></span><br><span class="line">[图<span class="number">2</span>]:https:<span class="comment">//img-blog.csdn.net/20161101103535800</span></span><br><span class="line"></span><br><span class="line">具体如下图所示</span><br><span class="line"></span><br><span class="line">![图<span class="number">1</span>]</span><br><span class="line">![图<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">然后</span><br></pre></td></tr></table></figure>
-<p>python setup.py build<br>sudo python setup.py install</p>
-<pre><code>
-
-# 分词
-</code></pre><p>from polyglot.text import Text</p>
-<p>blob = u”””The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide”””</p>
-<p>text = Text(blob)</p>
-<p>text.words</p>
-<pre><code># 词性标注
-首先需要下载通用词性标签集
-</code></pre><p>polyglot download embeddings2.en pos2.en</p>
-<pre><code>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。
-
-词性标注具体代码如下：
-</code></pre><p>from polyglot.text import Text</p>
-<p>blob = “””We will meet at eight o’clock on Thursday morning.”””<br>text = Text(blob)</p>
-<p>text.pos_tags</p>
-<pre><code>
-# 实体识别
-
-首先也要安装相关依赖包
-</code></pre><p>polyglot download embeddings2.en ner2.en</p>
-<pre><code>相关代码如下：
-</code></pre><p>from polyglot.text import Text<br>blob = “””The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a “threat to the entire world”.”””<br>text = Text(blob)</p>
-<p>text.entities</p>
-<pre><code>
-但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理
-
-</code></pre><p>nerL = [ ]<br>nerR = { }<br>for sent int text.sentences:<br>    for entity in sent.entities:<br>        nerL.append(entity)</p>
-<p>for iter in nerL:<br>    for i in iter:<br>        nerR[i] = iter.tag</p>
-<p>print(R)</p>
-<p><code>`</code> </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
         </p>
       
 
@@ -806,6 +684,128 @@ hippos
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/自然语言处理之spacy库/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-自然语言处理textblog安装使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/自然语言处理textblog安装使用/">自然语言处理textblog安装使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/自然语言处理textblog安装使用/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="自然语言处理-textblog-安装使用"><a href="#自然语言处理-textblog-安装使用" class="headerlink" title="自然语言处理 textblog 安装使用"></a>自然语言处理 textblog 安装使用</h1><h2 id="TextBlob是什么？"><a href="#TextBlob是什么？" class="headerlink" title="TextBlob是什么？"></a>TextBlob是什么？</h2><p>TextBlob是一个用Python编写的开源的文本处理库。它可以用来执行很多自然语言处理的任务，比如，词性标注，名词性成分提取，情感分析，文本翻译，等等。你可以在官方文档阅读TextBlog的所有特性。</p>
+<p>github 地址：<a href="https://github.com/sloria/TextBlob/" target="_blank" rel="noopener">https://github.com/sloria/TextBlob/</a></p>
+<p>文档地址：<a href="https://textblob.readthedocs.io/en/dev/" target="_blank" rel="noopener">https://textblob.readthedocs.io/en/dev/</a><br>TextBlob是在NLTK和pattern基础上构建的，并且与这两者完美契合。</p>
+<h2 id="安装-TextBlob"><a href="#安装-TextBlob" class="headerlink" title="安装 TextBlob"></a>安装 TextBlob</h2><pre><code>$ pip install -U textblob
+$ python -m textblob.download_corpora # 下载nltk数据包，如果已经在nltk 安装的时候下载好了nltk数据包，不需要此步骤
+</code></pre><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>Create a TextBlob（创建一个textblob对象）</p>
+<pre><code>from textblob import TextBlob
+wiki = TextBlob(&quot;Python is a high-level, general-purpose programming language.&quot;)
+</code></pre><p>Part-of-speech Tagging（词性标注）</p>
+<pre><code>wiki.tags
+
+[(&apos;Python&apos;, &apos;NNP&apos;), (&apos;is&apos;, &apos;VBZ&apos;), (&apos;a&apos;, &apos;DT&apos;), (&apos;high-level&apos;, &apos;JJ&apos;), (&apos;general-purpose&apos;, &apos;JJ&apos;), (&apos;programming&apos;, &apos;NN&apos;), (&apos;language&apos;, &apos;NN&apos;)]
+</code></pre><p>Sentiment Analysis（情感分析）</p>
+<pre><code>testimonial = TextBlob(&quot;Textblob is amazingly simple to use. What great fun!&quot;)
+testimonial.sentiment
+
+Sentiment(polarity=0.39166666666666666, subjectivity=0.4357142857142857)
+
+testimonial.sentiment.polarity
+
+0.39166666666666666
+</code></pre><p>Tokenization（分词和分句）</p>
+<pre><code>zen = TextBlob(&quot;Beautiful is better than ugly. &quot;
+...                &quot;Explicit is better than implicit. &quot;
+...                &quot;Simple is better than complex.&quot;)
+zen.words
+
+WordList([&apos;Beautiful&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;ugly&apos;, &apos;Explicit&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;implicit&apos;, &apos;Simple&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;complex&apos;])
+
+zen.sentences
+
+[Sentence(&quot;Beautiful is better than ugly.&quot;), Sentence(&quot;Explicit is better than implicit.&quot;), Sentence(&quot;Simple is better than complex.&quot;)]
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">textblog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/自然语言处理textblog安装使用/">展开全文 >></a>
         </p>
       
 
@@ -1390,7 +1390,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
+                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1399,10 +1399,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1419,6 +1415,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">spacy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
               </li>
              
               <li class="article-tag-list-item">
