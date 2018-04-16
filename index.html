@@ -188,42 +188,24 @@
       
         <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install polyglot</span></span><br></pre></td></tr></table></figure>
 <p>安装依赖库</p>
- <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install python-numpy libicu-dev</span><br><span class="line"> ``` </span><br><span class="line"></span><br><span class="line">在Python中<span class="keyword">import</span> _icu（这个语句其实在polyglot安装成功后<span class="keyword">import</span> polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)</span><br><span class="line">所以我们这个动态链接库是没有build成功的。 </span><br><span class="line">可能是pip install的时候没有生成一个好的_icu.so</span><br><span class="line">所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。</span><br><span class="line">编译安装成功</span><br><span class="line">我就不用pip安装了，直接下源码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">wget https:<span class="comment">//pypi.python.org/packages/bf/1f/cea237f542e3bb592980008a734850e8cbbc25c19c72c98767c71c1bd9c2/PyICU-2.0.3.tar.gz</span></span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span><span class="number">.3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span><span class="number">.3</span>.tar.gz</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">此时如果你是linux系统要修改一下setup.py文件</span><br><span class="line">具体如下图所示</span><br><span class="line"></span><br><span class="line">![图<span class="number">1</span>](/assets/blogImg/test1.jpg)</span><br><span class="line">![图<span class="number">2</span>](/assets/blogImg/test2.jpg)</span><br><span class="line"></span><br><span class="line">然后</span><br></pre></td></tr></table></figure>
-<p>python setup.py build<br>sudo python setup.py install</p>
-<pre><code># 分词
-</code></pre><p>from polyglot.text import Text</p>
-<p>blob = u”””The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide”””</p>
-<p>text = Text(blob)</p>
-<p>text.words</p>
-<pre><code>
-# 词性标注
-首先需要下载通用词性标签集
-
-</code></pre><p>polyglot download embeddings2.en pos2.en</p>
-<pre><code>
-这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。
-词性标注具体代码如下：
-
-</code></pre><p>from polyglot.text import Text</p>
-<p>blob = “””We will meet at eight o’clock on Thursday morning.”””<br>text = Text(blob)</p>
-<p>text.pos_tags</p>
-<pre><code>
-# 实体识别
-首先也要安装相关依赖包
-
-</code></pre><p>polyglot download embeddings2.en ner2.en</p>
-<pre><code>
-相关代码如下：
-
-</code></pre><p>from polyglot.text import Text<br>blob = “””The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a “threat to the entire world”.”””<br>text = Text(blob)</p>
-<p>text.entities</p>
-<pre><code>
-但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理
-
-
-</code></pre><p>nerL = [ ]<br>nerR = { }<br>for sent int text.sentences:<br>    for entity in sent.entities:<br>        nerL.append(entity)</p>
-<p>for iter in nerL:<br>    for i in iter:<br>        nerR[i] = iter.tag</p>
-<p>print(R)<br><code>`</code> </p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="built_in">get</span> install python-numpy libicu-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
+<p>在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)<br>所以我们这个动态链接库是没有build成功的。<br>可能是pip install的时候没有生成一个好的_icu.so<br>所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。<br>编译安装成功<br>我就不用pip安装了，直接下源码</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://pypi.python.org/packages/bf/<span class="number">1</span>f/cea<span class="number">237</span>f<span class="number">542e3</span>bb<span class="number">592980008</span>a<span class="number">734850e8</span>cbbc<span class="number">25</span><span class="keyword">c</span><span class="number">19</span><span class="keyword">c</span><span class="number">72</span><span class="keyword">c</span><span class="number">98767</span><span class="keyword">c</span><span class="number">71</span><span class="keyword">c</span><span class="number">1</span>bd<span class="number">9</span><span class="keyword">c</span><span class="number">2</span>/PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br></pre></td></tr></table></figure>
+<p>此时如果你是linux系统要修改一下setup.py文件<br>具体如下图所示</p>
+<p><img src="/assets/blogImg/test1.jpg" alt="图1"><br><img src="/assets/blogImg/test2.jpg" alt="图2"></p>
+<p>然后</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python setup<span class="selector-class">.py</span> build</span><br><span class="line">sudo python setup<span class="selector-class">.py</span> install</span><br></pre></td></tr></table></figure>
+<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">u"""The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide"""</span></span><br><span class="line"></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.words</span><br></pre></td></tr></table></figure>
+<h1 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h1><p>首先需要下载通用词性标签集</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">pos2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
+<p>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。<br>词性标注具体代码如下：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">"""We will meet at eight o'clock on Thursday morning."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.pos_tags</span><br></pre></td></tr></table></figure>
+<h1 id="实体识别"><a href="#实体识别" class="headerlink" title="实体识别"></a>实体识别</h1><p>首先也要安装相关依赖包</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">ner2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
+<p>相关代码如下：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line">blob = <span class="string">"""The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a "threat to the entire world"."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.entities</span><br></pre></td></tr></table></figure>
+<p>但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">nerL = [ ]</span><br><span class="line">nerR = &#123; &#125;</span><br><span class="line"><span class="keyword">for</span> sent int text<span class="selector-class">.sentences</span>:</span><br><span class="line">    <span class="keyword">for</span> entity <span class="keyword">in</span> sent<span class="selector-class">.entities</span>:</span><br><span class="line">        nerL.append(entity)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter <span class="keyword">in</span> nerL:</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> iter:</span><br><span class="line">        nerR[i] = iter.tag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(R)</span></span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -265,6 +247,104 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><figcaption><span>python:objc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br></pre></td></tr></table></figure></p>
+<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
+<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
+</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
         </p>
       
 
@@ -416,19 +496,19 @@ zen.sentences
 
 
   
-    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-自然语言（分词、词性标注、实体识别等）集成投票算法实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
+      <a class="article-title" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">自然语言（分词、分词、实体识别等）集成投票算法实例</a>
     </h1>
   
 
         
-        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
+        <a href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/" class="archive-article-date">
   	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
 </a>
         
@@ -436,38 +516,7 @@ zen.sentences
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：</p>
-<pre><code class="Python"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span>:</span>
-    <span class="comment">#the paramter words have been already segmented</span>
-
-    <span class="comment">#词性标注功能</span>
-    postagger = Postagger()  
-    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  
-    postags = postagger.postag(words) 
-    postagger.release()  <span class="comment"># 释放模型 </span>
-
-    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span>
-    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span>
-    length = len(words)
-    begin= []
-    end = []
-    begin.append(<span class="number">0</span>)
-    i = <span class="number">0</span>
-    <span class="keyword">while</span> i &lt; length:
-         end.append(begin[i] + len(words[i]) - <span class="number">1</span>)
-         <span class="keyword">if</span> i == length - <span class="number">1</span>:
-             <span class="keyword">break</span>
-         <span class="keyword">else</span>:
-             begin.append(begin[i] + len(words[i]))
-         i=i+<span class="number">1</span>
-    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words)):<span class="comment">#遍历结果  </span>
-        resultJson.append({<span class="string">'id'</span>:index,<span class="string">'begin'</span>:begin[index],<span class="string">'end'</span>:end[index],<span class="string">'cont'</span>:words[index],<span class="string">'pos'</span>:postags[index]}) <span class="comment">#将各功能的结果对应地添加到json中  </span>
-    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span>
-</code></pre>
-<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
-<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
-</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
-
+        <h1 id="源代码注释"><a href="#源代码注释" class="headerlink" title="源代码注释"></a>源代码注释</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#获取数字编号</span><br><span class="line">def numCode(s1_str):</span><br><span class="line">    #s1_str = <span class="string">'|'</span>.<span class="keyword">join</span>(s_str)</span><br><span class="line">    tempNum = <span class="number">1</span></span><br><span class="line">    saveNum = []</span><br><span class="line">    <span class="keyword">for</span> s1_s in s1_str:</span><br><span class="line">        <span class="keyword">if</span> s1_s != <span class="string">'/'</span>:</span><br><span class="line">            saveNum.<span class="keyword">append</span>(tempNum)</span><br><span class="line">        tempNum = tempNum + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> saveNum</span><br><span class="line">#三种分词方法进行融合</span><br><span class="line">def decisonThree(s,s1,s2,s3):</span><br><span class="line">    # s = [<span class="string">'我'</span>, <span class="string">'是'</span>, <span class="string">'招'</span>, <span class="string">'商'</span>, <span class="string">'银'</span>, <span class="string">'行'</span>, <span class="string">'的'</span>, <span class="string">'一'</span>, <span class="string">'员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    # s1 = [<span class="string">'我'</span>, <span class="string">'是'</span>, <span class="string">'招商'</span>, <span class="string">'银行的'</span>, <span class="string">'一员。'</span>]</span><br><span class="line">    # s2 = [<span class="string">'我是'</span>, <span class="string">'招商'</span>, <span class="string">'银行'</span>, <span class="string">'的'</span>, <span class="string">'一员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    # s3 = [<span class="string">'我'</span>, <span class="string">'是招'</span>, <span class="string">'商'</span>, <span class="string">'银行'</span>, <span class="string">'的'</span>, <span class="string">'一员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    a1 = numCode(s1) #我爱你/，/桂/书品/！</span><br><span class="line">    b1 = numCode(s2) </span><br><span class="line">    c1 = numCode(s3)</span><br><span class="line">    <span class="keyword">print</span>(s)</span><br><span class="line">    <span class="keyword">print</span>(s1)#我爱你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(a1)#[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">12</span>]  遇到/，序号+<span class="number">1</span>，不添加到列表中</span><br><span class="line">    <span class="keyword">print</span>(s2)#我/爱/你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(b1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    <span class="keyword">print</span>(s3)#我/爱/你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(c1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    d1 = []</span><br><span class="line">    <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="built_in">len</span>(a1)):</span><br><span class="line">        <span class="keyword">if</span> ((a1[i] == b1[i]) <span class="built_in">and</span> (a1[i] == c1[i])):</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            # <span class="keyword">continue</span></span><br><span class="line">        elif a1[i] == b1[i]:</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(c1)):</span><br><span class="line">                <span class="keyword">if</span> a1[i] &lt; c1[i]:</span><br><span class="line">                    c1[ii] = c1[ii] - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    c1[ii] = c1[ii] + <span class="number">1</span></span><br><span class="line">        elif a1[i] == c1[i]:   ##投票算法的核心思想是如果其中两种的分词结果一样，则分词结果为票数多的分词结果。</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(b1)):</span><br><span class="line">                <span class="keyword">if</span> a1[i] &lt; b1[i]:</span><br><span class="line">                    b1[ii] = b1[ii] - <span class="number">1</span>###使不同的分词+<span class="number">1</span>或者-<span class="number">1</span>，从下一个位置开始比较。</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    b1[ii] = b1[ii] + <span class="number">1</span></span><br><span class="line">        elif c1[i] == b1[i]:</span><br><span class="line">            d1.<span class="keyword">append</span>(b1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(a1)):</span><br><span class="line">                <span class="keyword">if</span> b1[i] &lt; a1[i]:</span><br><span class="line">                    a1[ii] = a1[ii] - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    a1[ii] = a1[ii] + <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span>(<span class="string">'Decision Fusion:'</span>)</span><br><span class="line">    <span class="keyword">print</span>(d1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    sumPos = <span class="number">0</span></span><br><span class="line">    listTemp = []</span><br><span class="line">    <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">max</span>(d1)):</span><br><span class="line">        listTemp.<span class="keyword">append</span>(<span class="string">'|'</span>)</span><br><span class="line">    sNum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">print</span>(listTemp)#[<span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>]，形成d1中数量最大的个数的<span class="string">'|'</span></span><br><span class="line">    <span class="keyword">for</span> nPos in d1:</span><br><span class="line">        listTemp[nPos - <span class="number">1</span>] = s[sNum]</span><br><span class="line">        sNum = sNum + <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span>(listTemp)#[<span class="string">'我'</span>, <span class="string">'|'</span>, <span class="string">'爱'</span>, <span class="string">'|'</span>, <span class="string">'你'</span>, <span class="string">'|'</span>, <span class="string">'，'</span>, <span class="string">'|'</span>, <span class="string">'桂'</span>, <span class="string">'|'</span>, <span class="string">'书'</span>, <span class="string">'品'</span>, <span class="string">'|'</span>, <span class="string">'！'</span>]把listTemp中<span class="string">'|'</span>通过d1的序号提换成s中的字符。</span><br><span class="line">    outputStr = <span class="string">''</span>.<span class="keyword">join</span>(listTemp)</span><br><span class="line">    outputStr = outputStr.<span class="keyword">split</span>(<span class="string">'|'</span>)</span><br><span class="line">    <span class="keyword">print</span>(outputStr)#[<span class="string">'我'</span>, <span class="string">'爱'</span>, <span class="string">'你'</span>, <span class="string">'，'</span>, <span class="string">'桂'</span>, <span class="string">'书品'</span>, <span class="string">'！'</span>]</span><br><span class="line">    <span class="keyword">return</span> outputStr</span><br></pre></td></tr></table></figure>
       
 
       
@@ -488,7 +537,7 @@ zen.sentences
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">投票集成算法</a>
         		</li>
       		
 		</ul>
@@ -511,7 +560,7 @@ zen.sentences
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">展开全文 >></a>
         </p>
       
 
@@ -840,100 +889,6 @@ hippos
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/自然语言处理之spacy库/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-自然语言（分词、词性标注、实体识别等）集成投票算法实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">自然语言（分词、分词、实体识别等）集成投票算法实例</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="源代码注释"><a href="#源代码注释" class="headerlink" title="源代码注释"></a>源代码注释</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#获取数字编号</span><br><span class="line">def numCode(s1_str):</span><br><span class="line">    #s1_str = <span class="string">'|'</span>.<span class="keyword">join</span>(s_str)</span><br><span class="line">    tempNum = <span class="number">1</span></span><br><span class="line">    saveNum = []</span><br><span class="line">    <span class="keyword">for</span> s1_s in s1_str:</span><br><span class="line">        <span class="keyword">if</span> s1_s != <span class="string">'/'</span>:</span><br><span class="line">            saveNum.<span class="keyword">append</span>(tempNum)</span><br><span class="line">        tempNum = tempNum + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> saveNum</span><br><span class="line">#三种分词方法进行融合</span><br><span class="line">def decisonThree(s,s1,s2,s3):</span><br><span class="line">    # s = [<span class="string">'我'</span>, <span class="string">'是'</span>, <span class="string">'招'</span>, <span class="string">'商'</span>, <span class="string">'银'</span>, <span class="string">'行'</span>, <span class="string">'的'</span>, <span class="string">'一'</span>, <span class="string">'员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    # s1 = [<span class="string">'我'</span>, <span class="string">'是'</span>, <span class="string">'招商'</span>, <span class="string">'银行的'</span>, <span class="string">'一员。'</span>]</span><br><span class="line">    # s2 = [<span class="string">'我是'</span>, <span class="string">'招商'</span>, <span class="string">'银行'</span>, <span class="string">'的'</span>, <span class="string">'一员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    # s3 = [<span class="string">'我'</span>, <span class="string">'是招'</span>, <span class="string">'商'</span>, <span class="string">'银行'</span>, <span class="string">'的'</span>, <span class="string">'一员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    a1 = numCode(s1) #我爱你/，/桂/书品/！</span><br><span class="line">    b1 = numCode(s2) </span><br><span class="line">    c1 = numCode(s3)</span><br><span class="line">    <span class="keyword">print</span>(s)</span><br><span class="line">    <span class="keyword">print</span>(s1)#我爱你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(a1)#[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">12</span>]  遇到/，序号+<span class="number">1</span>，不添加到列表中</span><br><span class="line">    <span class="keyword">print</span>(s2)#我/爱/你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(b1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    <span class="keyword">print</span>(s3)#我/爱/你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(c1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    d1 = []</span><br><span class="line">    <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="built_in">len</span>(a1)):</span><br><span class="line">        <span class="keyword">if</span> ((a1[i] == b1[i]) <span class="built_in">and</span> (a1[i] == c1[i])):</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            # <span class="keyword">continue</span></span><br><span class="line">        elif a1[i] == b1[i]:</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(c1)):</span><br><span class="line">                <span class="keyword">if</span> a1[i] &lt; c1[i]:</span><br><span class="line">                    c1[ii] = c1[ii] - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    c1[ii] = c1[ii] + <span class="number">1</span></span><br><span class="line">        elif a1[i] == c1[i]:   ##投票算法的核心思想是如果其中两种的分词结果一样，则分词结果为票数多的分词结果。</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(b1)):</span><br><span class="line">                <span class="keyword">if</span> a1[i] &lt; b1[i]:</span><br><span class="line">                    b1[ii] = b1[ii] - <span class="number">1</span>###使不同的分词+<span class="number">1</span>或者-<span class="number">1</span>，从下一个位置开始比较。</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    b1[ii] = b1[ii] + <span class="number">1</span></span><br><span class="line">        elif c1[i] == b1[i]:</span><br><span class="line">            d1.<span class="keyword">append</span>(b1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(a1)):</span><br><span class="line">                <span class="keyword">if</span> b1[i] &lt; a1[i]:</span><br><span class="line">                    a1[ii] = a1[ii] - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    a1[ii] = a1[ii] + <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span>(<span class="string">'Decision Fusion:'</span>)</span><br><span class="line">    <span class="keyword">print</span>(d1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    sumPos = <span class="number">0</span></span><br><span class="line">    listTemp = []</span><br><span class="line">    <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">max</span>(d1)):</span><br><span class="line">        listTemp.<span class="keyword">append</span>(<span class="string">'|'</span>)</span><br><span class="line">    sNum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">print</span>(listTemp)#[<span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>]，形成d1中数量最大的个数的<span class="string">'|'</span></span><br><span class="line">    <span class="keyword">for</span> nPos in d1:</span><br><span class="line">        listTemp[nPos - <span class="number">1</span>] = s[sNum]</span><br><span class="line">        sNum = sNum + <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span>(listTemp)#[<span class="string">'我'</span>, <span class="string">'|'</span>, <span class="string">'爱'</span>, <span class="string">'|'</span>, <span class="string">'你'</span>, <span class="string">'|'</span>, <span class="string">'，'</span>, <span class="string">'|'</span>, <span class="string">'桂'</span>, <span class="string">'|'</span>, <span class="string">'书'</span>, <span class="string">'品'</span>, <span class="string">'|'</span>, <span class="string">'！'</span>]把listTemp中<span class="string">'|'</span>通过d1的序号提换成s中的字符。</span><br><span class="line">    outputStr = <span class="string">''</span>.<span class="keyword">join</span>(listTemp)</span><br><span class="line">    outputStr = outputStr.<span class="keyword">split</span>(<span class="string">'|'</span>)</span><br><span class="line">    <span class="keyword">print</span>(outputStr)#[<span class="string">'我'</span>, <span class="string">'爱'</span>, <span class="string">'你'</span>, <span class="string">'，'</span>, <span class="string">'桂'</span>, <span class="string">'书品'</span>, <span class="string">'！'</span>]</span><br><span class="line">    <span class="keyword">return</span> outputStr</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">投票集成算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">展开全文 >></a>
         </p>
       
 
@@ -1355,7 +1310,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
+                <a href="javascript:void(0)" class="js-tag color3">分词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1371,19 +1330,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spacy</a>
+                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">投票集成算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">spacy</a>
               </li>
             
             <div class="clearfix"></div>
