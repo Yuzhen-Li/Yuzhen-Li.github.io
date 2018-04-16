@@ -4,16 +4,18 @@
 
     
   <url>
-    <loc>https://yuzhen-li.github.io/2018/04/15/NLP%E5%A4%84%E7%90%86%E4%B9%8Bpolyglot/</loc>
-    <lastmod>2018-04-16T03:13:19.246Z</lastmod>
+    <loc>https://yuzhen-li.github.io/2018/04/15/NLP%E7%9A%84JSON%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA/</loc>
+    <lastmod>2018-04-16T07:05:57.144Z</lastmod>
     <data>
         <display>
-        <title>NLP处理之polyglot</title>
+        <title>NLP的JSON格式输出</title>
         <pubTime>2018-04-15T15:23:12.000Z</pubTime>
         
         <tag>自然语言处理(NLP)</tag>
          
-        <tag>polyglot</tag>
+        <tag>分词</tag>
+         
+        <tag>JSON</tag>
          
          
            
@@ -27,7 +29,7 @@
     
   <url>
     <loc>https://yuzhen-li.github.io/categories/index.html</loc>
-    <lastmod>2018-04-16T02:33:24.629Z</lastmod>
+    <lastmod>2018-04-16T06:15:36.036Z</lastmod>
     <data>
         <display>
         <title>categories</title>
@@ -108,30 +110,6 @@
 
     
   <url>
-    <loc>https://yuzhen-li.github.io/2018/04/15/NLP%E7%9A%84JSON%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%87%BA/</loc>
-    <lastmod>2018-04-15T16:06:41.373Z</lastmod>
-    <data>
-        <display>
-        <title>NLP的JSON格式输出</title>
-        <pubTime>2018-04-15T15:23:12.000Z</pubTime>
-        
-        <tag>自然语言处理(NLP)</tag>
-         
-        <tag>分词</tag>
-         
-        <tag>JSON</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术博客" url="https://yuzhen-li.github.io/categories/%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://yuzhen-li.github.io/2018/04/15/Stanford-CoreNLP%E5%9C%A8Ubuntu%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2018-04-15T15:54:27.105Z</lastmod>
     <data>
@@ -186,21 +164,6 @@
              
               <breadCrumb title="散文随笔" url="https://yuzhen-li.github.io/categories/%E6%95%A3%E6%96%87%E9%9A%8F%E7%AC%94/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://yuzhen-li.github.io/2015/09/19/essay/hello-world/</loc>
-    <lastmod>2018-04-12T11:43:06.876Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2015-09-19T14:37:08.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
