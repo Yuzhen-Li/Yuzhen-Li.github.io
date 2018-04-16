@@ -166,102 +166,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。</span></span><br><span class="line"><span class="string">最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span> </span><br><span class="line">result=json.dumps(&#123;<span class="string">'status'</span><span class="symbol">:<span class="string">'0'</span></span>,<span class="string">'inputStr'</span><span class="symbol">:inputStr</span>,<span class="string">'mode'</span><span class="symbol">:methodNum</span>,<span class="string">'outputStr'</span><span class="symbol">:finalResult</span>&#125;,ensure_ascii=False,indent=<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -356,6 +260,102 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br><span class="line"></span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。</span></span><br><span class="line"><span class="string">最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span> </span><br><span class="line">result=json.dumps(&#123;<span class="string">'status'</span><span class="symbol">:<span class="string">'0'</span></span>,<span class="string">'inputStr'</span><span class="symbol">:inputStr</span>,<span class="string">'mode'</span><span class="symbol">:methodNum</span>,<span class="string">'outputStr'</span><span class="symbol">:finalResult</span>&#125;,ensure_ascii=False,indent=<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
         </p>
       
 
@@ -1390,6 +1390,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">分词</a>
               </li>
              
@@ -1398,7 +1402,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
+                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1411,10 +1415,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CoreNLP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
               </li>
              
               <li class="article-tag-list-item">
