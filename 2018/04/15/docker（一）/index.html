@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yuzhen-li.github.io">
-  <title>NLP的JSON格式输出 | 恩泽の博客</title>
+  <title>docker（一） | 恩泽の博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分词的JSON格式输出实现核心实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：python:objc1234567891011121314151617181920212223242526def convertToJson(words):    #the paramter wor">
-<meta name="keywords" content="自然语言处理(NLP),分词,JSON">
+  <meta name="description" content="安装docker for ubuntu从 Docker 镜像仓库获取镜像的命令是 docker pull 。其命令格式为：1docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 具体的选项可以通过 docker pull –help 命令看到,这里我们说一下镜像 名 称 的 格 式。Docker 镜像仓库地址：地址的格式一般是&amp;lt;域名/IP&amp;">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NLP的JSON格式输出">
-<meta property="og:url" content="https://yuzhen-li.github.io/2018/04/15/NLP的JSON格式输出/index.html">
+<meta property="og:title" content="docker（一）">
+<meta property="og:url" content="https://yuzhen-li.github.io/2018/04/15/docker（一）/index.html">
 <meta property="og:site_name" content="恩泽の博客">
-<meta property="og:description" content="分词的JSON格式输出实现核心实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：python:objc1234567891011121314151617181920212223242526def convertToJson(words):    #the paramter wor">
+<meta property="og:description" content="安装docker for ubuntu从 Docker 镜像仓库获取镜像的命令是 docker pull 。其命令格式为：1docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 具体的选项可以通过 docker pull –help 命令看到,这里我们说一下镜像 名 称 的 格 式。Docker 镜像仓库地址：地址的格式一般是&amp;lt;域名/IP&amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-16T09:18:24.356Z">
+<meta property="og:updated_time" content="2018-05-10T07:50:45.237Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NLP的JSON格式输出">
-<meta name="twitter:description" content="分词的JSON格式输出实现核心实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：python:objc1234567891011121314151617181920212223242526def convertToJson(words):    #the paramter wor">
+<meta name="twitter:title" content="docker（一）">
+<meta name="twitter:description" content="安装docker for ubuntu从 Docker 镜像仓库获取镜像的命令是 docker pull 。其命令格式为：1docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] 具体的选项可以通过 docker pull –help 命令看到,这里我们说一下镜像 名 称 的 格 式。Docker 镜像仓库地址：地址的格式一般是&amp;lt;域名/IP&amp;">
   
     <link rel="alternative" href="/atom.xml" title="恩泽の博客" type="application/atom+xml">
   
@@ -165,19 +165,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-NLP的JSON格式输出" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-docker（一）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      NLP的JSON格式输出
+      docker（一）
     </h1>
   
 
         
-        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
+        <a href="/2018/04/15/docker（一）/" class="archive-article-date">
   	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
 </a>
         
@@ -185,10 +185,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><figcaption><span>python:objc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br></pre></td></tr></table></figure></p>
-<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
-<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
-</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
+        <h2 id="安装docker-for-ubuntu"><a href="#安装docker-for-ubuntu" class="headerlink" title="安装docker for ubuntu"></a>安装docker for ubuntu</h2><p>从 Docker 镜像仓库获取镜像的命令是 docker pull 。其命令格式为：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull <span class="comment">[选项]</span> <span class="comment">[Docker Registry 地址<span class="comment">[:端口号]</span>/]</span>仓库名<span class="comment">[:标签]</span></span><br></pre></td></tr></table></figure></p>
+<p>具体的选项可以通过 docker pull –help 命令看到,这里我们说一下镜像 名 称 的 格 式。Docker 镜像仓库地址：地址的格式一般是&lt;域名/IP&gt;[:端口号]。默认地址是Docker Hub。仓库名：如之前所说，这里的仓库名是两段式名称，即&lt;用户名&gt;/&lt;软件名&gt;。 对于 DockerHub，如果不给出用户名，则默认为librar，也就是官方镜像。<br>比如：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull <span class="string">ubuntu:</span><span class="number">16.04</span></span><br><span class="line"><span class="number">16.04</span>: Pulling from library/ubuntu</span><br><span class="line"><span class="string">bf5d46315322:</span> Pull complete</span><br><span class="line"><span class="number">9</span><span class="string">f13e0ac480c:</span> Pull complete</span><br><span class="line"><span class="string">e8988b5b3097:</span> Pull complete</span><br><span class="line"><span class="number">40</span><span class="string">af181810e7:</span> Pull complete</span><br><span class="line"><span class="string">e6f7c7e5c03e:</span> Pull complete</span><br><span class="line"><span class="string">Digest:</span> <span class="string">sha256:</span><span class="number">147913621</span>d9cdea08853f6ba9116c2e27a3ceffecf3b492983ae97c3d643fbbe</span><br><span class="line"><span class="string">Status:</span> Downloaded newer image <span class="keyword">for</span> <span class="string">ubuntu:</span><span class="number">16.04</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="列出镜像"><a href="#列出镜像" class="headerlink" title="列出镜像"></a>列出镜像</h2><p>要想列出已经下载下来的镜像，可以使用 docker image ls或者docker images 命令。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              latest              c9d990395902        <span class="number">2</span> weeks ago         <span class="number">113</span>MB</span><br><span class="line">cita/cita-run       latest              <span class="number">14</span>f6fa0d1610        <span class="number">3</span> weeks ago         <span class="number">530</span>MB</span><br><span class="line">cita/cita-build     latest              <span class="number">3</span>ea9fdb515e6        <span class="number">4</span> weeks ago         <span class="number">1.47</span>GB</span><br></pre></td></tr></table></figure>
+<p>镜像 ID 则是镜像的唯一标识，一个镜像可以对应多个标签。</p>
+<h2 id="镜像体积"><a href="#镜像体积" class="headerlink" title="镜像体积"></a>镜像体积</h2><p>你可以通过以下命令来便捷的查看<strong>镜像、容器、数据卷</strong>所占用的空间<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ docker<span class="built_in"> system </span>df</span><br><span class="line">TYPE TOTAL ACTIVE SIZE RECLAI</span><br><span class="line">MABLE</span><br><span class="line">Images 24 0 1.992GB 1.992G</span><br><span class="line">B (100%)</span><br><span class="line">Containers 1 0 62.82MB 62.82M</span><br><span class="line">B (100%)</span><br><span class="line">Local Volumes 9 0 652.2MB 652.2M</span><br><span class="line">B (100%)</span><br><span class="line">Build Cache 0B 0</span><br></pre></td></tr></table></figure></p>
+<h2 id="删除本地镜像"><a href="#删除本地镜像" class="headerlink" title="删除本地镜像"></a>删除本地镜像</h2><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm <span class="string">[选项]</span> &lt;镜像<span class="number">1</span>&gt; <span class="string">[&lt;镜像2&gt; ...]</span></span><br></pre></td></tr></table></figure>
+<p>其中， &lt;镜像&gt; 可以是 镜像短 ID 、 镜像长 ID 、 镜像名 或者镜像摘要。</p>
+<h2 id="启动镜像"><a href="#启动镜像" class="headerlink" title="启动镜像"></a>启动镜像</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> = docker create + docker start</span></span><br></pre></td></tr></table></figure>
+<h2 id="镜像定制"><a href="#镜像定制" class="headerlink" title="镜像定制"></a>镜像定制</h2><p>现在让我们以定制一个 Web 服务器为例子，来讲解镜像是如何构建的。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">run</span> <span class="comment">--name webserver -d -p 80:80 nginx</span></span><br></pre></td></tr></table></figure></p>
+<p>这条命令会用 nginx 镜像启动一个容器，命名为 webserver ，并且映射了 80 端口，这样我们可以用浏览器去访问这个 nginx 服务器。如果是在 Linux 本机运行的 Docker，或者如果使用的是 Docker for Mac、Docker for Windows，那么可以直接访问：<a href="http://localhost；如果使用的是" target="_blank" rel="noopener">http://localhost；如果使用的是</a> Docker Toolbox，或者是在虚拟机、云服务器上安装的 Docker，则需要将 localhost 换为虚拟机地址或者实际云服务器地址。直接用浏览器访问的话，我们会看到默认的 Nginx 欢迎页面。<br>现在，假设我们非常不喜欢这个欢迎页面，我们希望改成欢迎 Docker 的文字，我们可以使用docker exec 命令进入容器，修改其内容。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker exec -it webserver bash</span><br><span class="line">root<span class="variable">@3729b97e8226</span><span class="symbol">:/</span><span class="comment"># echo '&lt;h1&gt;Hello, Docker!&lt;/h1&gt;' &gt; /usr/share/nginx/html/index.html</span></span><br><span class="line">root<span class="variable">@3729b97e8226</span><span class="symbol">:/</span><span class="comment"># exit</span></span><br><span class="line">exit</span><br></pre></td></tr></table></figure></p>
+<p>我们以交互式终端方式进入webserver容器，并执行了bash命令，也就是获得一个可操作的 Shell。然后，我们用 </p><h1>Hello, Docker!</h1> 覆盖了 /usr/share/nginx/html/index.html的内容。现在我们再刷新浏览器的话，会发现内容被改变了.<p></p>
+<p>现在我们定制好了变化，我们希望能将其保存下来形成镜像。<br>而 Docker 提供了一个docker commit命令，可以将容器的存储层保存下来成为镜像。换句话说，就是在原有镜像的基础上，再叠加上容器的存储层，并构成新的镜像。以后我们运行这个新镜像的时候，就会拥有原有容器最后的文件变化。<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit [选项] &lt;容器ID或容器名&gt; <span class="meta">[&lt;仓库名&gt;[:&lt;标签&gt;]</span>]</span><br></pre></td></tr></table></figure></p>
+<p>我们可以用下面的命令将容器保存为镜像：<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit \</span><br><span class="line">-<span class="ruby">-author <span class="string">"Tao Wang &lt;twang2218@gmail.com&gt;"</span> \</span></span><br><span class="line"><span class="ruby">--message <span class="string">"修改了默认网页"</span> \</span></span><br><span class="line"><span class="ruby">webserver \</span></span><br><span class="line"><span class="ruby"><span class="symbol">nginx:</span>v2</span></span><br><span class="line"><span class="ruby"><span class="symbol">sha256:</span><span class="number">07</span>e33465974800ce65751acc279adc6ed2dc5ed4e0838f8b86f0c87aa1795214</span></span><br></pre></td></tr></table></figure></p>
+<p>其中 –author 是指定修改的作者，而 –message 则是记录本次修改的内容。这点和 git<br>版本控制相似，不过这里这些信息可以省略留空。<br>我们可以在 docker image ls 中看到这个新定制的镜像.</p>
+<h2 id="Dockerfile-镜像定制"><a href="#Dockerfile-镜像定制" class="headerlink" title="Dockerfile 镜像定制"></a>Dockerfile 镜像定制</h2><p>从刚才的 docker commit的学习中，我们可以了解到，镜像的定制实际上就是定制每一层所添加的配置、文件。如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么之前提及的无法重复的问题、镜像构建透明性的问题、体积的问题就都会解决。这个脚本就是 Dockerfile。</p>
 
       
 
@@ -233,15 +245,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
         		</li>
       		
 		</ul>
@@ -314,7 +318,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yuzhen-li.github.io/2018/04/15/NLP的JSON格式输出/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yuzhen-li.github.io/2018/04/15/docker（一）/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -328,18 +332,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/15/NLP处理之polyglot/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          自然语言（分词、分词、实体识别等）集成投票算法实例
+          NLP处理之polyglot
         
       </div>
     </a>
   
   
-    <a href="/2018/04/15/自然语言处理textblog安装使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">自然语言处理textblog安装使用</div>
+    <a href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">自然语言（分词、分词、实体识别等）集成投票算法实例</div>
       <i class="icon-circle-right"></i>
     </a>
   
