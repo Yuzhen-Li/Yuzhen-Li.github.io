@@ -8,18 +8,17 @@
   <link rel="dns-prefetch" href="https://yuzhen-li.github.io">
   <title>恩泽の博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
+  <meta name="description" content="东北大学硕士，就职于招商银行战略规划与执行部。主要从事金融科技的研究以及金融科技项目管理。">
 <meta name="keywords" content="自然语言处理(NLP),人工智能(AI),数据分析(DA),金融科技(FinTech),随笔，开发者，算法，代码，产品经理，项目管理">
 <meta property="og:type" content="website">
 <meta property="og:title" content="恩泽の博客">
-<meta property="og:url" content="https://yuzhen-li.github.io/assets/demo/jiugongge_demo.html">
+<meta property="og:url" content="https://yuzhen-li.github.io/page/2/index.html">
 <meta property="og:site_name" content="恩泽の博客">
-<meta property="og:description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
+<meta property="og:description" content="东北大学硕士，就职于招商银行战略规划与执行部。主要从事金融科技的研究以及金融科技项目管理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="恩泽の博客">
-<meta name="twitter:description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
+<meta name="twitter:description" content="东北大学硕士，就职于招商银行战略规划与执行部。主要从事金融科技的研究以及金融科技项目管理。">
   
     <link rel="alternative" href="/atom.xml" title="恩泽の博客" type="application/atom+xml">
   
@@ -165,270 +164,98 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-Stanford-CoreNLP在Ubuntu下的安装与使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/Stanford-CoreNLP在Ubuntu下的安装与使用/">Stanford_CoreNLP在Ubuntu下的安装与使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/Stanford-CoreNLP在Ubuntu下的安装与使用/" class="archive-article-date">
+  	<time datetime="2018-04-15T12:22:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>jiugongge_demo</title>
-	<style>
-		*{
-			margin:0;
-			padding: 0;
-		}
-		table{
-			margin: 30px;
-			border-collapse: collapse;
-		}
-		#test0{
-			margin: 30px;
-			width: 200px;
-			height: 200px;
-		}
-		#test0 div{
-			width: 50px;
-			height: 50px;
-			float: left;
-			background: #eee;
-			border: 5px solid #00f;
-			text-align: center;
-			line-height: 50px;
-			color: #090;
-			position: relative;
-		}
-		#test0 .lr_indent{
-			margin-left: -5px;
-			margin-right: -5px;
-		}
-		#test0 .tb_indent{
-			margin-top: -5px;
-			margin-bottom: -5px;
-		}
-		#test0 div:hover{
-			border: 5px solid #f00;
-			z-index: 999;
-			background: #eee;
-		}
-		#test1 td{
-			width: 50px;
-			height: 50px;
-			background: #eee;
-			position: relative;
-			border: 5px solid #00f;
-			text-align: center;
-		}
-		#test1 td span{
-			color: #090;
-			display:block;
-			width: 50px;
-			height: 50px;
-			position: absolute;
-			top: 0;
-			left: 0;
-			line-height: 50px;
-		}
-		#test1 td span:hover{
-			border: 5px solid #f00;
-			margin-top:-5px;
-			margin-left: -5px;
-		}
-
-		#test2 td{
-			width: 50px;
-			height: 50px;
-			background: #eee;
-			border: 5px solid #00f;
-			text-align: center;
-			vertical-align: top;
-		}
-		#test2 td div{
-			position:relative;
-			width: 50px;
-			height: 50px;
-		}
-		#test2 td div span{
-			color: #090;
-			display:block;
-			width: 50px;
-			height: 50px;
-			position: absolute;
-			top: 0;
-			left: 0;
-			line-height: 50px;
-		}
-		#test2 td div span:hover{
-			border: 5px solid #f00;
-			margin-left: -5px;
-			margin-top: -5px;
-		}
-	</style>
-</head>
-<body>
-	<h2>1) div+负margin实现</h2>
-	<div id="test0">
-		<div>1</div>
-		<div class="lr_indent">2</div>
-		<div>3</div>
-		<div class="tb_indent">4</div>
-		<div class="lr_indent tb_indent">5</div>
-		<div class="tb_indent">6</div>
-		<div>7</div>
-		<div class="lr_indent">8</div>
-		<div>9</div>
-	</div>
-	<h2>2.1) table border-collapse: collapse实现</h2>
-	<div id="test1">
-		<table>
-			<tr>
-				<td><span>1</span></td>
-				<td><span>2</span></td>
-				<td><span>3</span></td>
-			</tr>
-			<tr>
-				<td><span>4</span></td>
-				<td><span>5</span></td>
-				<td><span>6</span></td>
-			</tr>
-			<tr>
-				<td><span>7</span></td>
-				<td><span>8</span></td>
-				<td><span>9</span></td>
-			</tr>
-		</table>
-	</div>
-	<h2>2.2) table思路改进</h2>
-	<div id="test2">
-		<table>
-			<tr>
-				<td><div><span>1</span></div></td>
-				<td><div><span>2</span></div></td>
-				<td><div><span>3</span></div></td>
-			</tr>
-			<tr>
-				<td><div><span>4</span></div></td>
-				<td><div><span>5</span></div></td>
-				<td><div><span>6</span></div></td>
-			</tr>
-			<tr>
-				<td><div><span>7</span></div></td>
-				<td><div><span>8</span></div></td>
-				<td><div><span>9</span></div></td>
-			</tr>
-		</table>
-	</div>
-</body>
-</html>
-      
+        <h1 id="stanford-CoreNLP安装以及使用"><a href="#stanford-CoreNLP安装以及使用" class="headerlink" title="stanford CoreNLP安装以及使用"></a>stanford CoreNLP安装以及使用</h1><p>stanford CoreNLP快搞死我了，查了不少资料花费了接近3个小时，才安装完成，并且学会使用。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Stanford CoreNLP提供了一系列自然语言分析工具。它能够给出基本的词形，词性，不管是公司名还是人名等，格式化的日期，时间，量词，并且能够标记句子的结构，语法形式和字词依赖，指明那些名字指向同样的实体，指明情绪，提取发言中的开放关系等。如果需要进行如下任务，Standfrod CoreNLP正合适：</p>
+<pre><code>1一个集成的语言分析工具集；
+2进行快速，可靠的任意文本分析；
+3.整体的高质量的文本分析;
+4.支持多种主流语言;
+5.多种编程语言的易用接口;
+6.方便的简单的部署web服务。
+</code></pre><p>Stanford CoreNLP是一个集成的框架。框架的目标是使得应用一大堆语言分析工具分析大量的文本变得简单。COreNLP工具可以仅仅通过两行命令执行大量的文本分析工作。框架设计的初衷就是高度灵活的可扩展性的。通过一个单独的名利ing就可以选择某个工具的开启和关闭。Stanford CoreNLP集成了许多斯坦福的NLP工具，包括：词性标记（POS），命名实体识别（NER），语法，参数分析系统，情绪分析，自举模式学习，和开放信息提取工具。这个框架的分析为高等级和指定领域的文本理解应用程序提供了基本的构件。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先需要安装Java运行环境，以Ubuntu 12.04为例，安装Java运行环境仅需要两步：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get <span class="keyword">install</span> <span class="keyword">default</span>-jre</span><br><span class="line">sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> <span class="keyword">default</span>-jdk</span><br></pre></td></tr></table></figure></p>
+<p>然后下载Stanford coreNLP 包：<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://nlp.stanford.edu/software/stanford-corenlp-full<span class="string">-2018</span><span class="string">-02</span><span class="string">-27</span>.zip</span><br><span class="line"></span><br><span class="line">unzip stanford-corenlp-full<span class="string">-2018</span><span class="string">-02</span><span class="string">-27</span>.zip</span><br><span class="line"></span><br><span class="line">cd stanford-corenlp-full<span class="string">-2018</span><span class="string">-02</span><span class="string">-27</span>/</span><br></pre></td></tr></table></figure></p>
+<p>配置环境变量：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> `<span class="builtin-name">find</span> . -name <span class="string">"*.jar"</span>`; <span class="keyword">do</span> <span class="builtin-name">export</span> <span class="attribute">CLASSPATH</span>=<span class="string">"<span class="variable">$CLASSPATH</span>:`realpath <span class="variable">$file</span>`"</span>; done</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> `<span class="builtin-name">find</span> /path/<span class="keyword">to</span>/corenlp/ -name <span class="string">"*.jar"</span>`; <span class="keyword">do</span> <span class="builtin-name">export</span> <span class="attribute">CLASSPATH</span>=<span class="string">"<span class="variable">$CLASSPATH</span>:`realpath <span class="variable">$file</span>`"</span>; done</span><br></pre></td></tr></table></figure>
+<p>安装：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip3 <span class="keyword">install</span> stanfordcorenlp</span><br></pre></td></tr></table></figure></p>
+<p>处理中文还需要下载中文的模型jar文件，然后放到stanford-corenlp-full-2018-02-27根目录下即可<br><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nlp.stanford.edu/software/stanford-chinese-corenlp<span class="string">-2018</span><span class="string">-02</span><span class="string">-27</span>-models.jar</span><br></pre></td></tr></table></figure></p>
+<h2 id="中文使用方法"><a href="#中文使用方法" class="headerlink" title="中文使用方法"></a>中文使用方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> stanfordcorenlp <span class="keyword">import</span> StanfordCoreNLP</span><br><span class="line"></span><br><span class="line">nlp = StanfordCoreNLP(<span class="string">r'/mnt/f/CMBNLP/stanford-corenlp-full-2018-02-27/'</span>, lang=<span class="string">'zh'</span>) <span class="comment">## 这里是coreNLP的路径</span></span><br><span class="line"></span><br><span class="line">sentence = <span class="string">'清华大学位于北京。'</span></span><br><span class="line"><span class="keyword">print</span> nlp.word_tokenize(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.pos_tag(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.ner(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.parse(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.dependency_parse(sentence)</span><br></pre></td></tr></table></figure>
+<h2 id="英文使用方法"><a href="#英文使用方法" class="headerlink" title="英文使用方法"></a>英文使用方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> stanfordcorenlp <span class="keyword">import</span> StanfordCoreNLP</span><br><span class="line"></span><br><span class="line">nlp = StanfordCoreNLP(<span class="string">r'/mnt/f/CMBNLP/stanford-corenlp-full-2018-02-27/'</span>) <span class="comment">## 这里是coreNLP的路径,与中文相比，省略了, lang='zh'</span></span><br><span class="line"></span><br><span class="line">sentence = <span class="string">'You are a beautiful girl1'</span></span><br><span class="line"><span class="keyword">print</span> nlp.word_tokenize(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.pos_tag(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.ner(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.parse(sentence)</span><br><span class="line"><span class="keyword">print</span> nlp.dependency_parse(sentence)</span><br></pre></td></tr></table></figure>
 
       
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/alipay.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
+
       
     </div>
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">stanford</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CoreNLP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 	  
-		<span class="archive-article-date">
-			阅读量 <span id="busuanzi_value_page_pv"></span>
-		</span>
-      
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/Stanford-CoreNLP在Ubuntu下的安装与使用/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yuzhen-li.github.io/assets/demo/jiugongge_demo.html" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -448,19 +275,12 @@
 
 
 
-   
-   <!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2161091"></script>
-<!-- UY END -->
-   
- 
-  
 
   
-
   
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -492,7 +312,7 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
 		isTag: false,

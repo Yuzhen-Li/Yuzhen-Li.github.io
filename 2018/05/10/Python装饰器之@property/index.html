@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yuzhen-li.github.io">
-  <title>恩泽の博客</title>
+  <title>Python装饰器之@property | 恩泽の博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
-<meta name="keywords" content="自然语言处理(NLP),人工智能(AI),数据分析(DA),金融科技(FinTech),随笔，开发者，算法，代码，产品经理，项目管理">
-<meta property="og:type" content="website">
-<meta property="og:title" content="恩泽の博客">
-<meta property="og:url" content="https://yuzhen-li.github.io/assets/demo/jiugongge_demo.html">
+  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768@property考察 Student 类：class Student(object):    def __init__(self, name,">
+<meta name="keywords" content="python,property,装饰器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python装饰器之@property">
+<meta property="og:url" content="https://yuzhen-li.github.io/2018/05/10/Python装饰器之@property/index.html">
 <meta property="og:site_name" content="恩泽の博客">
-<meta property="og:description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768@property考察 Student 类：class Student(object):    def __init__(self, name,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
+<meta property="og:updated_time" content="2018-05-10T07:42:24.302Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="恩泽の博客">
-<meta name="twitter:description" content="jiugongge_demo 	 		*{ 			margin:0; 			padding: 0; 		} 		table{ 			margin: 30px; 			border-collapse: collapse; 		} 		#test0{ 			margin: 30px; 			width: 200px; 			height: 200px; 		} 		#test0 div{">
+<meta name="twitter:title" content="Python装饰器之@property">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768@property考察 Student 类：class Student(object):    def __init__(self, name,">
   
     <link rel="alternative" href="/atom.xml" title="恩泽の博客" type="application/atom+xml">
   
@@ -165,164 +165,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-Python装饰器之@property" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python装饰器之@property
+    </h1>
+  
+
+        
+        <a href="/2018/05/10/Python装饰器之@property/" class="archive-article-date">
+  	<time datetime="2018-05-10T07:39:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-10</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>jiugongge_demo</title>
-	<style>
-		*{
-			margin:0;
-			padding: 0;
-		}
-		table{
-			margin: 30px;
-			border-collapse: collapse;
-		}
-		#test0{
-			margin: 30px;
-			width: 200px;
-			height: 200px;
-		}
-		#test0 div{
-			width: 50px;
-			height: 50px;
-			float: left;
-			background: #eee;
-			border: 5px solid #00f;
-			text-align: center;
-			line-height: 50px;
-			color: #090;
-			position: relative;
-		}
-		#test0 .lr_indent{
-			margin-left: -5px;
-			margin-right: -5px;
-		}
-		#test0 .tb_indent{
-			margin-top: -5px;
-			margin-bottom: -5px;
-		}
-		#test0 div:hover{
-			border: 5px solid #f00;
-			z-index: 999;
-			background: #eee;
-		}
-		#test1 td{
-			width: 50px;
-			height: 50px;
-			background: #eee;
-			position: relative;
-			border: 5px solid #00f;
-			text-align: center;
-		}
-		#test1 td span{
-			color: #090;
-			display:block;
-			width: 50px;
-			height: 50px;
-			position: absolute;
-			top: 0;
-			left: 0;
-			line-height: 50px;
-		}
-		#test1 td span:hover{
-			border: 5px solid #f00;
-			margin-top:-5px;
-			margin-left: -5px;
-		}
-
-		#test2 td{
-			width: 50px;
-			height: 50px;
-			background: #eee;
-			border: 5px solid #00f;
-			text-align: center;
-			vertical-align: top;
-		}
-		#test2 td div{
-			position:relative;
-			width: 50px;
-			height: 50px;
-		}
-		#test2 td div span{
-			color: #090;
-			display:block;
-			width: 50px;
-			height: 50px;
-			position: absolute;
-			top: 0;
-			left: 0;
-			line-height: 50px;
-		}
-		#test2 td div span:hover{
-			border: 5px solid #f00;
-			margin-left: -5px;
-			margin-top: -5px;
-		}
-	</style>
-</head>
-<body>
-	<h2>1) div+负margin实现</h2>
-	<div id="test0">
-		<div>1</div>
-		<div class="lr_indent">2</div>
-		<div>3</div>
-		<div class="tb_indent">4</div>
-		<div class="lr_indent tb_indent">5</div>
-		<div class="tb_indent">6</div>
-		<div>7</div>
-		<div class="lr_indent">8</div>
-		<div>9</div>
-	</div>
-	<h2>2.1) table border-collapse: collapse实现</h2>
-	<div id="test1">
-		<table>
-			<tr>
-				<td><span>1</span></td>
-				<td><span>2</span></td>
-				<td><span>3</span></td>
-			</tr>
-			<tr>
-				<td><span>4</span></td>
-				<td><span>5</span></td>
-				<td><span>6</span></td>
-			</tr>
-			<tr>
-				<td><span>7</span></td>
-				<td><span>8</span></td>
-				<td><span>9</span></td>
-			</tr>
-		</table>
-	</div>
-	<h2>2.2) table思路改进</h2>
-	<div id="test2">
-		<table>
-			<tr>
-				<td><div><span>1</span></div></td>
-				<td><div><span>2</span></div></td>
-				<td><div><span>3</span></div></td>
-			</tr>
-			<tr>
-				<td><div><span>4</span></div></td>
-				<td><div><span>5</span></div></td>
-				<td><div><span>6</span></div></td>
-			</tr>
-			<tr>
-				<td><div><span>7</span></div></td>
-				<td><div><span>8</span></div></td>
-				<td><div><span>9</span></div></td>
-			</tr>
-		</table>
-	</div>
-</body>
-</html>
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@property</span></span><br><span class="line">考察 Student 类：</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.score = score</span><br><span class="line">当我们想要修改一个 Student 的 scroe 属性时，可以这么写：</span><br><span class="line"></span><br><span class="line">s = Student(<span class="string">'Bob'</span>, <span class="number">59</span>)</span><br><span class="line">s.score = <span class="number">60</span></span><br><span class="line">但是也可以这么写：</span><br><span class="line"></span><br><span class="line">s.score = <span class="number">1000</span></span><br><span class="line">显然，直接给属性赋值无法检查分数的有效性。</span><br><span class="line"></span><br><span class="line">如果利用两个方法：</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.__score = score</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_score</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__score</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_score</span><span class="params">(self, score)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> score &lt; <span class="number">0</span> <span class="keyword">or</span> score &gt; <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'invalid score'</span>)</span><br><span class="line">        self.__score = score</span><br><span class="line">这样一来，s.set_score(<span class="number">1000</span>) 就会报错。</span><br><span class="line"></span><br><span class="line">这种使用 get/set 方法来封装对一个属性的访问在许多面向对象编程的语言中都很常见。</span><br><span class="line"></span><br><span class="line">但是写 s.get_score() 和 s.set_score() 没有直接写 s.score 来得直接。</span><br><span class="line"></span><br><span class="line">有没有两全其美的方法？----有。</span><br><span class="line"></span><br><span class="line">因为Python支持高阶函数，在函数式编程中我们介绍了装饰器函数，可以用装饰器函数把 get/set 方法“装饰”成属性调用：</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.__score = score</span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__score</span><br><span class="line"><span class="meta">    @score.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self, score)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> score &lt; <span class="number">0</span> <span class="keyword">or</span> score &gt; <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">'invalid score'</span>)</span><br><span class="line">        self.__score = score</span><br><span class="line">注意: 第一个score(self)是get方法，用@property装饰，第二个score(self, score)是set方法，用@score.setter装饰，@score.setter是前一个@property装饰后的副产品。</span><br><span class="line"></span><br><span class="line">现在，就可以像使用属性一样设置score了：</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student(<span class="string">'Bob'</span>, <span class="number">59</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">60</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> s.score</span><br><span class="line"><span class="number">60</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">1000</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">ValueError: invalid score</span><br><span class="line">说明对 score 赋值实际调用的是 set方法。</span><br><span class="line"></span><br><span class="line">任务</span><br><span class="line">如果没有定义set方法，就不能对“属性”赋值，这时，就可以创建一个只读“属性”。</span><br><span class="line"></span><br><span class="line">请给Student类加一个grade属性，根据 score 计算 A（&gt;=<span class="number">80</span>）、B、C（&lt;<span class="number">60</span>）。</span><br></pre></td></tr></table></figure>
       
 
       
@@ -361,6 +224,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">property</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">装饰器</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 	  
 		<span class="archive-article-date">
 			阅读量 <span id="busuanzi_value_page_pv"></span>
@@ -368,6 +250,17 @@
       
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -417,7 +310,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yuzhen-li.github.io/assets/demo/jiugongge_demo.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yuzhen-li.github.io/2018/05/10/Python装饰器之@property/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -429,6 +322,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/10/docker（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -493,7 +396,7 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
