@@ -230,7 +230,7 @@
 <p>注意交易的接收者是我们自己的服务器节点，我们做的大部分工作都只是围绕Blockchain类方法进行交互。到此，我们的区块链就算完成了，我们来实际运行下</p>
 <h2 id="运行区块链"><a href="#运行区块链" class="headerlink" title="运行区块链"></a>运行区块链</h2><p>你可以使用cURL 或Postman 去和API进行交互</p>
 <p>启动server:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python blockchain.py</span><br><span class="line">* Runing on http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">5000</span>/ (Press CTRL+C to quit)</span><br></pre></td></tr></table></figure></p>
-<p>让我们通过请求 <a href="http://localhost:5000/mine" target="_blank" rel="noopener">http://localhost:5000/mine</a> 来进行挖矿<br><img src="http://img.blog.csdn.net/20171031131356486?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlsaWJpMjAwMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="图片"><br>通过post请求，添加一个新交易<br><img src="http://img.blog.csdn.net/20171031131451383?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlsaWJpMjAwMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="图片"><br>如果不是使用Postman，则用一下的cURL语句也是一样的：<br><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ curl -X POST -H <span class="string">"Content-Type: application/json"</span> -d <span class="string">'&#123;</span></span><br><span class="line"><span class="string"> "</span>sender<span class="string">": "</span>d4ee26eee15148ee92c6cd394edd974e<span class="string">",</span></span><br><span class="line"><span class="string"> "</span>recipient<span class="string">": "</span>someone-other-address<span class="string">",</span></span><br><span class="line"><span class="string"> "</span>amount<span class="string">": 5</span></span><br><span class="line"><span class="string">&#125;'</span> <span class="string">"http://localhost:5000/transactions/new"</span></span><br></pre></td></tr></table></figure></p>
+<p>让我们通过请求 <a href="http://localhost:5000/mine" target="_blank" rel="noopener">http://localhost:5000/mine</a> 来进行挖矿<br><img src="/assets/img/1.png" alt="图片"><br><img src="/assets/img/2.png" alt="图片"><br>如果不是使用Postman，则用一下的cURL语句也是一样的：<br><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ curl -X POST -H <span class="string">"Content-Type: application/json"</span> -d <span class="string">'&#123;</span></span><br><span class="line"><span class="string"> "</span>sender<span class="string">": "</span>d4ee26eee15148ee92c6cd394edd974e<span class="string">",</span></span><br><span class="line"><span class="string"> "</span>recipient<span class="string">": "</span>someone-other-address<span class="string">",</span></span><br><span class="line"><span class="string"> "</span>amount<span class="string">": 5</span></span><br><span class="line"><span class="string">&#125;'</span> <span class="string">"http://localhost:5000/transactions/new"</span></span><br></pre></td></tr></table></figure></p>
 <p>在挖了两次矿之后，就有3个块了，通过请求 <a href="http://localhost:5000/chain" target="_blank" rel="noopener">http://localhost:5000/chain</a> 可以得到所有的块信息。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"chain"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"index"</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="string">"previous_hash"</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="string">"proof"</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="string">"timestamp"</span>: <span class="number">1506280650.770839</span>,</span><br><span class="line">      <span class="string">"transactions"</span>: []</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"index"</span>: <span class="number">2</span>,</span><br><span class="line">      <span class="string">"previous_hash"</span>: <span class="string">"c099bc...bfb7"</span>,</span><br><span class="line">      <span class="string">"proof"</span>: <span class="number">35293</span>,</span><br><span class="line">      <span class="string">"timestamp"</span>: <span class="number">1506280664.717925</span>,</span><br><span class="line">      <span class="string">"transactions"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="string">"amount"</span>: <span class="number">1</span>,</span><br><span class="line">          <span class="string">"recipient"</span>: <span class="string">"8bbcb347e0634905b0cac7955bae152b"</span>,</span><br><span class="line">          <span class="string">"sender"</span>: <span class="string">"0"</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"index"</span>: <span class="number">3</span>,</span><br><span class="line">      <span class="string">"previous_hash"</span>: <span class="string">"eff91a...10f2"</span>,</span><br><span class="line">      <span class="string">"proof"</span>: <span class="number">35089</span>,</span><br><span class="line">      <span class="string">"timestamp"</span>: <span class="number">1506280666.1086972</span>,</span><br><span class="line">      <span class="string">"transactions"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="string">"amount"</span>: <span class="number">1</span>,</span><br><span class="line">          <span class="string">"recipient"</span>: <span class="string">"8bbcb347e0634905b0cac7955bae152b"</span>,</span><br><span class="line">          <span class="string">"sender"</span>: <span class="string">"0"</span></span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"length"</span>: <span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="一致性（共识）"><a href="#一致性（共识）" class="headerlink" title="一致性（共识）"></a>一致性（共识）</h2><p>我们已经有了一个基本的区块链可以接受交易和挖矿。但是区块链系统应该是分布式的。既然是分布式的，那么我们究竟拿什么保证所有节点有同样的链呢？这就是一致性问题，我们要想在网络上有多个节点，就必须实现一个一致性的算法。</p>
 <h3 id="注册节点"><a href="#注册节点" class="headerlink" title="注册节点"></a>注册节点</h3><p>在实现一致性算法之前，我们需要找到一种方式让一个节点知道它相邻的节点。每个节点都需要保存一份包含网络中其它节点的记录。因此让我们新增几个接口：</p>
@@ -245,8 +245,7 @@
 <p>第一个方法 valid_chain() 用来检查是否是有效链，遍历每个块验证hash和proof.</p>
 <p>第2个方法 resolve_conflicts() 用来解决冲突，遍历所有的邻居节点，并用上一个方法检查链的有效性， 如果发现有效更长链，就替换掉自己的链;就是比较每个节点（服务器）上的最长有效链。<br>让我们添加两个路由，一个用来注册节点，一个用来解决冲突。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route('/nodes/register', methods=['POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register_nodes</span><span class="params">()</span>:</span></span><br><span class="line">    values = request.get_json()</span><br><span class="line"></span><br><span class="line">    nodes = values.get(<span class="string">'nodes'</span>)</span><br><span class="line">    <span class="keyword">if</span> nodes <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Error: Please supply a valid list of nodes"</span>, <span class="number">400</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> nodes:</span><br><span class="line">        blockchain.register_node(node)</span><br><span class="line"></span><br><span class="line">    response = &#123;</span><br><span class="line">        <span class="string">'message'</span>: <span class="string">'New nodes have been added'</span>,</span><br><span class="line">        <span class="string">'total_nodes'</span>: list(blockchain.nodes),</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> jsonify(response), <span class="number">201</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/nodes/resolve', methods=['GET'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">consensus</span><span class="params">()</span>:</span></span><br><span class="line">    replaced = blockchain.resolve_conflicts()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> replaced:</span><br><span class="line">        response = &#123;</span><br><span class="line">            <span class="string">'message'</span>: <span class="string">'Our chain was replaced'</span>,</span><br><span class="line">            <span class="string">'new_chain'</span>: blockchain.chain</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        response = &#123;</span><br><span class="line">            <span class="string">'message'</span>: <span class="string">'Our chain is authoritative'</span>,</span><br><span class="line">            <span class="string">'chain'</span>: blockchain.chain</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> jsonify(response), <span class="number">200</span></span><br></pre></td></tr></table></figure></p>
 <p>你可以在不同的机器运行节点，或在一台机机开启不同的网络端口来模拟多节点的网络，这里在同一台机器开启不同的端口演示，在不同的终端运行一下命令，就启动了两个节点：<a href="http://localhost:5000" target="_blank" rel="noopener">http://localhost:5000</a> 和 <a href="http://localhost:5001" target="_blank" rel="noopener">http://localhost:5001</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pipenv run python blockchain.py</span><br><span class="line">pipenv run python blockchain.py -p <span class="number">5001</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://img.blog.csdn.net/20171031113409302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlsaWJpMjAwMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="图"></p>
-<p>然后在节点2上挖两个块，确保是更长的链，然后在节点1上访问接口/nodes/resolve ,这时节点1的链会通过共识算法被节点2的链取代。<br><img src="http://img.blog.csdn.net/20171031131545136?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlsaWJpMjAwMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="tu"><br>好啦，你可以邀请朋友们一起来测试你的区块链!</p>
+<p><img src="/assets/img/3.png" alt="图片"><br>然后在节点2上挖两个块，确保是更长的链，然后在节点1上访问接口/nodes/resolve ,这时节点1的链会通过共识算法被节点2的链取代。<br><img src="/assets/img/4.png" alt="图片"><br>好啦，你可以邀请朋友们一起来测试你的区块链!</p>
 
       
 
@@ -571,336 +570,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/docker（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><figcaption><span>python:objc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br></pre></td></tr></table></figure></p>
-<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
-<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
-</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-自然语言处理textblog安装使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/自然语言处理textblog安装使用/">自然语言处理textblog安装使用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/自然语言处理textblog安装使用/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="自然语言处理-textblog-安装使用"><a href="#自然语言处理-textblog-安装使用" class="headerlink" title="自然语言处理 textblog 安装使用"></a>自然语言处理 textblog 安装使用</h1><h2 id="TextBlob是什么？"><a href="#TextBlob是什么？" class="headerlink" title="TextBlob是什么？"></a>TextBlob是什么？</h2><p>TextBlob是一个用Python编写的开源的文本处理库。它可以用来执行很多自然语言处理的任务，比如，词性标注，名词性成分提取，情感分析，文本翻译，等等。你可以在官方文档阅读TextBlog的所有特性。</p>
-<p>github 地址：<a href="https://github.com/sloria/TextBlob/" target="_blank" rel="noopener">https://github.com/sloria/TextBlob/</a></p>
-<p>文档地址：<a href="https://textblob.readthedocs.io/en/dev/" target="_blank" rel="noopener">https://textblob.readthedocs.io/en/dev/</a><br>TextBlob是在NLTK和pattern基础上构建的，并且与这两者完美契合。</p>
-<h2 id="安装-TextBlob"><a href="#安装-TextBlob" class="headerlink" title="安装 TextBlob"></a>安装 TextBlob</h2><pre><code>$ pip install -U textblob
-$ python -m textblob.download_corpora # 下载nltk数据包，如果已经在nltk 安装的时候下载好了nltk数据包，不需要此步骤
-</code></pre><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>Create a TextBlob（创建一个textblob对象）</p>
-<pre><code>from textblob import TextBlob
-wiki = TextBlob(&quot;Python is a high-level, general-purpose programming language.&quot;)
-</code></pre><p>Part-of-speech Tagging（词性标注）</p>
-<pre><code>wiki.tags
-
-[(&apos;Python&apos;, &apos;NNP&apos;), (&apos;is&apos;, &apos;VBZ&apos;), (&apos;a&apos;, &apos;DT&apos;), (&apos;high-level&apos;, &apos;JJ&apos;), (&apos;general-purpose&apos;, &apos;JJ&apos;), (&apos;programming&apos;, &apos;NN&apos;), (&apos;language&apos;, &apos;NN&apos;)]
-</code></pre><p>Sentiment Analysis（情感分析）</p>
-<pre><code>testimonial = TextBlob(&quot;Textblob is amazingly simple to use. What great fun!&quot;)
-testimonial.sentiment
-
-Sentiment(polarity=0.39166666666666666, subjectivity=0.4357142857142857)
-
-testimonial.sentiment.polarity
-
-0.39166666666666666
-</code></pre><p>Tokenization（分词和分句）</p>
-<pre><code>zen = TextBlob(&quot;Beautiful is better than ugly. &quot;
-...                &quot;Explicit is better than implicit. &quot;
-...                &quot;Simple is better than complex.&quot;)
-zen.words
-
-WordList([&apos;Beautiful&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;ugly&apos;, &apos;Explicit&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;implicit&apos;, &apos;Simple&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;complex&apos;])
-
-zen.sentences
-
-[Sentence(&quot;Beautiful is better than ugly.&quot;), Sentence(&quot;Explicit is better than implicit.&quot;), Sentence(&quot;Simple is better than complex.&quot;)]
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">textblog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/自然语言处理textblog安装使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install polyglot</span></span><br></pre></td></tr></table></figure>
-<p>安装依赖库</p>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="built_in">get</span> install python-numpy libicu-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-<p>在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)<br>所以我们这个动态链接库是没有build成功的。<br>可能是pip install的时候没有生成一个好的_icu.so<br>所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。<br>编译安装成功<br>我就不用pip安装了，直接下源码</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://pypi.python.org/packages/bf/<span class="number">1</span>f/cea<span class="number">237</span>f<span class="number">542e3</span>bb<span class="number">592980008</span>a<span class="number">734850e8</span>cbbc<span class="number">25</span><span class="keyword">c</span><span class="number">19</span><span class="keyword">c</span><span class="number">72</span><span class="keyword">c</span><span class="number">98767</span><span class="keyword">c</span><span class="number">71</span><span class="keyword">c</span><span class="number">1</span>bd<span class="number">9</span><span class="keyword">c</span><span class="number">2</span>/PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br></pre></td></tr></table></figure>
-<p>此时如果你是linux系统要修改一下setup.py文件<br>具体如下图所示</p>
-<p><img src="/assets/blogImg/test1.jpg" alt="图1"><br><img src="/assets/blogImg/test2.jpg" alt="图2"></p>
-<p>然后</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python setup<span class="selector-class">.py</span> build</span><br><span class="line">sudo python setup<span class="selector-class">.py</span> install</span><br></pre></td></tr></table></figure>
-<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">u"""The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide"""</span></span><br><span class="line"></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.words</span><br></pre></td></tr></table></figure>
-<h1 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h1><p>首先需要下载通用词性标签集</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">pos2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
-<p>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。<br>词性标注具体代码如下：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">"""We will meet at eight o'clock on Thursday morning."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.pos_tags</span><br></pre></td></tr></table></figure>
-<h1 id="实体识别"><a href="#实体识别" class="headerlink" title="实体识别"></a>实体识别</h1><p>首先也要安装相关依赖包</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">ner2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
-<p>相关代码如下：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line">blob = <span class="string">"""The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a "threat to the entire world"."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.entities</span><br></pre></td></tr></table></figure>
-<p>但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">nerL = [ ]</span><br><span class="line">nerR = &#123; &#125;</span><br><span class="line"><span class="keyword">for</span> sent int text<span class="selector-class">.sentences</span>:</span><br><span class="line">    <span class="keyword">for</span> entity <span class="keyword">in</span> sent<span class="selector-class">.entities</span>:</span><br><span class="line">        nerL.append(entity)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter <span class="keyword">in</span> nerL:</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> iter:</span><br><span class="line">        nerR[i] = iter.tag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(R)</span></span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
         </p>
       
 
@@ -1258,6 +927,214 @@ hippos
 
 
   
+    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><figcaption><span>python:objc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br></pre></td></tr></table></figure></p>
+<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
+<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
+</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install polyglot</span></span><br></pre></td></tr></table></figure>
+<p>安装依赖库</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="built_in">get</span> install python-numpy libicu-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
+<p>在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)<br>所以我们这个动态链接库是没有build成功的。<br>可能是pip install的时候没有生成一个好的_icu.so<br>所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。<br>编译安装成功<br>我就不用pip安装了，直接下源码</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://pypi.python.org/packages/bf/<span class="number">1</span>f/cea<span class="number">237</span>f<span class="number">542e3</span>bb<span class="number">592980008</span>a<span class="number">734850e8</span>cbbc<span class="number">25</span><span class="keyword">c</span><span class="number">19</span><span class="keyword">c</span><span class="number">72</span><span class="keyword">c</span><span class="number">98767</span><span class="keyword">c</span><span class="number">71</span><span class="keyword">c</span><span class="number">1</span>bd<span class="number">9</span><span class="keyword">c</span><span class="number">2</span>/PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br></pre></td></tr></table></figure>
+<p>此时如果你是linux系统要修改一下setup.py文件<br>具体如下图所示</p>
+<p><img src="/assets/blogImg/test1.jpg" alt="图1"><br><img src="/assets/blogImg/test2.jpg" alt="图2"></p>
+<p>然后</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python setup<span class="selector-class">.py</span> build</span><br><span class="line">sudo python setup<span class="selector-class">.py</span> install</span><br></pre></td></tr></table></figure>
+<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">u"""The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide"""</span></span><br><span class="line"></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.words</span><br></pre></td></tr></table></figure>
+<h1 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h1><p>首先需要下载通用词性标签集</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">pos2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
+<p>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。<br>词性标注具体代码如下：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">"""We will meet at eight o'clock on Thursday morning."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.pos_tags</span><br></pre></td></tr></table></figure>
+<h1 id="实体识别"><a href="#实体识别" class="headerlink" title="实体识别"></a>实体识别</h1><p>首先也要安装相关依赖包</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">ner2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
+<p>相关代码如下：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line">blob = <span class="string">"""The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a "threat to the entire world"."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.entities</span><br></pre></td></tr></table></figure>
+<p>但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">nerL = [ ]</span><br><span class="line">nerR = &#123; &#125;</span><br><span class="line"><span class="keyword">for</span> sent int text<span class="selector-class">.sentences</span>:</span><br><span class="line">    <span class="keyword">for</span> entity <span class="keyword">in</span> sent<span class="selector-class">.entities</span>:</span><br><span class="line">        nerL.append(entity)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter <span class="keyword">in</span> nerL:</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> iter:</span><br><span class="line">        nerR[i] = iter.tag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(R)</span></span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-自然语言（分词、词性标注、实体识别等）集成投票算法实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1323,6 +1200,128 @@ hippos
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-自然语言处理textblog安装使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/自然语言处理textblog安装使用/">自然语言处理textblog安装使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/自然语言处理textblog安装使用/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="自然语言处理-textblog-安装使用"><a href="#自然语言处理-textblog-安装使用" class="headerlink" title="自然语言处理 textblog 安装使用"></a>自然语言处理 textblog 安装使用</h1><h2 id="TextBlob是什么？"><a href="#TextBlob是什么？" class="headerlink" title="TextBlob是什么？"></a>TextBlob是什么？</h2><p>TextBlob是一个用Python编写的开源的文本处理库。它可以用来执行很多自然语言处理的任务，比如，词性标注，名词性成分提取，情感分析，文本翻译，等等。你可以在官方文档阅读TextBlog的所有特性。</p>
+<p>github 地址：<a href="https://github.com/sloria/TextBlob/" target="_blank" rel="noopener">https://github.com/sloria/TextBlob/</a></p>
+<p>文档地址：<a href="https://textblob.readthedocs.io/en/dev/" target="_blank" rel="noopener">https://textblob.readthedocs.io/en/dev/</a><br>TextBlob是在NLTK和pattern基础上构建的，并且与这两者完美契合。</p>
+<h2 id="安装-TextBlob"><a href="#安装-TextBlob" class="headerlink" title="安装 TextBlob"></a>安装 TextBlob</h2><pre><code>$ pip install -U textblob
+$ python -m textblob.download_corpora # 下载nltk数据包，如果已经在nltk 安装的时候下载好了nltk数据包，不需要此步骤
+</code></pre><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>Create a TextBlob（创建一个textblob对象）</p>
+<pre><code>from textblob import TextBlob
+wiki = TextBlob(&quot;Python is a high-level, general-purpose programming language.&quot;)
+</code></pre><p>Part-of-speech Tagging（词性标注）</p>
+<pre><code>wiki.tags
+
+[(&apos;Python&apos;, &apos;NNP&apos;), (&apos;is&apos;, &apos;VBZ&apos;), (&apos;a&apos;, &apos;DT&apos;), (&apos;high-level&apos;, &apos;JJ&apos;), (&apos;general-purpose&apos;, &apos;JJ&apos;), (&apos;programming&apos;, &apos;NN&apos;), (&apos;language&apos;, &apos;NN&apos;)]
+</code></pre><p>Sentiment Analysis（情感分析）</p>
+<pre><code>testimonial = TextBlob(&quot;Textblob is amazingly simple to use. What great fun!&quot;)
+testimonial.sentiment
+
+Sentiment(polarity=0.39166666666666666, subjectivity=0.4357142857142857)
+
+testimonial.sentiment.polarity
+
+0.39166666666666666
+</code></pre><p>Tokenization（分词和分句）</p>
+<pre><code>zen = TextBlob(&quot;Beautiful is better than ugly. &quot;
+...                &quot;Explicit is better than implicit. &quot;
+...                &quot;Simple is better than complex.&quot;)
+zen.words
+
+WordList([&apos;Beautiful&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;ugly&apos;, &apos;Explicit&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;implicit&apos;, &apos;Simple&apos;, &apos;is&apos;, &apos;better&apos;, &apos;than&apos;, &apos;complex&apos;])
+
+zen.sentences
+
+[Sentence(&quot;Beautiful is better than ugly.&quot;), Sentence(&quot;Explicit is better than implicit.&quot;), Sentence(&quot;Simple is better than complex.&quot;)]
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">textblog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/自然语言处理textblog安装使用/">展开全文 >></a>
         </p>
       
 
@@ -1554,6 +1553,22 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">自然语言处理(NLP)</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">分词</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -1566,23 +1581,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">自然语言处理(NLP)</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分词</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1598,10 +1597,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -1614,11 +1609,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spacy</a>
+                <a href="javascript:void(0)" class="js-tag color2">投票集成算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">投票集成算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">spacy</a>
               </li>
             
             <div class="clearfix"></div>
