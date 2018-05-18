@@ -166,6 +166,222 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-怎么基于开源区块链项目Hyperledger-fabric进行简单应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/18/怎么基于开源区块链项目Hyperledger-fabric进行简单应用/">怎么基于开源区块链项目Hyperledger-fabric进行简单应用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/18/怎么基于开源区块链项目Hyperledger-fabric进行简单应用/" class="archive-article-date">
+  	<time datetime="2018-05-18T03:44:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="怎么基于开源区块链项目Hyperledger-fabric进行简单应用"><a href="#怎么基于开源区块链项目Hyperledger-fabric进行简单应用" class="headerlink" title="怎么基于开源区块链项目Hyperledger-fabric进行简单应用"></a>怎么基于开源区块链项目Hyperledger-fabric进行简单应用</h1><hr>
+<h2 id="一、区块链从何而来？如何简单的理解"><a href="#一、区块链从何而来？如何简单的理解" class="headerlink" title="一、区块链从何而来？如何简单的理解?"></a>一、区块链从何而来？如何简单的理解?</h2><p>区块链是比特币的核心技术，而比特币最初是以按照货币来设计的，所以先阐述下货币的三个主要功能：</p>
+<ul>
+<li><p>交易媒介-&gt;货币可以用来购买产品或者服务</p>
+</li>
+<li><p>记账单位-&gt;可以作为价值衡量的手段</p>
+</li>
+<li><p>价值储藏-&gt;跨时间段的购买力和储藏</p>
+<pre><code>**区块链即满足了第二点，所以我们可以把它看做一个自带对账功能的账本。**
+</code></pre></li>
+</ul>
+<p>区块链属于一种去中心化的记录技术。参与到系统上的节点，可能不属于同一组织、彼此无需信任；区块链数据由所有节点共同维护，每个参与维护节点都能复制获得一份完整记录的拷贝。</p>
+<h2 id="那么区块链又跟传统的记账技术有什么区别呢？"><a href="#那么区块链又跟传统的记账技术有什么区别呢？" class="headerlink" title="那么区块链又跟传统的记账技术有什么区别呢？"></a>那么区块链又跟传统的记账技术有什么区别呢？</h2><p><strong>其特点应该包括：</strong></p>
+<ul>
+<li>维护一条不断增长的链，只可能添加记录，而发生过的记录都不可篡改；</li>
+<li>去中心化，或者说多中心化，无需集中的控制而能达成共识，实现上尽量分布式；</li>
+<li>通过密码学的机制来确保交易无法抵赖和破坏，并尽量保护用户信息和记录的隐私性。</li>
+<li>可以将智能合约跟区块链结合到一起，让其提供除了交易（比特币区块链已 经支持简单的脚本计算）功能外更灵活的合约功能，执行更为复杂的操作</li>
+</ul>
+<h2 id="区块链的基本概念"><a href="#区块链的基本概念" class="headerlink" title="区块链的基本概念"></a>区块链的基本概念</h2><ul>
+<li>交易（Transaction）：一次操作，导致账本状态的一次改变，如添加一条记录；</li>
+<li>区块（Block） ：记录一段时间内发生的交易和状态结果，是对当前账本状态的一次共识；</li>
+<li>链（Chain） ：由一个个区块按照发生顺序串联而成，是整个状态变化的日志记录。</li>
+</ul>
+<h2 id="一句话解释"><a href="#一句话解释" class="headerlink" title="一句话解释"></a>一句话解释</h2><p><strong>可以把区块链看作是一个==状态机==，则每次交易就是试图改变一次状态，参与者对于区块中所有交易内容导致状态改变的结果达成共识后生成区块，而区块之间以密码学特征(如Hash值)方式按先后顺序链接起来，形成以区块为基本单元的”链”,并且将该”链”在区块链网络参与节点间复制和共享，同时链上内容依据不同的共识机制由参与节点组成的网络集体维护。</strong></p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>根据参与者的不同，可以分为公开链、联盟链和私有链。</p>
+<h2 id="公开链"><a href="#公开链" class="headerlink" title="公开链"></a>公开链</h2><p>顾名思义，任何人都可以参与使用和维护，典型的如比特币区块链，信息是完全公开的。</p>
+<h2 id="私有链"><a href="#私有链" class="headerlink" title="私有链"></a>私有链</h2><p>则是集中管理者进行限制，只能得到内部少数人可以使用，信息不公开。</p>
+<h2 id="联盟链"><a href="#联盟链" class="headerlink" title="联盟链"></a>联盟链</h2><p>则介于两者之间，由若干组织一起合作维护一条区块链，该区块链的使用必须是有权限的管理，相关信息会得到保护，典型如银联组织。</p>
+<h2 id="区块链涉及技术"><a href="#区块链涉及技术" class="headerlink" title="区块链涉及技术"></a>区块链涉及技术</h2><p>区块链涉及到的领域比较杂，包括分布式、存储、密码学、心理学、经济 学、博弈论、网络协议等。</p>
+<h3 id="密码学相关技术"><a href="#密码学相关技术" class="headerlink" title="密码学相关技术"></a>密码学相关技术</h3><p>包括 hash 算法与摘要、加密算法、数字签名和证书、PKI 体系、Merkle 树、同态加密等后面涉及到再介绍，忘记介绍了就自行百度。</p>
+<h3 id="分布式共识算法"><a href="#分布式共识算法" class="headerlink" title="分布式共识算法"></a>分布式共识算法</h3><p>如比特币基于博弈论提出了工作量证明”（Proof of Work） 策略等。让恶意破坏的参与者损失经济利益，从而保证大部分人的合作。PoS、DPoS 、Casper 、Paxos、拜占庭、 PBFT、二阶段提交、三阶段提交、Gossip等。等后面涉及到相关的再介绍，忘记介绍了就自行百度。</p>
+<p>好，认识了以上基本概念，理解我们的重点Hyperledger-Fabric就容易多了.</p>
+<h2 id="Hyperledger-Fabric-IBM主推的区块链开源项目"><a href="#Hyperledger-Fabric-IBM主推的区块链开源项目" class="headerlink" title="Hyperledger-Fabric-IBM主推的区块链开源项目"></a>Hyperledger-Fabric-IBM主推的区块链开源项目</h2><p>Fabric的架构图如下：<br>核心组件：</p>
+<ol>
+<li>节点(Peer)<br>在网络中具有一定功能的服务或者软件。它在Fabric网络中，主要负责接收交易请求。维护账本，一般都是运行在容器。节点之间通过gRPC进行通信。 在Fabric中，Peer主要有三种类型Endorser(背书节点):负责对交易提案进行检查背书。 Committer(确认节点)：负责检查交易请求，执行交易，并维护区块链和账本结构。</li>
+<li>排序者(Orderer)<br>负责对收到的交易在网络中进行全局排序。</li>
+<li>CA节点<br>负责对网络中的成员身份进行管理，目前采用的事数字证书机制，CA节点实现了PKI服务。<br><strong>数字签名和数字证书</strong><br>数字签名 类似在纸质合同上签名确认合同内容，数字签名用于<strong>证实某数字内容的完整性和来源</strong>。A发给B一个文件。A先对文件进行摘要，然后用自己的私钥进行加密，将文件和加密串都发给B。B收到后文件和加密串，用A的公钥来解密加密串，得到原始的数字摘要，跟对文件进行摘要后的结果进行比对。如果一致，说明该文件确实是 A 发过来的，并且文件内容没 有被修改过。<br>数字证书用来证明某个公钥是谁的。对于数字签名应用来说，很重要的一点就是公钥的分发。一旦公钥被人替换，则整个安全体 系将被破坏掉。 怎么确保一个公钥确实是某个人的原始公钥？ 这就需要数字证书机制。<br>数字证书就是像一个证书一样，证明信息和合法性。由证书认证机构（Certification Authority，CA） 来签发。<br>数字证书内容可能包括版本、序列号、签名算法类型、签发者信息、有效期、被签发人、签发的公开密钥、CA数字签名、其它信息等等。其中，最重要的包括 <strong>签发的公开密钥、CA数字签名</strong>两个信息。因此，只要通过这个证书就能 证明某个公钥是合法的，因为带有CA的数字签名。更进一步地，怎么证明 CA 的签名合法不合法呢？ 类似的，CA的数字签名合法不合法也是通过 CA 的证书来证明的。<br><strong>PKI 体系 PKI （Public Key Infrastructure）</strong><br>它不是某一种技术，而是综合多种密码学手段来实现安 全可靠传递消息和身份确认的一个框架和规范。 一般情况下，包括如下组件： CA（Certification Authority） ：负责证书的颁发和作废，接收来自 RA 的请求； RA（Registration Authority）：对用户身份进行验证，校验数据合法性，负责登记，审 核过了就发给 CA； 证书数据库：存放证书，一般采用 LDAP 目录服务，标准格式采用 X.500 系列。<br>CA是最核心的组件，主要完成对公钥的管理。密钥有两种 类型：用于签名和用于加解密，对应称为 签名密钥对 和 加密密钥对 。 用户基于 PKI 体系要申请一个证书，一般可以由 CA 来生成证书和私钥，也可以自己生成公 钥和私钥，然后由 CA 来对公钥进行签发。</li>
+<li>组织<br>拥有共同信任的根证书(如根CA证书)的成员的集合。 Fabric组织中的成员由于拥有共同的信任根，所以可以交换比较敏感的内容。 组织一般包括名称，ID,MSP信息，管理策略，认证采用的密码类型等信息。 多个组织为了便于沟通，可以加入同一通道。如三家银行，一共三个组织，两两加入到同一个通道中彼此就可以进行相关的数据交互。</li>
+<li>联盟<br>若干个组织的集合</li>
+<li>交易<br>可以把Fabric中的每一次请求都看成一次交易，要构造一次交易，首先要创建交易提案，当一个交易提案获得足够的背书支持的时候，再构造出合法的交易请求，然后发送给排序节点进行排序，排序完成后，会广播到网络中的各个节点进行确认，如果节点对交易进行本地验证通过，则更新本地账本。</li>
+<li>区块<br>一组排序后的交易集合。 区块结构包含区块头(Header)，数据(Data),元数据(Metadata). 区块头用于构建区块链结构，包括Number,PerviousHash,DataHash. Number记录区块的序号，PerviousHash记录梭关联的前一个区块的头部域的Hash值，DataHash为本区块Data域的Hash值。 Data域中以Envelope结构记录区块的多个交易信息，这些交易采用Merkle树结构进行组织。<br>Merkle 树（又叫哈希树）<br>是一种二叉树，由一个根节点、一组中间节点和一组叶节点组成。 最下面的叶节点包含存储数据或其哈希值，每个中间节点是它的两个孩子节点内容的哈希值，根节点也是由它的两个子节点内容的哈希值组成。<br>Merkle树的特点是，底层数据的任何变动，都会传递到其父亲节点，一直到树根。 Merkle树的典型应用场景包括： 快速比较大量数据：当两个默克尔树根相同时，则意味着所代表的数据必然相同。 快速定位修改：可以快速定位到发生改变的节点；</li>
+<li><p>链码<br>即智能合约。</p>
+</li>
+<li><p>通道<br>通道与绑定到该通道上的配置和数据(包括交易，账本，链码实例，成员身份等)一起构成一条完整的区块链，这些数据只会被加入到通道的组织成员所感知和访问到，通道外的成员无法访问到通道内的数据。Fabric中的通道分为应用通道和系统通道，前者供用户使用，负责承载各种交易。后者则负责对应用通道的管理。<br>通道在创建的时候，会指定所关联的访问策略，初始化所包括的组织身份(证书范围等，通过MSP校验)，锚节点，Orderer服务地址等。通道创建后会构成一条区块链结构，初始区块中包含初始配置相关的信息。<br>我们创建新的应用通道时，需要向系统通道发送配置交易，同时配置交易所构成的区块，会作为新建应用通道的初始区块。</p>
+</li>
+<li>账本(ledger)<br>可以看作是数据储存结构了，主要包括状态数据库:记录区块链结构中的交易执行过程。记录最新的状态。<br>索引数据库：存放索引信息，例如从Hahs，编号索引到区块，从ID索引到交易等。<br>历史数据库：存放各个状态的历史变化记录。<br>备注:Fabric的区块链结构主要通过文件系统进行存储；状态数据库目前支持LevelDB,CounchDB.<h2 id="记录账本流程"><a href="#记录账本流程" class="headerlink" title="记录账本流程"></a>记录账本流程</h2>应用程序通过SDK发送请求到Peer节点（一个或多个）peer节点分别执行交易（通过chaincode），但是并不将执行结果提交到本地的账本中（可以认为是模拟执行，交易处于挂起状态），参与背书的peer将执行结果返回给应用程序（其中包括自身对背书结果的签名），应用程序收集背书结果，并将结果提交给Ordering服务节点，Ordering服务节点执行共识过程并生成block，通过消息通道发布给Peer节点，由peer节点各自验证交易并提交到本地的ledger中（包括state状态的变化）。<br>关于通道：通道是有共识服务（ordering）提供的一种通讯机制，类似于消息系统中的发布-订阅（PUB/SUB)中的topic；基于这种发布-订阅关系，将peer和orderer连接在一起，形成一个个具有保密性的通讯链路（虚拟），实现了业务隔离的要求；通道也与账本（ledger）-状态（worldstate）紧密相关；<br>共识服务与（P1、PN）、（P1、P2、P3）、（P2、P3）组成了三个相互独立的通道，加入到不同通道的Peer节点能够维护各个通道对应的账本和状态；也其实也对应现实世界中，不同业务场景下的参与方，例如银行、保险公司；物流企业、生产企业等实体结构；<br>整個Fabric的安裝部署就不在这一一细讲了，感兴趣的可以私下找我。这里主要解释怎么进行开发，以及一些对应的解读。</li>
+</ol>
+<p>具体步骤如下： 一：新建yjmtest.go<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">import</span> (</span><br><span class="line">    	<span class="string">"encoding/json"</span></span><br><span class="line">    	<span class="string">"fmt"</span></span><br><span class="line">    	<span class="string">"github.com/hyperledger/fabric/core/chaincode/shim"</span></span><br><span class="line">    	pb <span class="string">"github.com/hyperledger/fabric/protos/peer"</span></span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">type</span> SimpleChaincode <span class="keyword">struct</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">    	Name <span class="keyword">string</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    	err := shim.Start(<span class="built_in">new</span>(SimpleChaincode))</span><br><span class="line">    	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    		fmt.Printf(<span class="string">"Error starting Simple chaincode: %s"</span>, err)</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">Init</span><span class="params">(stub shim.ChaincodeStubInterface)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    	<span class="keyword">return</span> shim.Success([]<span class="keyword">byte</span>(<span class="string">"Init OK!  params:::"</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">Invoke</span><span class="params">(stub shim.ChaincodeStubInterface)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    	function, args := stub.GetFunctionAndParameters()</span><br><span class="line">    	fmt.Println(<span class="string">"invoke is running "</span> + function)</span><br><span class="line">    	<span class="keyword">if</span> function == <span class="string">"test"</span> &#123;</span><br><span class="line">    		<span class="keyword">return</span> t.testYJM(stub, args)</span><br><span class="line">    	&#125; <span class="keyword">else</span> <span class="keyword">if</span> function == <span class="string">"delete"</span> &#123;</span><br><span class="line">    		<span class="comment">// 删除</span></span><br><span class="line">    		<span class="keyword">return</span> t.deletePerson(stub, args)</span><br><span class="line">    	&#125; <span class="keyword">else</span> <span class="keyword">if</span> function == <span class="string">"query"</span> &#123;</span><br><span class="line">    		<span class="comment">// 查询</span></span><br><span class="line">    		<span class="keyword">return</span> t.queryPerson(stub, args)</span><br><span class="line">    	&#125; <span class="keyword">else</span> <span class="keyword">if</span> function == <span class="string">"create"</span> &#123;</span><br><span class="line">    		<span class="comment">// cchuangjian</span></span><br><span class="line">    		<span class="keyword">return</span> t.createPerson(stub, args)</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> shim.Error(<span class="string">"Received unknown function=="</span> + <span class="keyword">string</span>(function) + <span class="string">":::args:::"</span> + <span class="keyword">string</span>(args[<span class="number">0</span>]))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">testYJM</span><span class="params">(stub shim.ChaincodeStubInterface, args []<span class="keyword">string</span>)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    	<span class="keyword">return</span> shim.Success([]<span class="keyword">byte</span>(<span class="string">"-------------Called testYJM  hello world------------"</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//新建</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">createPerson</span><span class="params">(stub shim.ChaincodeStubInterface, params []<span class="keyword">string</span>)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    	sname := params[<span class="number">0</span>]</span><br><span class="line">    	person := &amp;Person&#123;</span><br><span class="line">    		Name: sname,</span><br><span class="line">    	&#125;</span><br><span class="line">    	personJsonBytes, err := json.Marshal(person) <span class="comment">//Json序列号</span></span><br><span class="line">    	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    		<span class="keyword">return</span> shim.Error(<span class="string">""</span>)</span><br><span class="line">    	&#125;</span><br><span class="line">    	err = stub.PutState(sname, personJsonBytes)</span><br><span class="line">    	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    		<span class="keyword">return</span> shim.Error(err.Error())</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> shim.Success([]<span class="keyword">byte</span>(<span class="string">"create Person success!"</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//刪除</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">deletePerson</span><span class="params">(stub shim.ChaincodeStubInterface, params []<span class="keyword">string</span>)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    	<span class="comment">//params := stub.GetStringArgs()</span></span><br><span class="line">    	key := params[<span class="number">0</span>] <span class="comment">//name</span></span><br><span class="line">    	err := stub.DelState(key)</span><br><span class="line">    	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    		<span class="keyword">return</span> shim.Error(<span class="string">"Failed to delete Person from DB, key is: "</span> + key)</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> shim.Success([]<span class="keyword">byte</span>(<span class="string">"delete Person success!"</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//查詢</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">queryPerson</span><span class="params">(stub shim.ChaincodeStubInterface, params []<span class="keyword">string</span>)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    	<span class="comment">//params := stub.GetStringArgs()</span></span><br><span class="line">    	key := params[<span class="number">0</span>] <span class="comment">//name</span></span><br><span class="line">    	dbPersonBytes, err := stub.GetState(key)</span><br><span class="line">    	<span class="keyword">var</span> person Person</span><br><span class="line">    	err = json.Unmarshal(dbPersonBytes, &amp;person) <span class="comment">//反序列化</span></span><br><span class="line">    	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    		<span class="keyword">return</span> shim.Error(<span class="string">"&#123;\"Error\":\"Failed to decode JSON of: "</span> + <span class="keyword">string</span>(dbPersonBytes) + <span class="string">"\" to Person&#125;"</span>)</span><br><span class="line">    	&#125;</span><br><span class="line">    	fmt.Println(<span class="string">"query Person from DB, name:"</span> + person.Name)</span><br><span class="line">    	<span class="keyword">return</span> shim.Success([]<span class="keyword">byte</span>(<span class="string">"query Person success!"</span>))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>对应解读：</strong><br>目前是基于fabric-1.0.0版本进行开发（最新版本刚出1.0.1），开发方式可以基于SDK和链码。当然由于太新了，SDK还不太成熟，所以就给大家示范了下基于链码的方式，本来也想用java弄的，后面发下坑太大，目前还趟不过去，就选择了相对容易的方式。</p>
+<p>链码就是智能合约，也可以理解成一个服务，里面可以有很多我们自定义的方法，我们的自定义方法都是通过invoke来进行调用，除了用if-else來判断对应的方法，当然也可以使用fabric提供的状态机，这里就不在演示。此外可以引用第三方包，放入到import里面就可以使用，所以我们可以把自己的代码打包然后到进来直接使用，go是可以直接从github上引用的，只要把我们自己放在github上包的路径引进来即可。此外，当前链码还可以引用其它链码，所以可以理解为一个服务可以调用另外的服务，所以可以实现相对复杂的业务。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">import</span> (</span><br><span class="line">    	<span class="string">"encoding/json"</span></span><br><span class="line">    	<span class="string">"fmt"</span></span><br><span class="line">    	<span class="string">"github.com/hyperledger/fabric/core/chaincode/shim"</span></span><br><span class="line">    	pb <span class="string">"github.com/hyperledger/fabric/protos/peer"</span></span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">type</span> SimpleChaincode <span class="keyword">struct</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    	err := shim.Start(<span class="built_in">new</span>(SimpleChaincode))</span><br><span class="line">    	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    		fmt.Printf(<span class="string">"Error starting Simple chaincode: %s"</span>, err)</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">Init</span><span class="params">(stub shim.ChaincodeStubInterface)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    	<span class="keyword">return</span> shim.Success([]<span class="keyword">byte</span>(<span class="string">"Init OK!  params:::"</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">Invoke</span><span class="params">(stub shim.ChaincodeStubInterface)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    	function, args := stub.GetFunctionAndParameters()</span><br><span class="line">    	fmt.Println(<span class="string">"invoke is running "</span> + function)</span><br><span class="line">    	<span class="keyword">if</span> function == <span class="string">"test"</span> &#123;</span><br><span class="line">    		<span class="keyword">return</span> t.testYJM(stub, args)</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> shim.Error(<span class="string">"Received unknown function=="</span> + <span class="keyword">string</span>(function) + <span class="string">":::args:::"</span> + <span class="keyword">string</span>(args[<span class="number">0</span>]))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(t *SimpleChaincode)</span> <span class="title">testYJM</span><span class="params">(stub shim.ChaincodeStubInterface, args []<span class="keyword">string</span>)</span> <span class="title">pb</span>.<span class="title">Response</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    	<span class="keyword">return</span> shim.Success([]<span class="keyword">byte</span>(<span class="string">"-------------Called testYJM  hello world------------"</span>))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="必须要引入的包"><a href="#必须要引入的包" class="headerlink" title="必须要引入的包"></a>必须要引入的包</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"github.com/hyperledger/fabric/core/chaincode/shim"</span></span><br><span class="line">pb <span class="string">"github.com/hyperledger/fabric/protos/peer"</span></span><br></pre></td></tr></table></figure>
+<p>shim是fabric和我們的交互接口。ChaincodeStubInterface就就相当与我们平时理解的Dao层，可以进行相关的数据操作。它在/go/src/github.com/hyperledger/fabric/core/chaincode/shim/interfaces.go定义，在chaincode.go中实现。感兴趣的可以自己查看。</p>
+<p>shim.ChaincodeStubInterface APIs如下:</p>
+<p>账本交互API</p>
+<p>API| 方法格式 | 简单说明</p>
+<ul>
+<li>GetState | GetState(key String)([]byte,error) | 根據键查詢賬本</li>
+<li>PutState | GetState(key String,value []byte) | 添加</li>
+<li>DelState|…| …</li>
+<li>GetStateByRange | GetStateByRange(startKey,endKey string)(StateQueryIteratorInterface,error)|查詢指定范围的键值，返回结果是个迭代器。</li>
+<li>GetByHistoryForKey|GetByHistoryForKey（key String）(QueryIteratorInterface,error) | 返回某个键的所有历史</li>
+<li>GetQueryResult| GetQUeryResult（key String）(QueryIteratorInterface,error) |支持富查询，不过目前只有CouchDB支持</li>
+</ul>
+<p>交易相关API</p>
+<p>API| 方法格式 | 简单说明</p>
+<ul>
+<li>GetTxID | GetState(key String)([]byte,error)</li>
+</ul>
+<p>参数读取API </p>
+<p>API| 方法格式 | 简单说明</p>
+<ul>
+<li>GetFunctionAndParameters解析调用的时候传入的参数 | GetFunctionAndParameters() (string, []string) |解析调用的时候传入的参数。</li>
+<li>GetArgs | GetArgs() [][]byte|以byte数组的数组的形式获得传入的参数列表</li>
+<li>GetStringArgs|GetStringArgs() []string |以字符串数组的形式获得传入的参数列表<br>注：API详细说明： <a href="https://godoc.org/github.com/hyperledger/fabric/core/chaincode/shim" target="_blank" rel="noopener">https://godoc.org/github.com/hyperledger/fabric/core/chaincode/shim</a></li>
+</ul>
+<p>  二：将代码放到/home/yjm/go/src/github.com/hyperledger/fabric/examples/chaincode/go/yjmtest/路径（为什么要放到这个路径后面会解释，稍安勿躁）</p>
+<p>  三：进入到/home/yjm/go/src/github.com/hyperledger/fabric/examples/e2e_cli路径下，启动终端。</p>
+<p>  四：输入network_setup.sh up启动整个区块链网络 启动成功结果如下：</p>
+<p>  五：/home/yjm/go/src/github.com/hyperledger/fabric/examples/e2e_cli路径下输入如下命令进入到容器:</p>
+  <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -<span class="keyword">it</span> cli bash</span><br></pre></td></tr></table></figure>
+<p>  六：输入如下命令安装链码:</p>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">peer chaincode install -n yjmtest -v <span class="number">1.0</span> -p github.com/hyperledger/fabric/examples/chaincode/<span class="keyword">go</span>/yjmtest</span><br></pre></td></tr></table></figure>
+<p>  七：输入如下命令颁发证书（否则后面没有权限实例化链码）:<br>  <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ORDERER_CA=<span class="regexp">/opt/g</span>opath<span class="regexp">/src/gi</span>thub.com<span class="regexp">/hyperledger/</span>fabric<span class="regexp">/peer/</span>crypto<span class="regexp">/ordererOrganizations/</span>example.com<span class="regexp">/orderers/</span>orderer.example.com<span class="regexp">/msp/</span>tlscacerts<span class="regexp">/tlsca.example.com-cert.pem</span></span><br></pre></td></tr></table></figure></p>
+<p>  八：实例化链码:<br>  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">peer chaincode instantiate -o orderer<span class="selector-class">.example</span><span class="selector-class">.com</span>:<span class="number">7050</span> --tls true --cafile <span class="variable">$ORDERER_CA</span> -C mychannel -n testyjm -v <span class="number">1.0</span> -c <span class="string">'&#123;"Args":[]&#125;'</span></span><br></pre></td></tr></table></figure></p>
+<p>  九：执行命令进行相关操作<br>  <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">peer chaincode <span class="keyword">query</span> -C mychannel -<span class="keyword">n</span> yjmtest -c '&#123;<span class="string">"Function"</span>:<span class="string">"create"</span>,<span class="keyword">Args</span><span class="string">":["</span>yejunmeng"]&#125;'</span><br></pre></td></tr></table></figure></p>
+<p>对应解读：<br>Fabric的链码分为系统链码和用户链码。</p>
+<p>系统链码与一般chaincode一样，有相同的编程模型，只不过系统链码是运行在peer程序中，即其是peer程序的一部分，而一般的chaincode是单独运行在一个容器中的。因此，系统链码是内建在peer程序中且不遵循一般chaincode那样的生命周期。特别的，install，instantiate和upgrade操作也不应用于系统链码。</p>
+<p>系统链码区别与一般的chaincode的目的是缩短grpc在peer结点与chaincode之间通信的时间消耗（因为peer结点在一个容器，chaincode是单独的一个容器），并权衡管理上的灵活性。比如，一个系统链码可以仅通过升级peer程序的二进制包来得到升级。系统链码可以用预定义的元素注册并编译到peer程序中，而且不需要有类似于背书策略或背书功能等这样的冗杂的功能。</p>
+<p>系统链码被用在fabric中，去操纵整个系统的配置表现，这样的话可以随时把系统改变到合适的状态。</p>
+<p><strong>几个系统链码如下：</strong></p>
+<p>LSCC Lifecycle system chaincode，处理生命周期请求。我理解的生命周期请求应该指的是一个chaincode的安装，实例化，升级，卸载等对其生命周期起关键作用的一系列操作请求。</p>
+<p>CSCC Configuration system chaincode，处理在peer程序端的频道配置。</p>
+<p>QSCC Query system chaincode，提供账本查询接口，如获取块和交易信息。</p>
+<p>ESCC Endorsement system chaincode，通过对交易申请的应答信息进行签名，来提供背书功能。</p>
+<p>VSCC Validation system chaincode，处理交易校验，包括检查背书策略和版本在并发时的控制。</p>
+<p>链码操作支持的常见命令参数</p>
+<p>参数 | 含义</p>
+<pre><code>这里是列表文本-C，-chainID| 所面向的通道 -c，ctor| 链码的具体执行参数信息，Json格式 -E，escc | 指定背书系统链码的名称 -l，lang | 链码的 编写语言 -n，name | 链码名称 -o，orderer | orderder服务地址 -P，policy | 链码所关联的背书策略 ..... | ......
+</code></pre><p>关于整个系统链码，以下统称为SCC， 用户链码，以下统称为ACC。<br>SCC启动占用的是inproc容器，可以当作就是内存里概念上的容器，在core/container/inproccontroller下实现。 ACC启动占用的是docker容器，在core/container/dockercontroller下实现。</p>
+<p>chaincode接口是定义在core/chaincode/shim/interfaces.go中的Chaincode，只有两个接口：Init(stub)和Invoke(stub)，统一用同文件中的ChaincodeStubInterface接口实例作为唯一的参数。</p>
+<p>ChaincodeStubInterface接口唯一的实现是在同目录下的chaincode.go中的ChaincodeStub。</p>
+<p>每一个chaincode都会起两个Handler，每一个Handler都是一个以状态机（FSM）驱动的通信机器，在驱动的过程中执行具体的状态事件，完成一个chaincode所需做的事情。一个可以称为服务端Handler（相当于服务端）实现在core/chaincode/handler.go中，另一个可以称为shim端Handler（相当于客户端），实现在core/chaincode/shim/handler.go中。</p>
+<p>core/chaincode下的为chaincode服务端的代码，主要用于处理chaincode的请求；core/chaincode/shim下的为chaincode客户端的代码，用于定义供开发者使用的接口和客户端提交申请。</p>
+<p>一个chaincode实质还是一个结构体对象，该结构体实现了Chaincode接口。SCC如core/scc/lscc/lscc.go中的LifeCycleSysCC。</p>
+<p>ACC如examples/chaincode/go/chaincode_example01/chaincode_example01.go中的SimpleChaincode。</p>
+<h2 id="ACC的安装过程"><a href="#ACC的安装过程" class="headerlink" title="ACC的安装过程"></a>ACC的安装过程</h2><p>当整个Fabric网络启动的时候回去读取docker-compose-cli.yaml</p>
+<p>docker-compose-cli.yaml内容如下</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"># Copyright IBM Corp. All Rights Reserved.</span><br><span class="line">  #</span><br><span class="line">  # SPDX-License-Identifier: Apache<span class="number">-2.0</span></span><br><span class="line">  #</span><br><span class="line">  </span><br><span class="line">  version: <span class="string">'2'</span></span><br><span class="line">  </span><br><span class="line">  services:</span><br><span class="line">  </span><br><span class="line">    orderer.example.com:</span><br><span class="line">      extends:</span><br><span class="line">        file:   base/docker-compose-base.yaml</span><br><span class="line">        service: orderer.example.com</span><br><span class="line">      container_name: orderer.example.com</span><br><span class="line">  </span><br><span class="line">    peer0.org1.example.com:</span><br><span class="line">      container_name: peer0.org1.example.com</span><br><span class="line">      extends:</span><br><span class="line">        file:  base/docker-compose-base.yaml</span><br><span class="line">        service: peer0.org1.example.com</span><br><span class="line">  </span><br><span class="line">    peer1.org1.example.com:</span><br><span class="line">      container_name: peer1.org1.example.com</span><br><span class="line">      extends:</span><br><span class="line">        file:  base/docker-compose-base.yaml</span><br><span class="line">        service: peer1.org1.example.com</span><br><span class="line">  </span><br><span class="line">    peer0.org2.example.com:</span><br><span class="line">      container_name: peer0.org2.example.com</span><br><span class="line">      extends:</span><br><span class="line">        file:  base/docker-compose-base.yaml</span><br><span class="line">        service: peer0.org2.example.com</span><br><span class="line">  </span><br><span class="line">    peer1.org2.example.com:</span><br><span class="line">      container_name: peer1.org2.example.com</span><br><span class="line">      extends:</span><br><span class="line">        file:  base/docker-compose-base.yaml</span><br><span class="line">        service: peer1.org2.example.com</span><br><span class="line">  </span><br><span class="line">    cli:</span><br><span class="line">      container_name: cli</span><br><span class="line">      image: hyperledger/fabric-tools</span><br><span class="line">      tty: <span class="literal">true</span></span><br><span class="line">      environment:</span><br><span class="line">        - GOPATH=/opt/gopath</span><br><span class="line">        - CORE_VM_ENDPOINT=unix:<span class="comment">///host/var/run/docker.sock</span></span><br><span class="line">        - CORE_LOGGING_LEVEL=DEBUG</span><br><span class="line">        - CORE_PEER_ID=cli</span><br><span class="line">        - CORE_PEER_ADDRESS=peer0.org1.example.com:<span class="number">7051</span></span><br><span class="line">        - CORE_PEER_LOCALMSPID=Org1MSP</span><br><span class="line">        - CORE_PEER_TLS_ENABLED=<span class="literal">true</span></span><br><span class="line">        - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt</span><br><span class="line">        - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key</span><br><span class="line">        - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt</span><br><span class="line">        - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp</span><br><span class="line">      working_dir:/opt/gopath/src/github.com/hyperledger/fabric/peer</span><br><span class="line">      command: /bin/bash -c <span class="string">'./scripts/script.sh $&#123;CHANNEL_NAME&#125;; sleep $TIMEOUT'</span></span><br><span class="line">      volumes:</span><br><span class="line">          - /<span class="keyword">var</span>/run/:/host/<span class="keyword">var</span>/run/</span><br><span class="line">          - ../chaincode/<span class="keyword">go</span>/:/opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/<span class="keyword">go</span></span><br><span class="line">          - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/</span><br><span class="line">          - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/</span><br><span class="line">          - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts</span><br><span class="line">      depends_on:</span><br><span class="line">        - orderer.example.com</span><br><span class="line">        - peer0.org1.example.com</span><br><span class="line">        - peer1.org1.example.com</span><br><span class="line">        - peer0.org2.example.com</span><br><span class="line">        - peer1.org2.example.com</span><br></pre></td></tr></table></figure>
+<p>下面就来解读一下network_setup.sh脚本做了什么, 脚本内容如下：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">   #</span><br><span class="line">   # Copyright IBM Corp. All Rights Reserved.</span><br><span class="line">   #</span><br><span class="line">   # SPDX-License-Identifier: Apache<span class="number">-2.0</span></span><br><span class="line">   #</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   UP_DOWN=<span class="string">"$1"</span></span><br><span class="line">   CH_NAME=<span class="string">"$2"</span></span><br><span class="line">   CLI_TIMEOUT=<span class="string">"$3"</span></span><br><span class="line">   IF_COUCHDB=<span class="string">"$4"</span></span><br><span class="line">   </span><br><span class="line">   : $&#123;CLI_TIMEOUT:=<span class="string">"10000"</span>&#125;</span><br><span class="line">   </span><br><span class="line">   COMPOSE_FILE=docker-compose-cli.yaml</span><br><span class="line">   COMPOSE_FILE_COUCH=docker-compose-couch.yaml</span><br><span class="line">   #COMPOSE_FILE=docker-compose-e2e.yaml</span><br><span class="line">   </span><br><span class="line">   function printHelp () &#123;</span><br><span class="line">   	echo <span class="string">"Usage: ./network_setup &lt;up|down&gt; &lt;\$channel-name&gt; &lt;\$cli_timeout&gt; &lt;couchdb&gt;.\nThe arguments must be in order."</span></span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   function validateArgs () &#123;</span><br><span class="line">   	<span class="keyword">if</span> [ -z <span class="string">"$&#123;UP_DOWN&#125;"</span> ]; then</span><br><span class="line">   		echo <span class="string">"Option up / down / restart not mentioned"</span></span><br><span class="line">   		printHelp</span><br><span class="line">   		exit <span class="number">1</span></span><br><span class="line">   	fi</span><br><span class="line">   	<span class="keyword">if</span> [ -z <span class="string">"$&#123;CH_NAME&#125;"</span> ]; then</span><br><span class="line">   		echo <span class="string">"setting to default channel 'mychannel'"</span></span><br><span class="line">   		CH_NAME=mychannel</span><br><span class="line">   	fi</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   function clearContainers () &#123;</span><br><span class="line">           CONTAINER_IDS=$(docker ps -aq)</span><br><span class="line">           <span class="keyword">if</span> [ -z <span class="string">"$CONTAINER_IDS"</span> -o <span class="string">"$CONTAINER_IDS"</span> = <span class="string">" "</span> ]; then</span><br><span class="line">                   echo <span class="string">"---- No containers available for deletion ----"</span></span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">                   docker rm -f $CONTAINER_IDS</span><br><span class="line">           fi</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   function removeUnwantedImages() &#123;</span><br><span class="line">           DOCKER_IMAGE_IDS=$(docker images | grep <span class="string">"dev\|none\|test-vp\|peer[0-9]-"</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line">           <span class="keyword">if</span> [ -z <span class="string">"$DOCKER_IMAGE_IDS"</span> -o <span class="string">"$DOCKER_IMAGE_IDS"</span> = <span class="string">" "</span> ]; then</span><br><span class="line">                   echo <span class="string">"---- No images available for deletion ----"</span></span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">                   docker rmi -f $DOCKER_IMAGE_IDS</span><br><span class="line">           fi</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   function networkUp () &#123;</span><br><span class="line">       <span class="keyword">if</span> [ -f <span class="string">"./crypto-config"</span> ]; then</span><br><span class="line">         echo <span class="string">"crypto-config directory already exists."</span></span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">         #Generate all the artifacts that includes org certs, orderer genesis block,</span><br><span class="line">         # channel configuration transaction</span><br><span class="line">         source generateArtifacts.sh $CH_NAME</span><br><span class="line">       fi</span><br><span class="line">   </span><br><span class="line">       <span class="keyword">if</span> [ <span class="string">"$&#123;IF_COUCHDB&#125;"</span> == <span class="string">"couchdb"</span> ]; then</span><br><span class="line">         CHANNEL_NAME=$CH_NAME TIMEOUT=$CLI_TIMEOUT docker-compose -f $COMPOSE_FILE -f $COMPOSE_FILE_COUCH up -d <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">         CHANNEL_NAME=$CH_NAME TIMEOUT=$CLI_TIMEOUT docker-compose -f $COMPOSE_FILE up -d <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">       fi</span><br><span class="line">       <span class="keyword">if</span> [ $? -ne <span class="number">0</span> ]; then</span><br><span class="line">   	echo <span class="string">"ERROR !!!! Unable to pull the images "</span></span><br><span class="line">   	exit <span class="number">1</span></span><br><span class="line">       fi</span><br><span class="line">       docker logs -f cli</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   function networkDown () &#123;</span><br><span class="line">       docker-compose -f $COMPOSE_FILE down</span><br><span class="line">   </span><br><span class="line">       #Cleanup the chaincode containers</span><br><span class="line">       clearContainers</span><br><span class="line">   </span><br><span class="line">       #Cleanup images</span><br><span class="line">       removeUnwantedImages</span><br><span class="line">   </span><br><span class="line">       # remove orderer block and other channel configuration transactions and certs</span><br><span class="line">       rm -rf channel-artifacts<span class="comment">/*.block channel-artifacts/*.tx crypto-config</span></span><br><span class="line"><span class="comment">   &#125;</span></span><br><span class="line"><span class="comment">   </span></span><br><span class="line"><span class="comment">   validateArgs</span></span><br><span class="line"><span class="comment">   </span></span><br><span class="line"><span class="comment">   #Create the network using docker compose</span></span><br><span class="line"><span class="comment">   if [ "$&#123;UP_DOWN&#125;" == "up" ]; then</span></span><br><span class="line"><span class="comment">   	networkUp</span></span><br><span class="line"><span class="comment">   elif [ "$&#123;UP_DOWN&#125;" == "down" ]; then ## Clear the network</span></span><br><span class="line"><span class="comment">   	networkDown</span></span><br><span class="line"><span class="comment">   elif [ "$&#123;UP_DOWN&#125;" == "restart" ]; then ## Restart the network</span></span><br><span class="line"><span class="comment">   	networkDown</span></span><br><span class="line"><span class="comment">   	networkUp</span></span><br><span class="line"><span class="comment">   else</span></span><br><span class="line"><span class="comment">   	printHelp</span></span><br><span class="line"><span class="comment">   	exit 1</span></span><br><span class="line"><span class="comment">   fi</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="目前存在的一些问题以及解决办法"><a href="#目前存在的一些问题以及解决办法" class="headerlink" title="目前存在的一些问题以及解决办法"></a>目前存在的一些问题以及解决办法</h2><p>传统的比特币的交易网络最为人诟病的一点便是交易性能：全网每秒 7 笔的交易速度，远低于传统的金融交易系统；同时，等待 6 个块的可信确认导致约 1 个小时的最终确认时间。</p>
+<p>闪电网络提出的思路十分简单</p>
+<p>将大量交易放到比特币区块链之外进行。该设计最早是 2015 年 2 月在论文《The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments》 中提出。 比特币的区块链机制自身提供了很好的可信保障，但是很慢；另一方面考虑，对于大量的小额交易来说，是否真实需要这么高的可信性？闪电网络通过智能合约来完善链下的交易渠道。</p>
+<p>核心的概念主要有两个：RSMC（Recoverable Sequence Maturity Contract） 和 HTLC（Hashed TimelockContract）。前者解决了链下交易的确认问题，后者解决了支付通道的问题。</p>
+<h3 id="RSMC"><a href="#RSMC" class="headerlink" title="RSMC"></a>RSMC</h3><p>Recoverable Sequence Maturity Contract，中文可以翻译为“可撤销的顺序成熟度合同”。主要原理类似准备金机制。 我们先假定交易双方之间存在一个“微支付通道”（资金池）。双方都预存一部分资金到“微支付通道”里，之后每次交易，就对交易后的资金分配方案共同进行确认，同时签字作废旧的版本。当需要提现时，将最终交易结果写到区块链网络中，被最终确认。可以看到，只有在提现时候才需要通过区块链。</p>
+<p>任何一个版本的方案都需要经过双方的签名认证才合法。任何一方在任何时候都可以提出提 现，提现需要提供一个双方都签名过的资金分配方案（意味着肯定是某次交易后的结果） 。 在一定时间内，如果另外一方提出证明表明这个方案其实之前被作废了（非最新的交易结 果） ，则资金罚没给质疑成功方。这就确保了没人会拿一个旧的交易结果来提现。 另外，即使双方都确认了某次提现，首先提出提现一方的资金到账时间要晚于对方，这就鼓 励大家尽量都在链外完成交易。</p>
+<h3 id="HTLC"><a href="#HTLC" class="headerlink" title="HTLC"></a>HTLC</h3><p>微支付通道是通过 Hashed Timelock Contract 来实现的，中文意思是“哈希的带时钟的合约”。这个其实就是限时转账。理解起来其实也很简单，通过智能合约，双方约定转账方先冻结一笔钱，并提供一个哈希值，如果在一定时间内有人能提出一个字符串，使得它哈希后的值跟已知值匹配（实际上意味着转账方授权了接收方来提现） ，则这笔钱转给接收方。</p>
+<p>进一步推广，甲想转账给丙，丙先发给甲一个哈希值。甲可以跟先乙签订一个合同，如果你在 一定时间内能告诉我一个暗语，我就给你多少钱。乙于是跑去跟丙签订一个合同，如果你告 诉我那个暗语，我就给你多少钱。丙于是告诉乙暗语，拿到乙的钱，乙又从甲拿到钱。最终 达到结果是甲转账给丙。这样甲和丙之间似乎构成了一条完整的虚拟的“支付通道”。</p>
+<p>HTLC 的机制可以扩展到多个人。</p>
+<p>RSMC 保障了两个人之间的直接交易可以在链下完。</p>
+<p>HTLC 保障了任意两个人之间的转账都可以通过一条“支付”通道来完成。</p>
+<p>整合这两种机制，就可以实现任意两个人之间的交易都可以在链下完成了。 在整个交易中，智能合约起到了中介的重要角色，而区块链则确保最终的交易结果被确认。</p>
+<p>Fabric主要还是运行在容器上，但目前容器在测试环境有用，但据说生产环境用的比较少，容器的生命周期不太便于管理，也没有很好的稳定性。但最近阿里好像开源了一个自研的容器技术Pouch，还没看过。暂时不知道会带来什么样的影响。</p>
+<p>此外由于Fabric相对比较新，学习资料，参考文档这些还比较少，又是基于分布式来运行，开发调试起来确实会比较困难。本身又是用Go写的，Go的项目管理工具又没有那么成熟，有时候你想导个包都要折腾半天。开发工具也参差不齐，目前感觉还没遇到完美的开发工至于为什么没有用java来讲，感觉没必要，具，都是几个混起来用，心累。</p>
+<p>本身Fabric就是用Go写的，也是基于容器，而容器技术本身也是用Go来写的，所以有一个原生的go-dockerclient,可以在fabric-release\core\container\dockercontroller\中的dockercontroller.go中的import包里可以找到。此外Fabric中用到的corba和viper都可以研究一下，在Fabric中用到的确实很多。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">区块链</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">fabric</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/18/怎么基于开源区块链项目Hyperledger-fabric进行简单应用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-用Python从零开始创建区块链" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -497,6 +713,104 @@
 
 
   
+    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><figcaption><span>python:objc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br></pre></td></tr></table></figure></p>
+<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
+<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
+</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-docker（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -570,6 +884,210 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/docker（一）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install polyglot</span></span><br></pre></td></tr></table></figure>
+<p>安装依赖库</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="built_in">get</span> install python-numpy libicu-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
+<p>在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)<br>所以我们这个动态链接库是没有build成功的。<br>可能是pip install的时候没有生成一个好的_icu.so<br>所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。<br>编译安装成功<br>我就不用pip安装了，直接下源码</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://pypi.python.org/packages/bf/<span class="number">1</span>f/cea<span class="number">237</span>f<span class="number">542e3</span>bb<span class="number">592980008</span>a<span class="number">734850e8</span>cbbc<span class="number">25</span><span class="keyword">c</span><span class="number">19</span><span class="keyword">c</span><span class="number">72</span><span class="keyword">c</span><span class="number">98767</span><span class="keyword">c</span><span class="number">71</span><span class="keyword">c</span><span class="number">1</span>bd<span class="number">9</span><span class="keyword">c</span><span class="number">2</span>/PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br></pre></td></tr></table></figure>
+<p>此时如果你是linux系统要修改一下setup.py文件<br>具体如下图所示</p>
+<p><img src="/assets/blogImg/test1.jpg" alt="图1"><br><img src="/assets/blogImg/test2.jpg" alt="图2"></p>
+<p>然后</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python setup<span class="selector-class">.py</span> build</span><br><span class="line">sudo python setup<span class="selector-class">.py</span> install</span><br></pre></td></tr></table></figure>
+<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">u"""The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide"""</span></span><br><span class="line"></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.words</span><br></pre></td></tr></table></figure>
+<h1 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h1><p>首先需要下载通用词性标签集</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">pos2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
+<p>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。<br>词性标注具体代码如下：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">"""We will meet at eight o'clock on Thursday morning."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.pos_tags</span><br></pre></td></tr></table></figure>
+<h1 id="实体识别"><a href="#实体识别" class="headerlink" title="实体识别"></a>实体识别</h1><p>首先也要安装相关依赖包</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">ner2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
+<p>相关代码如下：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line">blob = <span class="string">"""The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a "threat to the entire world"."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.entities</span><br></pre></td></tr></table></figure>
+<p>但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">nerL = [ ]</span><br><span class="line">nerR = &#123; &#125;</span><br><span class="line"><span class="keyword">for</span> sent int text<span class="selector-class">.sentences</span>:</span><br><span class="line">    <span class="keyword">for</span> entity <span class="keyword">in</span> sent<span class="selector-class">.entities</span>:</span><br><span class="line">        nerL.append(entity)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter <span class="keyword">in</span> nerL:</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> iter:</span><br><span class="line">        nerR[i] = iter.tag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(R)</span></span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-自然语言（分词、词性标注、实体识别等）集成投票算法实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">自然语言（分词、分词、实体识别等）集成投票算法实例</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="源代码注释"><a href="#源代码注释" class="headerlink" title="源代码注释"></a>源代码注释</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#获取数字编号</span><br><span class="line">def numCode(s1_str):</span><br><span class="line">    #s1_str = <span class="string">'|'</span>.<span class="keyword">join</span>(s_str)</span><br><span class="line">    tempNum = <span class="number">1</span></span><br><span class="line">    saveNum = []</span><br><span class="line">    <span class="keyword">for</span> s1_s in s1_str:</span><br><span class="line">        <span class="keyword">if</span> s1_s != <span class="string">'/'</span>:</span><br><span class="line">            saveNum.<span class="keyword">append</span>(tempNum)</span><br><span class="line">        tempNum = tempNum + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> saveNum</span><br><span class="line">#三种分词方法进行融合</span><br><span class="line">def decisonThree(s,s1,s2,s3):</span><br><span class="line">    # s = [<span class="string">'我'</span>, <span class="string">'是'</span>, <span class="string">'招'</span>, <span class="string">'商'</span>, <span class="string">'银'</span>, <span class="string">'行'</span>, <span class="string">'的'</span>, <span class="string">'一'</span>, <span class="string">'员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    # s1 = [<span class="string">'我'</span>, <span class="string">'是'</span>, <span class="string">'招商'</span>, <span class="string">'银行的'</span>, <span class="string">'一员。'</span>]</span><br><span class="line">    # s2 = [<span class="string">'我是'</span>, <span class="string">'招商'</span>, <span class="string">'银行'</span>, <span class="string">'的'</span>, <span class="string">'一员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    # s3 = [<span class="string">'我'</span>, <span class="string">'是招'</span>, <span class="string">'商'</span>, <span class="string">'银行'</span>, <span class="string">'的'</span>, <span class="string">'一员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    a1 = numCode(s1) #我爱你/，/桂/书品/！</span><br><span class="line">    b1 = numCode(s2) </span><br><span class="line">    c1 = numCode(s3)</span><br><span class="line">    <span class="keyword">print</span>(s)</span><br><span class="line">    <span class="keyword">print</span>(s1)#我爱你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(a1)#[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">12</span>]  遇到/，序号+<span class="number">1</span>，不添加到列表中</span><br><span class="line">    <span class="keyword">print</span>(s2)#我/爱/你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(b1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    <span class="keyword">print</span>(s3)#我/爱/你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(c1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    d1 = []</span><br><span class="line">    <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="built_in">len</span>(a1)):</span><br><span class="line">        <span class="keyword">if</span> ((a1[i] == b1[i]) <span class="built_in">and</span> (a1[i] == c1[i])):</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            # <span class="keyword">continue</span></span><br><span class="line">        elif a1[i] == b1[i]:</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(c1)):</span><br><span class="line">                <span class="keyword">if</span> a1[i] &lt; c1[i]:</span><br><span class="line">                    c1[ii] = c1[ii] - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    c1[ii] = c1[ii] + <span class="number">1</span></span><br><span class="line">        elif a1[i] == c1[i]:   ##投票算法的核心思想是如果其中两种的分词结果一样，则分词结果为票数多的分词结果。</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(b1)):</span><br><span class="line">                <span class="keyword">if</span> a1[i] &lt; b1[i]:</span><br><span class="line">                    b1[ii] = b1[ii] - <span class="number">1</span>###使不同的分词+<span class="number">1</span>或者-<span class="number">1</span>，从下一个位置开始比较。</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    b1[ii] = b1[ii] + <span class="number">1</span></span><br><span class="line">        elif c1[i] == b1[i]:</span><br><span class="line">            d1.<span class="keyword">append</span>(b1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(a1)):</span><br><span class="line">                <span class="keyword">if</span> b1[i] &lt; a1[i]:</span><br><span class="line">                    a1[ii] = a1[ii] - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    a1[ii] = a1[ii] + <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span>(<span class="string">'Decision Fusion:'</span>)</span><br><span class="line">    <span class="keyword">print</span>(d1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    sumPos = <span class="number">0</span></span><br><span class="line">    listTemp = []</span><br><span class="line">    <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">max</span>(d1)):</span><br><span class="line">        listTemp.<span class="keyword">append</span>(<span class="string">'|'</span>)</span><br><span class="line">    sNum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">print</span>(listTemp)#[<span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>]，形成d1中数量最大的个数的<span class="string">'|'</span></span><br><span class="line">    <span class="keyword">for</span> nPos in d1:</span><br><span class="line">        listTemp[nPos - <span class="number">1</span>] = s[sNum]</span><br><span class="line">        sNum = sNum + <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span>(listTemp)#[<span class="string">'我'</span>, <span class="string">'|'</span>, <span class="string">'爱'</span>, <span class="string">'|'</span>, <span class="string">'你'</span>, <span class="string">'|'</span>, <span class="string">'，'</span>, <span class="string">'|'</span>, <span class="string">'桂'</span>, <span class="string">'|'</span>, <span class="string">'书'</span>, <span class="string">'品'</span>, <span class="string">'|'</span>, <span class="string">'！'</span>]把listTemp中<span class="string">'|'</span>通过d1的序号提换成s中的字符。</span><br><span class="line">    outputStr = <span class="string">''</span>.<span class="keyword">join</span>(listTemp)</span><br><span class="line">    outputStr = outputStr.<span class="keyword">split</span>(<span class="string">'|'</span>)</span><br><span class="line">    <span class="keyword">print</span>(outputStr)#[<span class="string">'我'</span>, <span class="string">'爱'</span>, <span class="string">'你'</span>, <span class="string">'，'</span>, <span class="string">'桂'</span>, <span class="string">'书品'</span>, <span class="string">'！'</span>]</span><br><span class="line">    <span class="keyword">return</span> outputStr</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">投票集成算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">展开全文 >></a>
         </p>
       
 
@@ -927,308 +1445,6 @@ hippos
 
 
   
-    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><figcaption><span>python:objc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br></pre></td></tr></table></figure></p>
-<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
-<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
-</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install polyglot</span></span><br></pre></td></tr></table></figure>
-<p>安装依赖库</p>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="built_in">get</span> install python-numpy libicu-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-<p>在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)<br>所以我们这个动态链接库是没有build成功的。<br>可能是pip install的时候没有生成一个好的_icu.so<br>所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。<br>编译安装成功<br>我就不用pip安装了，直接下源码</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://pypi.python.org/packages/bf/<span class="number">1</span>f/cea<span class="number">237</span>f<span class="number">542e3</span>bb<span class="number">592980008</span>a<span class="number">734850e8</span>cbbc<span class="number">25</span><span class="keyword">c</span><span class="number">19</span><span class="keyword">c</span><span class="number">72</span><span class="keyword">c</span><span class="number">98767</span><span class="keyword">c</span><span class="number">71</span><span class="keyword">c</span><span class="number">1</span>bd<span class="number">9</span><span class="keyword">c</span><span class="number">2</span>/PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br></pre></td></tr></table></figure>
-<p>此时如果你是linux系统要修改一下setup.py文件<br>具体如下图所示</p>
-<p><img src="/assets/blogImg/test1.jpg" alt="图1"><br><img src="/assets/blogImg/test2.jpg" alt="图2"></p>
-<p>然后</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python setup<span class="selector-class">.py</span> build</span><br><span class="line">sudo python setup<span class="selector-class">.py</span> install</span><br></pre></td></tr></table></figure>
-<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">u"""The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide"""</span></span><br><span class="line"></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.words</span><br></pre></td></tr></table></figure>
-<h1 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h1><p>首先需要下载通用词性标签集</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">pos2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
-<p>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。<br>词性标注具体代码如下：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">"""We will meet at eight o'clock on Thursday morning."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.pos_tags</span><br></pre></td></tr></table></figure>
-<h1 id="实体识别"><a href="#实体识别" class="headerlink" title="实体识别"></a>实体识别</h1><p>首先也要安装相关依赖包</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">ner2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
-<p>相关代码如下：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line">blob = <span class="string">"""The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a "threat to the entire world"."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.entities</span><br></pre></td></tr></table></figure>
-<p>但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">nerL = [ ]</span><br><span class="line">nerR = &#123; &#125;</span><br><span class="line"><span class="keyword">for</span> sent int text<span class="selector-class">.sentences</span>:</span><br><span class="line">    <span class="keyword">for</span> entity <span class="keyword">in</span> sent<span class="selector-class">.entities</span>:</span><br><span class="line">        nerL.append(entity)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter <span class="keyword">in</span> nerL:</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> iter:</span><br><span class="line">        nerR[i] = iter.tag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(R)</span></span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-自然语言（分词、词性标注、实体识别等）集成投票算法实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">自然语言（分词、分词、实体识别等）集成投票算法实例</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="源代码注释"><a href="#源代码注释" class="headerlink" title="源代码注释"></a>源代码注释</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#获取数字编号</span><br><span class="line">def numCode(s1_str):</span><br><span class="line">    #s1_str = <span class="string">'|'</span>.<span class="keyword">join</span>(s_str)</span><br><span class="line">    tempNum = <span class="number">1</span></span><br><span class="line">    saveNum = []</span><br><span class="line">    <span class="keyword">for</span> s1_s in s1_str:</span><br><span class="line">        <span class="keyword">if</span> s1_s != <span class="string">'/'</span>:</span><br><span class="line">            saveNum.<span class="keyword">append</span>(tempNum)</span><br><span class="line">        tempNum = tempNum + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> saveNum</span><br><span class="line">#三种分词方法进行融合</span><br><span class="line">def decisonThree(s,s1,s2,s3):</span><br><span class="line">    # s = [<span class="string">'我'</span>, <span class="string">'是'</span>, <span class="string">'招'</span>, <span class="string">'商'</span>, <span class="string">'银'</span>, <span class="string">'行'</span>, <span class="string">'的'</span>, <span class="string">'一'</span>, <span class="string">'员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    # s1 = [<span class="string">'我'</span>, <span class="string">'是'</span>, <span class="string">'招商'</span>, <span class="string">'银行的'</span>, <span class="string">'一员。'</span>]</span><br><span class="line">    # s2 = [<span class="string">'我是'</span>, <span class="string">'招商'</span>, <span class="string">'银行'</span>, <span class="string">'的'</span>, <span class="string">'一员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    # s3 = [<span class="string">'我'</span>, <span class="string">'是招'</span>, <span class="string">'商'</span>, <span class="string">'银行'</span>, <span class="string">'的'</span>, <span class="string">'一员'</span>, <span class="string">'。'</span>]</span><br><span class="line">    a1 = numCode(s1) #我爱你/，/桂/书品/！</span><br><span class="line">    b1 = numCode(s2) </span><br><span class="line">    c1 = numCode(s3)</span><br><span class="line">    <span class="keyword">print</span>(s)</span><br><span class="line">    <span class="keyword">print</span>(s1)#我爱你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(a1)#[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">12</span>]  遇到/，序号+<span class="number">1</span>，不添加到列表中</span><br><span class="line">    <span class="keyword">print</span>(s2)#我/爱/你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(b1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    <span class="keyword">print</span>(s3)#我/爱/你/，/桂/书品/！</span><br><span class="line">    <span class="keyword">print</span>(c1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    d1 = []</span><br><span class="line">    <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="built_in">len</span>(a1)):</span><br><span class="line">        <span class="keyword">if</span> ((a1[i] == b1[i]) <span class="built_in">and</span> (a1[i] == c1[i])):</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            # <span class="keyword">continue</span></span><br><span class="line">        elif a1[i] == b1[i]:</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(c1)):</span><br><span class="line">                <span class="keyword">if</span> a1[i] &lt; c1[i]:</span><br><span class="line">                    c1[ii] = c1[ii] - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    c1[ii] = c1[ii] + <span class="number">1</span></span><br><span class="line">        elif a1[i] == c1[i]:   ##投票算法的核心思想是如果其中两种的分词结果一样，则分词结果为票数多的分词结果。</span><br><span class="line">            d1.<span class="keyword">append</span>(a1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(b1)):</span><br><span class="line">                <span class="keyword">if</span> a1[i] &lt; b1[i]:</span><br><span class="line">                    b1[ii] = b1[ii] - <span class="number">1</span>###使不同的分词+<span class="number">1</span>或者-<span class="number">1</span>，从下一个位置开始比较。</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    b1[ii] = b1[ii] + <span class="number">1</span></span><br><span class="line">        elif c1[i] == b1[i]:</span><br><span class="line">            d1.<span class="keyword">append</span>(b1[i])</span><br><span class="line">            <span class="keyword">for</span> ii in <span class="built_in">range</span>((i + <span class="number">1</span>), <span class="built_in">len</span>(a1)):</span><br><span class="line">                <span class="keyword">if</span> b1[i] &lt; a1[i]:</span><br><span class="line">                    a1[ii] = a1[ii] - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    a1[ii] = a1[ii] + <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span>(<span class="string">'Decision Fusion:'</span>)</span><br><span class="line">    <span class="keyword">print</span>(d1)#[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span>]</span><br><span class="line">    sumPos = <span class="number">0</span></span><br><span class="line">    listTemp = []</span><br><span class="line">    <span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">max</span>(d1)):</span><br><span class="line">        listTemp.<span class="keyword">append</span>(<span class="string">'|'</span>)</span><br><span class="line">    sNum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">print</span>(listTemp)#[<span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>, <span class="string">'|'</span>]，形成d1中数量最大的个数的<span class="string">'|'</span></span><br><span class="line">    <span class="keyword">for</span> nPos in d1:</span><br><span class="line">        listTemp[nPos - <span class="number">1</span>] = s[sNum]</span><br><span class="line">        sNum = sNum + <span class="number">1</span></span><br><span class="line">    <span class="keyword">print</span>(listTemp)#[<span class="string">'我'</span>, <span class="string">'|'</span>, <span class="string">'爱'</span>, <span class="string">'|'</span>, <span class="string">'你'</span>, <span class="string">'|'</span>, <span class="string">'，'</span>, <span class="string">'|'</span>, <span class="string">'桂'</span>, <span class="string">'|'</span>, <span class="string">'书'</span>, <span class="string">'品'</span>, <span class="string">'|'</span>, <span class="string">'！'</span>]把listTemp中<span class="string">'|'</span>通过d1的序号提换成s中的字符。</span><br><span class="line">    outputStr = <span class="string">''</span>.<span class="keyword">join</span>(listTemp)</span><br><span class="line">    outputStr = outputStr.<span class="keyword">split</span>(<span class="string">'|'</span>)</span><br><span class="line">    <span class="keyword">print</span>(outputStr)#[<span class="string">'我'</span>, <span class="string">'爱'</span>, <span class="string">'你'</span>, <span class="string">'，'</span>, <span class="string">'桂'</span>, <span class="string">'书品'</span>, <span class="string">'！'</span>]</span><br><span class="line">    <span class="keyword">return</span> outputStr</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">投票集成算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/自然语言（分词、词性标注、实体识别等）集成投票算法实例/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-自然语言处理textblog安装使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1322,81 +1538,6 @@ zen.sentences
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/15/自然语言处理textblog安装使用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-诗和远方1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/诗和远方1/">诗和远方1</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/诗和远方1/" class="archive-article-date">
-  	<time datetime="2018-04-15T13:31:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/散文随笔//" class="article-tag-list-link color5">散文随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/诗和远方1/">展开全文 >></a>
         </p>
       
 
@@ -1565,10 +1706,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -1582,6 +1719,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1605,7 +1746,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">spacy</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1613,11 +1758,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">textblog</a>
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">spacy</a>
+                <a href="javascript:void(0)" class="js-tag color2">fabric</a>
               </li>
             
             <div class="clearfix"></div>
