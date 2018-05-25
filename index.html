@@ -166,6 +166,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mysql与Pandas的联合使用学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/25/Mysql与Pandas的联合使用学习/">Mysql与Pandas的联合使用学习</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/25/Mysql与Pandas的联合使用学习/" class="archive-article-date">
+  	<time datetime="2018-05-25T01:06:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Mysql-与Pandas的联合使用学习"><a href="#Mysql-与Pandas的联合使用学习" class="headerlink" title="Mysql 与Pandas的联合使用学习"></a>Mysql 与Pandas的联合使用学习</h1><h2 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h2><ul>
+<li>启动mysql：输入 net start mysql;</li>
+<li>停止mysql：输入 net stop mysql;</li>
+</ul>
+<h2 id="本地登录"><a href="#本地登录" class="headerlink" title="本地登录"></a>本地登录</h2><p>mysql -u root -p</p>
+<h2 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h2><p>mysql -h mysqlfortest.cuq1n8dfabgn.rds.cn-north-1.amazonaws.com.cn -u mysqlfortest -p</p>
+<p>其中<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqlfortest<span class="selector-class">.cuq1n8dfabgn</span><span class="selector-class">.rds</span><span class="selector-class">.cn-north-1</span><span class="selector-class">.amazonaws</span><span class="selector-class">.com</span><span class="selector-class">.cn</span> 为远程数据地址</span><br><span class="line"></span><br><span class="line">mysqlfortest  为远程用户名</span><br></pre></td></tr></table></figure></p>
+<h2 id="已知数据库"><a href="#已知数据库" class="headerlink" title="已知数据库"></a>已知数据库</h2><ul>
+<li>地址:   <code>mysqlfortest.cuq1n8dfabgn.rds.cn-north-1.amazonaws.com.cn</code></li>
+<li>用户名: <code>mysqlfortest</code></li>
+<li>密码:   <code>mysqlfortest</code></li>
+</ul>
+<h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>在<code>x_project_data</code>的模式名下有一张表<code>price_per_minute</code>，该表为每分钟的黄金行情数据，现请使用Mysql语句完成以下任务：</p>
+<h3 id="1-展示price-per-minute的字段名称和字段类型；"><a href="#1-展示price-per-minute的字段名称和字段类型；" class="headerlink" title="1.展示price_per_minute的字段名称和字段类型；"></a>1.展示price_per_minute的字段名称和字段类型；</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">use</span> x_project_data;  <span class="comment"># 使用该数据库</span></span><br><span class="line"><span class="attribute">show</span> tables; <span class="comment">#查看该数据库有多少个表</span></span><br><span class="line"><span class="attribute">DESCRIBE</span> price_per_minute; <span class="comment">#描述该表</span></span><br><span class="line"><span class="attribute">select</span> column_name,data_type from information_schema.columns where table_name=<span class="string">'price_per_minute'</span>；显示字段名称和字段类型</span><br></pre></td></tr></table></figure>
+<h3 id="2-针对表price-per-minute展示发布时间trade-time最新的10个交易价格；"><a href="#2-针对表price-per-minute展示发布时间trade-time最新的10个交易价格；" class="headerlink" title="2. 针对表price_per_minute展示发布时间trade_time最新的10个交易价格；"></a>2. 针对表price_per_minute展示发布时间trade_time最新的10个交易价格；</h3><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DESCRIBE price_per_minute; #描述该表</span><br><span class="line"><span class="keyword">SELECT</span> trade_time,close_price <span class="keyword">from</span> price_per_minute <span class="keyword">ORDER</span> <span class="keyword">BY</span> trade_time <span class="keyword">DESC</span> <span class="keyword">LIMIT</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="3-统计每天会有多少条记录，并且按照日期逆序进行排列；"><a href="#3-统计每天会有多少条记录，并且按照日期逆序进行排列；" class="headerlink" title="3.统计每天会有多少条记录，并且按照日期逆序进行排列；"></a>3.统计每天会有多少条记录，并且按照日期逆序进行排列；</h3><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DATE_FORMAT(trade_time,<span class="string">'%Y-%m-%d'</span>),<span class="built_in">COUNT</span>(*) <span class="keyword">from</span> price_per_minute <span class="keyword">GROUP</span> <span class="keyword">BY</span> DATE_FORMAT(trade_time,<span class="string">'%Y-%m-%d'</span>) <span class="keyword">ORDER</span> <span class="keyword">BY</span>  DATE_FORMAT(trade_time,<span class="string">'%Y-%m-%d'</span>) <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line">#除了使用DATE_FORMAT，还可以利用函数Date()将提取出日期中的年月日</span><br><span class="line"><span class="keyword">SELECT</span> Date(trade_time),<span class="built_in">COUNT</span>(*) <span class="keyword">from</span> price_per_minute <span class="keyword">GROUP</span> <span class="keyword">BY</span>  Date(trade_time) <span class="keyword">ORDER</span> <span class="keyword">BY</span>  Date(trade_time) <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line">#统计一列中的值重复出现的次数，查询出的结果按次数的倒序排列</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> 重复字段，<span class="built_in">count</span>(*) <span class="keyword">from</span> 表名 <span class="keyword">group</span> <span class="keyword">by</span> 重复字段 <span class="keyword">order</span> <span class="keyword">by</span> 重复字段 <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="4-建立一个跟price-per-minute表结构一样的表price-per-minute-bak，添加一列名为’newtag’的列，列的类型为’char’；"><a href="#4-建立一个跟price-per-minute表结构一样的表price-per-minute-bak，添加一列名为’newtag’的列，列的类型为’char’；" class="headerlink" title="4.建立一个跟price_per_minute表结构一样的表price_per_minute_bak，添加一列名为’newtag’的列，列的类型为’char’；"></a>4.建立一个跟price_per_minute表结构一样的表price_per_minute_bak，添加一列名为’newtag’的列，列的类型为’char’；</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE A LIKE <span class="keyword">B </span><span class="comment">#此种方式在将表B复制到A时候会将表B完整的字段结构和索引复制到表A中来。</span></span><br><span class="line">CREATE TABLE A AS SELECT * FROM <span class="keyword">B </span>LIMIT <span class="number">0</span> <span class="comment">#此种方式只会将表B的字段结构复制到表A中来，但不会复制表B中的索引到表A中来。这种方式比较灵活可以在复制原表表结构的同时指定要复制哪些字段，并且自身复制表也可以根据需要增加字段结构。</span></span><br><span class="line"></span><br><span class="line">两种方式在复制表的时候均不会复制权限对表的设置。比如说原本对表<span class="keyword">B做了权限设置，复制后，表A不具备类似于表B的权限。</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">另外：oracle支持as，也是只有表结构没有索引；oracle不支持like。</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">CREATE </span>TABLE price_per_minute_bak LIKE price_per_minute<span class="comment">;</span></span><br><span class="line">ALTER TABLE price_per_minute_bak <span class="keyword">add </span>column newtag char(<span class="number">20</span>) not null<span class="comment">; #新添加一列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果想删除某一列可以用下面的命令</span></span><br></pre></td></tr></table></figure>
+<h4 id="新表中将现有的base-currency类型由char-8-改成char-16"><a href="#新表中将现有的base-currency类型由char-8-改成char-16" class="headerlink" title="新表中将现有的base_currency类型由char(8)改成char(16)"></a>新表中将现有的base_currency类型由char(8)改成char(16)</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> price_per_minute_bak <span class="keyword">modify</span> <span class="keyword">column</span> base_currency <span class="built_in">char</span>(<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="把最终建好的表字段进行展示"><a href="#把最终建好的表字段进行展示" class="headerlink" title="把最终建好的表字段进行展示"></a>把最终建好的表字段进行展示</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">COLUMNS</span> <span class="keyword">FROM</span> price_per_minute_bak;</span><br></pre></td></tr></table></figure>
+<h4 id="5-将表与event-history进行关联（内连接，关联的键分别为trade-time-和-related-event-datetime-统计关联结果的数量，删除新建的表price-per-minute-bak："><a href="#5-将表与event-history进行关联（内连接，关联的键分别为trade-time-和-related-event-datetime-统计关联结果的数量，删除新建的表price-per-minute-bak：" class="headerlink" title="5.将表与event_history进行关联（内连接，关联的键分别为trade_time 和 related_event_datetime)统计关联结果的数量，删除新建的表price_per_minute_bak："></a>5.将表与event_history进行关联（内连接，关联的键分别为trade_time 和 related_event_datetime)统计关联结果的数量，删除新建的表price_per_minute_bak：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">INNER JOIN 关联两张数据表的写法：</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> 表<span class="number">1</span> <span class="keyword">INNER</span> <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 表<span class="number">1.</span>字段号=表<span class="number">2.</span>字段号</span><br><span class="line"> </span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> 关联三张数据表的写法：</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (表<span class="number">1</span> <span class="keyword">INNER</span> <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 表<span class="number">1.</span>字段号=表<span class="number">2.</span>字段号) <span class="keyword">INNER</span> <span class="keyword">JOIN</span> 表<span class="number">3</span> <span class="keyword">ON</span> 表<span class="number">1.</span>字段号=表<span class="number">3.</span>字段号</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> (</span><br><span class="line"><span class="keyword">SELECT</span> a.trade_time <span class="keyword">from</span> price_per_minute a </span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> event_history b</span><br><span class="line"><span class="keyword">ON</span> a.trade_time = b.related_event_datetime) c;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> price_per_minute_bak;</span><br></pre></td></tr></table></figure>
+<h3 id="6-python环境安装sqlalchemy，-用sqlalchemy-配置数据库字段，访问price-per-minute数据，将读取后的数据放入pandas-dataframe中，使用pandas函数完成以下功能："><a href="#6-python环境安装sqlalchemy，-用sqlalchemy-配置数据库字段，访问price-per-minute数据，将读取后的数据放入pandas-dataframe中，使用pandas函数完成以下功能：" class="headerlink" title="6. python环境安装sqlalchemy， 用sqlalchemy 配置数据库字段，访问price_per_minute数据，将读取后的数据放入pandas.dataframe中，使用pandas函数完成以下功能："></a>6. python环境安装<code>sqlalchemy</code>， 用<code>sqlalchemy</code> 配置数据库字段，访问<code>price_per_minute</code>数据，将读取后的数据放入<code>pandas.dataframe</code>中，使用<code>pandas</code>函数完成以下功能：</h3><pre><code>1. 添加新的一列’diff’,该列保存每一分钟与上一分钟的close价格差，
+    * 求出价格差异最大的值以及相应的时刻
+    * 画出diff这一列的直方图分布
+2. 保存每天的最后一笔交易数据，过滤其他的日内交易数据；
+3. 画出close随时间trade_time变化的曲线图；
+4. 将最终得到的dataframe保存为’自己姓名.csv’的文件
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> * </span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.dates <span class="keyword">as</span> mdates</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化数据库连接:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    engine = create_engine(<span class="string">'mysql://mysqlfortest:mysqlfortest@mysqlfortest.cuq1n8dfabgn.rds.cn-north-1.amazonaws.com.cn/x_project_data'</span>)</span><br><span class="line">    <span class="comment">#1 上面的create_engine就是用来连接数据库的引擎：</span></span><br><span class="line">    <span class="comment">#2 mysql+pymysql指定使用pymysql来执行原生SQL语句</span></span><br><span class="line">    <span class="comment">#3 //root:1@127.0.0.1/tomdb   &lt;&lt;==&gt;&gt; //用户名：密码@ip/数据库名</span></span><br><span class="line">    <span class="comment">#4 encoding='utf-8' 指定创建的表用‘utf-8'编码（可以存中文）</span></span><br><span class="line">    <span class="comment">#5 echo=True 将执行SQL原生语句的执行细节打印出来</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将sql中的数据读取到dataframe中</span></span><br><span class="line">    sql_cmd = <span class="string">"Select * from price_per_minute ORDER BY trade_time DESC limit 15000 "</span> ; <span class="comment">#时间降序排列，从上到下为 现在的时间到过去的时间</span></span><br><span class="line">    Data = pd.read_sql(sql_cmd, engine)  <span class="comment">#read_sql接受两个参数，一个是sql语句;一个是con（数据库连接）、read_sql直接返回一个DataFrame对象</span></span><br><span class="line">    print(Data);</span><br><span class="line">    <span class="comment">#1. 添加新的一列’diff’,该列保存每一分钟与上一分钟的close价格差， 现在的时间减去过去的时间，上-下，为一阶差分</span></span><br><span class="line">    Data[<span class="string">'diff'</span>] = Data[<span class="string">'close_price'</span>].diff(<span class="number">-1</span>) <span class="comment">#向下差分；</span></span><br><span class="line">    <span class="comment">## * 求出价格差异最大的值以及相应的时刻</span></span><br><span class="line">    diff = Data[<span class="string">'diff'</span>];</span><br><span class="line">    max_diff =  diff.max();</span><br><span class="line">    max_index = np.argmax(diff); <span class="comment">#numpy 的函数argmax 求数组中最大值对应的索引</span></span><br><span class="line">    max_trade_time = Data[<span class="string">'trade_time'</span>][max_index];</span><br><span class="line">    print(<span class="string">'最大价格差值===='</span>+str(max_diff));</span><br><span class="line">    print(<span class="string">'最大价差对应交易时间===='</span>+str(max_trade_time))</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#画出diff这一列的直方图分布</span></span><br><span class="line">    plt.figure(<span class="number">1</span>);</span><br><span class="line">    plt.subplot(<span class="number">211</span>);</span><br><span class="line">    <span class="comment">#n, bins, patches = plt.hist(diff,20);</span></span><br><span class="line">    </span><br><span class="line">    diff.hist(bins=<span class="number">5</span>);</span><br><span class="line">    <span class="comment">#plt.hist(diff,bins = 15, color = "red", normed = True);</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#2. 保存每天的最后一笔交易数据，过滤其他的日内交易数据；</span></span><br><span class="line">    Res = Data.resample(<span class="string">'1D'</span>,on=<span class="string">'trade_time'</span>).last(); <span class="comment"># 将DataFrame按照天来分组 取每组（天）的最后一组交易数据；</span></span><br><span class="line">    print(Res);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#  3. 画出close随时间trade_time变化的曲线图；</span></span><br><span class="line">    months = mdates.MonthLocator();</span><br><span class="line">    days = mdates.DayLocator();</span><br><span class="line">    timeFmt = mdates.DateFormatter(<span class="string">'%Y-%m'</span>)</span><br><span class="line">    closeprice = Data[<span class="string">'close_price'</span>]</span><br><span class="line">    tradetime = Data[<span class="string">'trade_time'</span>]</span><br><span class="line">    ax = plt.subplot(<span class="number">212</span>);</span><br><span class="line">    plt.plot(tradetime,closeprice);</span><br><span class="line">    <span class="comment">#ax.xaxis.set_major_locator(months);</span></span><br><span class="line">    <span class="comment">#ax.xaxis.set_major_formatter(timeFmt);</span></span><br><span class="line">    <span class="comment">#ax.xaxis.set_minor_locator(days);</span></span><br><span class="line">    plt.show();</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#4. 将最终得到的dataframe保存为’自己姓名.csv’的文件</span></span><br><span class="line">    Data.to_csv(<span class="string">'liyuzhen.csv'</span>,index=<span class="keyword">False</span>)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>: </span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">MySQL - python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/25/Mysql与Pandas的联合使用学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-怎么基于开源区块链项目Hyperledger-fabric进行简单应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -713,316 +830,6 @@
 
 
   
-    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><figcaption><span>python:objc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br></pre></td></tr></table></figure></p>
-<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
-<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
-</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-docker（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/docker（一）/">docker（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/docker（一）/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装docker-for-ubuntu"><a href="#安装docker-for-ubuntu" class="headerlink" title="安装docker for ubuntu"></a>安装docker for ubuntu</h2><p>从 Docker 镜像仓库获取镜像的命令是 docker pull 。其命令格式为：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull <span class="comment">[选项]</span> <span class="comment">[Docker Registry 地址<span class="comment">[:端口号]</span>/]</span>仓库名<span class="comment">[:标签]</span></span><br></pre></td></tr></table></figure></p>
-<p>具体的选项可以通过 docker pull –help 命令看到,这里我们说一下镜像 名 称 的 格 式。Docker 镜像仓库地址：地址的格式一般是&lt;域名/IP&gt;[:端口号]。默认地址是Docker Hub。仓库名：如之前所说，这里的仓库名是两段式名称，即&lt;用户名&gt;/&lt;软件名&gt;。 对于 DockerHub，如果不给出用户名，则默认为librar，也就是官方镜像。<br>比如：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull <span class="string">ubuntu:</span><span class="number">16.04</span></span><br><span class="line"><span class="number">16.04</span>: Pulling from library/ubuntu</span><br><span class="line"><span class="string">bf5d46315322:</span> Pull complete</span><br><span class="line"><span class="number">9</span><span class="string">f13e0ac480c:</span> Pull complete</span><br><span class="line"><span class="string">e8988b5b3097:</span> Pull complete</span><br><span class="line"><span class="number">40</span><span class="string">af181810e7:</span> Pull complete</span><br><span class="line"><span class="string">e6f7c7e5c03e:</span> Pull complete</span><br><span class="line"><span class="string">Digest:</span> <span class="string">sha256:</span><span class="number">147913621</span>d9cdea08853f6ba9116c2e27a3ceffecf3b492983ae97c3d643fbbe</span><br><span class="line"><span class="string">Status:</span> Downloaded newer image <span class="keyword">for</span> <span class="string">ubuntu:</span><span class="number">16.04</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="列出镜像"><a href="#列出镜像" class="headerlink" title="列出镜像"></a>列出镜像</h2><p>要想列出已经下载下来的镜像，可以使用 docker image ls或者docker images 命令。</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              latest              c9d990395902        <span class="number">2</span> weeks ago         <span class="number">113</span>MB</span><br><span class="line">cita/cita-run       latest              <span class="number">14</span>f6fa0d1610        <span class="number">3</span> weeks ago         <span class="number">530</span>MB</span><br><span class="line">cita/cita-build     latest              <span class="number">3</span>ea9fdb515e6        <span class="number">4</span> weeks ago         <span class="number">1.47</span>GB</span><br></pre></td></tr></table></figure>
-<p>镜像 ID 则是镜像的唯一标识，一个镜像可以对应多个标签。</p>
-<h2 id="镜像体积"><a href="#镜像体积" class="headerlink" title="镜像体积"></a>镜像体积</h2><p>你可以通过以下命令来便捷的查看<strong>镜像、容器、数据卷</strong>所占用的空间<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ docker<span class="built_in"> system </span>df</span><br><span class="line">TYPE TOTAL ACTIVE SIZE RECLAI</span><br><span class="line">MABLE</span><br><span class="line">Images 24 0 1.992GB 1.992G</span><br><span class="line">B (100%)</span><br><span class="line">Containers 1 0 62.82MB 62.82M</span><br><span class="line">B (100%)</span><br><span class="line">Local Volumes 9 0 652.2MB 652.2M</span><br><span class="line">B (100%)</span><br><span class="line">Build Cache 0B 0</span><br></pre></td></tr></table></figure></p>
-<h2 id="删除本地镜像"><a href="#删除本地镜像" class="headerlink" title="删除本地镜像"></a>删除本地镜像</h2><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image rm <span class="string">[选项]</span> &lt;镜像<span class="number">1</span>&gt; <span class="string">[&lt;镜像2&gt; ...]</span></span><br></pre></td></tr></table></figure>
-<p>其中， &lt;镜像&gt; 可以是 镜像短 ID 、 镜像长 ID 、 镜像名 或者镜像摘要。</p>
-<h2 id="启动镜像"><a href="#启动镜像" class="headerlink" title="启动镜像"></a>启动镜像</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">run</span><span class="bash"> = docker create + docker start</span></span><br></pre></td></tr></table></figure>
-<h2 id="镜像定制"><a href="#镜像定制" class="headerlink" title="镜像定制"></a>镜像定制</h2><p>现在让我们以定制一个 Web 服务器为例子，来讲解镜像是如何构建的。<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">run</span> <span class="comment">--name webserver -d -p 80:80 nginx</span></span><br></pre></td></tr></table></figure></p>
-<p>这条命令会用 nginx 镜像启动一个容器，命名为 webserver ，并且映射了 80 端口，这样我们可以用浏览器去访问这个 nginx 服务器。如果是在 Linux 本机运行的 Docker，或者如果使用的是 Docker for Mac、Docker for Windows，那么可以直接访问：<a href="http://localhost；如果使用的是" target="_blank" rel="noopener">http://localhost；如果使用的是</a> Docker Toolbox，或者是在虚拟机、云服务器上安装的 Docker，则需要将 localhost 换为虚拟机地址或者实际云服务器地址。直接用浏览器访问的话，我们会看到默认的 Nginx 欢迎页面。<br>现在，假设我们非常不喜欢这个欢迎页面，我们希望改成欢迎 Docker 的文字，我们可以使用docker exec 命令进入容器，修改其内容。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker exec -it webserver bash</span><br><span class="line">root<span class="variable">@3729b97e8226</span><span class="symbol">:/</span><span class="comment"># echo '&lt;h1&gt;Hello, Docker!&lt;/h1&gt;' &gt; /usr/share/nginx/html/index.html</span></span><br><span class="line">root<span class="variable">@3729b97e8226</span><span class="symbol">:/</span><span class="comment"># exit</span></span><br><span class="line">exit</span><br></pre></td></tr></table></figure></p>
-<p>我们以交互式终端方式进入webserver容器，并执行了bash命令，也就是获得一个可操作的 Shell。然后，我们用 </p><h1>Hello, Docker!</h1> 覆盖了 /usr/share/nginx/html/index.html的内容。现在我们再刷新浏览器的话，会发现内容被改变了.<p></p>
-<p>现在我们定制好了变化，我们希望能将其保存下来形成镜像。<br>而 Docker 提供了一个docker commit命令，可以将容器的存储层保存下来成为镜像。换句话说，就是在原有镜像的基础上，再叠加上容器的存储层，并构成新的镜像。以后我们运行这个新镜像的时候，就会拥有原有容器最后的文件变化。<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit [选项] &lt;容器ID或容器名&gt; <span class="meta">[&lt;仓库名&gt;[:&lt;标签&gt;]</span>]</span><br></pre></td></tr></table></figure></p>
-<p>我们可以用下面的命令将容器保存为镜像：<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit \</span><br><span class="line">-<span class="ruby">-author <span class="string">"Tao Wang &lt;twang2218@gmail.com&gt;"</span> \</span></span><br><span class="line"><span class="ruby">--message <span class="string">"修改了默认网页"</span> \</span></span><br><span class="line"><span class="ruby">webserver \</span></span><br><span class="line"><span class="ruby"><span class="symbol">nginx:</span>v2</span></span><br><span class="line"><span class="ruby"><span class="symbol">sha256:</span><span class="number">07</span>e33465974800ce65751acc279adc6ed2dc5ed4e0838f8b86f0c87aa1795214</span></span><br></pre></td></tr></table></figure></p>
-<p>其中 –author 是指定修改的作者，而 –message 则是记录本次修改的内容。这点和 git<br>版本控制相似，不过这里这些信息可以省略留空。<br>我们可以在 docker image ls 中看到这个新定制的镜像.</p>
-<h2 id="Dockerfile-镜像定制"><a href="#Dockerfile-镜像定制" class="headerlink" title="Dockerfile 镜像定制"></a>Dockerfile 镜像定制</h2><p>从刚才的 docker commit的学习中，我们可以了解到，镜像的定制实际上就是定制每一层所添加的配置、文件。如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么之前提及的无法重复的问题、镜像构建透明性的问题、体积的问题就都会解决。这个脚本就是 Dockerfile。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/docker（一）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
-  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install polyglot</span></span><br></pre></td></tr></table></figure>
-<p>安装依赖库</p>
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="built_in">get</span> install python-numpy libicu-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-<p>在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)<br>所以我们这个动态链接库是没有build成功的。<br>可能是pip install的时候没有生成一个好的_icu.so<br>所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。<br>编译安装成功<br>我就不用pip安装了，直接下源码</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://pypi.python.org/packages/bf/<span class="number">1</span>f/cea<span class="number">237</span>f<span class="number">542e3</span>bb<span class="number">592980008</span>a<span class="number">734850e8</span>cbbc<span class="number">25</span><span class="keyword">c</span><span class="number">19</span><span class="keyword">c</span><span class="number">72</span><span class="keyword">c</span><span class="number">98767</span><span class="keyword">c</span><span class="number">71</span><span class="keyword">c</span><span class="number">1</span>bd<span class="number">9</span><span class="keyword">c</span><span class="number">2</span>/PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br></pre></td></tr></table></figure>
-<p>此时如果你是linux系统要修改一下setup.py文件<br>具体如下图所示</p>
-<p><img src="/assets/blogImg/test1.jpg" alt="图1"><br><img src="/assets/blogImg/test2.jpg" alt="图2"></p>
-<p>然后</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python setup<span class="selector-class">.py</span> build</span><br><span class="line">sudo python setup<span class="selector-class">.py</span> install</span><br></pre></td></tr></table></figure>
-<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">u"""The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide"""</span></span><br><span class="line"></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.words</span><br></pre></td></tr></table></figure>
-<h1 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h1><p>首先需要下载通用词性标签集</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">pos2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
-<p>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。<br>词性标注具体代码如下：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">"""We will meet at eight o'clock on Thursday morning."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.pos_tags</span><br></pre></td></tr></table></figure>
-<h1 id="实体识别"><a href="#实体识别" class="headerlink" title="实体识别"></a>实体识别</h1><p>首先也要安装相关依赖包</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">ner2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
-<p>相关代码如下：</p>
-<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line">blob = <span class="string">"""The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a "threat to the entire world"."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.entities</span><br></pre></td></tr></table></figure>
-<p>但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">nerL = [ ]</span><br><span class="line">nerR = &#123; &#125;</span><br><span class="line"><span class="keyword">for</span> sent int text<span class="selector-class">.sentences</span>:</span><br><span class="line">    <span class="keyword">for</span> entity <span class="keyword">in</span> sent<span class="selector-class">.entities</span>:</span><br><span class="line">        nerL.append(entity)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter <span class="keyword">in</span> nerL:</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> iter:</span><br><span class="line">        nerR[i] = iter.tag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(R)</span></span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-	  
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-自然语言（分词、词性标注、实体识别等）集成投票算法实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1445,6 +1252,214 @@ hippos
 
 
   
+    <article id="post-NLP处理之polyglot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP处理之polyglot/">NLP处理之polyglot</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP处理之polyglot/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install polyglot</span></span><br></pre></td></tr></table></figure>
+<p>安装依赖库</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="built_in">get</span> install python-numpy libicu-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
+<p>在Python中import _icu（这个语句其实在polyglot安装成功后import polyglot.text是报错发现的）的时候，发现importerror …. _icu.so: no defined …(忘了)<br>所以我们这个动态链接库是没有build成功的。<br>可能是pip install的时候没有生成一个好的_icu.so<br>所以我们要在安装python模块的时候入手，icu4c模块应该没问题了。<br>编译安装成功<br>我就不用pip安装了，直接下源码</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://pypi.python.org/packages/bf/<span class="number">1</span>f/cea<span class="number">237</span>f<span class="number">542e3</span>bb<span class="number">592980008</span>a<span class="number">734850e8</span>cbbc<span class="number">25</span><span class="keyword">c</span><span class="number">19</span><span class="keyword">c</span><span class="number">72</span><span class="keyword">c</span><span class="number">98767</span><span class="keyword">c</span><span class="number">71</span><span class="keyword">c</span><span class="number">1</span>bd<span class="number">9</span><span class="keyword">c</span><span class="number">2</span>/PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line"># (去官网下载，我的是<span class="number">1.9</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">tar zxvf PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br><span class="line">cd PyICU<span class="number">-2.0</span>.<span class="number">3</span>.tar.gz</span><br></pre></td></tr></table></figure>
+<p>此时如果你是linux系统要修改一下setup.py文件<br>具体如下图所示</p>
+<p><img src="/assets/blogImg/test1.jpg" alt="图1"><br><img src="/assets/blogImg/test2.jpg" alt="图2"></p>
+<p>然后</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python setup<span class="selector-class">.py</span> build</span><br><span class="line">sudo python setup<span class="selector-class">.py</span> install</span><br></pre></td></tr></table></figure>
+<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">u"""The baby eagle liked the nest. It was the only world he had ever known. It was warm and comfortable, had a great view, and even better, he had all the food and love and attention that a great mother eagle could provide"""</span></span><br><span class="line"></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.words</span><br></pre></td></tr></table></figure>
+<h1 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h1><p>首先需要下载通用词性标签集</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">pos2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
+<p>这一步要等好久好久，反正我等得是花都谢了，N次怀疑电脑卡死了。<br>词性标注具体代码如下：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line"></span><br><span class="line">blob = <span class="string">"""We will meet at eight o'clock on Thursday morning."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.pos_tags</span><br></pre></td></tr></table></figure>
+<h1 id="实体识别"><a href="#实体识别" class="headerlink" title="实体识别"></a>实体识别</h1><p>首先也要安装相关依赖包</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">polyglot</span> <span class="selector-tag">download</span> <span class="selector-tag">embeddings2</span><span class="selector-class">.en</span> <span class="selector-tag">ner2</span><span class="selector-class">.en</span></span><br></pre></td></tr></table></figure>
+<p>相关代码如下：</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from polyglot.text <span class="keyword">import</span> <span class="built_in">Text</span></span><br><span class="line">blob = <span class="string">"""The Israeli Prime Minister Benjamin Netanyahu has warned that Iran poses a "threat to the entire world"."""</span></span><br><span class="line">text = <span class="built_in">Text</span>(blob)</span><br><span class="line"></span><br><span class="line">text.entities</span><br></pre></td></tr></table></figure>
+<p>但是上面打印出来的结果不是字典的形式，为了最后成为字典，可以这样处理</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">nerL = [ ]</span><br><span class="line">nerR = &#123; &#125;</span><br><span class="line"><span class="keyword">for</span> sent int text<span class="selector-class">.sentences</span>:</span><br><span class="line">    <span class="keyword">for</span> entity <span class="keyword">in</span> sent<span class="selector-class">.entities</span>:</span><br><span class="line">        nerL.append(entity)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> iter <span class="keyword">in</span> nerL:</span><br><span class="line">    <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> iter:</span><br><span class="line">        nerR[i] = iter.tag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(R)</span></span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">polyglot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP处理之polyglot/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-NLP的JSON格式输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/15/NLP的JSON格式输出/">NLP的JSON格式输出</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/15/NLP的JSON格式输出/" class="archive-article-date">
+  	<time datetime="2018-04-15T15:23:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="分词的JSON格式输出"><a href="#分词的JSON格式输出" class="headerlink" title="分词的JSON格式输出"></a>分词的JSON格式输出</h1><h2 id="实现核心"><a href="#实现核心" class="headerlink" title="实现核心"></a>实现核心</h2><p>实现的核心是构造 convertToJson(words)函数，首先需要将各种策略下的分词输出，转化成list输出。保证输入该函数的参数是list。该函数的具体代码如下：<br><figure class="highlight ruby"><figcaption><span>python:objc</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convertToJson</span><span class="params">(words)</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="comment">#the paramter words have been already segmented</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#词性标注功能</span></span><br><span class="line">    postagger = Postagger()  </span><br><span class="line">    postagger.load(<span class="string">"/models/pyltp/ltp_data_v3.4.0/pos.model"</span>)  </span><br><span class="line">    postags = postagger.postag(words) </span><br><span class="line">    postagger.release()  <span class="comment"># 释放模型 </span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 结果整合为json。这是重点。我把原代码的print全部注释。  </span></span><br><span class="line">    resultJson=[] <span class="comment">#创建一个空列表，用于保存json数据。  </span></span><br><span class="line">    length = len(words)</span><br><span class="line">    <span class="keyword">begin</span>= []</span><br><span class="line">    <span class="keyword">end</span> = []</span><br><span class="line">    <span class="keyword">begin</span>.append(<span class="number">0</span>)</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="symbol">length:</span></span><br><span class="line">         <span class="keyword">end</span>.append(<span class="keyword">begin</span>[i] + len(words[i]) - <span class="number">1</span>)</span><br><span class="line">         <span class="keyword">if</span> i == length - <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">             <span class="keyword">break</span></span><br><span class="line">         <span class="symbol">else:</span></span><br><span class="line">             <span class="keyword">begin</span>.append(<span class="keyword">begin</span>[i] + len(words[i]))</span><br><span class="line">         i=i+<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(words))<span class="symbol">:</span><span class="comment">#遍历结果  </span></span><br><span class="line">        resultJson.append(&#123;<span class="string">'id'</span><span class="symbol">:index</span>,<span class="string">'begin'</span><span class="symbol">:begin</span>[index],<span class="string">'end'</span><span class="symbol">:end</span>[index],<span class="string">'cont'</span><span class="symbol">:words</span>[index],<span class="string">'pos'</span><span class="symbol">:postags</span>[index]&#125;) <span class="comment">#将各功能的结果对应地添加到json中  </span></span><br><span class="line">    <span class="keyword">return</span> resultJson <span class="comment"># 返回函数结果  </span></span><br></pre></td></tr></table></figure></p>
+<p>这个函数中用pyltp库实现了词性标注，而且标注了每个分词在原来句子中的位置。<br>最后通过一个大循环把所有的结果存到resultJson，最后可以应用dumps函数实现json格式转换。</p>
+<pre><code>result=json.dumps({&apos;status&apos;:&apos;0&apos;,&apos;inputStr&apos;:inputStr,&apos;mode&apos;:methodNum,&apos;outputStr&apos;:finalResult},ensure_ascii=False,indent=2)
+</code></pre><h2 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h2><p>   在与前端联调的过程中出现问题，总是不同，有500的错误提出。消耗了我两天多的时间，最后发现问题是：前端发给我的数字都是字符串，而我在后面代码中的数字都是int型的，所以出问题。最后的解决办法是，将前端发过来的数字强制转换成int型。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">自然语言处理(NLP)</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">分词</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+	  
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术博客//" class="article-tag-list-link color5">技术博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/15/NLP的JSON格式输出/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-自然语言处理textblog安装使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1694,7 +1709,23 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MySQL - python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">自然语言处理(NLP)</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1718,14 +1749,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">polyglot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
@@ -1746,6 +1769,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">fabric</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">textblog</a>
               </li>
              
@@ -1759,10 +1786,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">fabric</a>
               </li>
             
             <div class="clearfix"></div>
